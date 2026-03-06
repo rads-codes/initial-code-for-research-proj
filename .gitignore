@@ -1,0 +1,47 @@
+# API keys
+.env
+*.env
+api_keys.env
+
+# experiment outputs
+data/processed/runs/
+
+# IDE
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
+#python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyc
+*.pyd
+*.so
+
+#virtual environments
+.venv/
+venv/
+env/
+
+#Logs/Reports
+*.log
+report_*.jsonl
+
+#keep folder structure
+!data/processed/runs/.gitkeep
+
+#cached web content
+data/processed/cache/
+
+#large artifacts
+*.pt
+*.bin
+*.model
+*.ckpt
+
+#bc lots of JSONL artifacts generated
+*.tmp
+*.cache

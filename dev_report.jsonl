@@ -1,0 +1,3 @@
+{"run_id":"dev_run","created_utc":"2026-03-05T15:32:00Z","code_version":"dev_v0","step":"00_test","event":"start"}
+{"run_id":"dev_run","created_utc":"2026-03-05T15:32:00Z","code_version":"dev_v0","step":"00_test","event":"timer","timer":"sleep","elapsed_s":0.025012083002366126,"total_s":0.025012083002366126}
+{"run_id":"dev_run","created_utc":"2026-03-05T15:32:00Z","code_version":"dev_v0","step":"00_test","event":"summary","status":"ok","elapsed_s":0.02574129099957645,"counts":{"rows_read":3},"metrics":{},"timers_s":{"sleep":0.025012083002366126}}

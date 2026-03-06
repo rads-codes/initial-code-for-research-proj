@@ -1,0 +1,13 @@
+requests
+pdfminer.six
+
+trafilatura
+requests
+
+lxml_html_clean
+
+sentence-transformers
+
+torch
+
+matplotlib
