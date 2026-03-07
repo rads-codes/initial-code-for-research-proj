@@ -1,0 +1,34 @@
+Abstract In Italy, 128,948 confirmed cases and 15,887 deaths of people who tested positive for SARS-CoV-2 were registered as of 5 April 2020.
+Ending the global SARS-CoV-2 pandemic requires implementation of multiple population-wide strategies, including social distancing, testing and contact tracing.
+The model considers eight stages of infection: susceptible (S), infected (I), diagnosed (D), ailing (A), recognized (R), threatened (T), healed (H) and extinct (E), collectively termed SIDARTHE.
+This delineation also helps to explain misperceptions of the case fatality rate and of the epidemic spread.
+Our results demonstrate that restrictive social-distancing measures will need to be combined with widespread testing and contact tracing to end the ongoing COVID-19 pandemic.
+Similar content being viewed by others Main After a novel strain of coronavirus, SARS-CoV-2, was identified in Wuhan (Hubei), China1,2, an exponentially growing number of patients in mainland China were diagnosed with COVID-19, prompting Chinese authorities to introduce radical measures to contain the outbreak3.
+A 'red zone', encompassing 11 municipalities where SARS-CoV-2 infection was endemic, was instituted on 22 February 2020, and put on lockdown to contain the emerging threat.
+A campaign to identify and screen all close contacts with confirmed cases of COVID-19 resulted in taking 691,461 nasal swabs as of 5 April 2020.
+A government regulation dated 26 February 2020 limited screening to symptomatic subjects only8.
+On 8 March 2020, to further contain the spread of SARS-CoV-2, the red zone was extended to the entire area of Lombardy and 14 more northern Italian provinces.
+COVID-19 displays peculiar epidemiological traits when compared with previous coronavirus outbreaks of SARS-CoV and MERS-CoV.
+High viral loads of SARS-CoV-2 were found in upper respiratory specimens of patients showing little or no symptoms, with a viral shedding pattern akin to that of influenza viruses14.
+Predictive mathematical models for epidemics15,16,17,18 are fundamental to understand the course of the epidemic and to plan effective control strategies.
+One commonly used model is the SIR model19 for human-to-human transmission, which describes the flow of individuals through three mutually exclusive stages of infection: susceptible, infected and recovered.
+For the COVID-19 pandemic, several models have been developed.
+Lin and colleagues extended a SEIR (susceptible, exposed, infectious, removed) model considering risk perception and the cumulative number of cases20, Anastassopoulou and colleagues proposed a discrete-time SIR model including dead individuals21, Casella developed a control-oriented SIR model that stresses the effects of delays and compares the outcomes of different containment policies22 and Wu and colleagues used transmission dynamics to estimate the clinical severity of COVID-1923.
+Our model, named SIDARTHE, discriminates between detected and undetected cases of infection and between different severity of illness (SOI), non-life-threatening cases (asymptomatic and pauci-symptomatic; minor and moderate infection) and potentially life-threatening cases (major and extreme) that require ICU admission.
+The interactions among these stages are shown in Fig.
+1.
+Although anecdotal cases are found in the literature27, the reinfection rate value appears negligible.
+A detailed discussion of the model considerations and parameters is provided in the Methods.
+The model parameters have been updated over time to reflect the progressive introduction of increased restrictions.
+On day 1, the basic reproduction number was R0 = 2.38, which resulted in a substantial outbreak.
+On day 4, R0 = 1.66 as a result of the introduction of basic social distancing, awareness of the epidemic, hygiene and behavioral recommendations, and early measures by the Italian government (for example, closing schools).
+On day 22, a partially incomplete lockdown, of which the effectiveness was reduced by the movement of people from the north to the south of Italy when the country-wide lockdown was announced but not yet enforced, yielded R0 = 1.60.
+Figure 2a shows the model evolution with the estimated parameters up to day 46; in the earliest epidemic phase, the number of infected was considerably underestimated.
+In Fig.
+The peak of the number of concurrently infected individuals will occur on around day 50 at 0.19% of the population, while the peak of concurrently diagnosed infected individuals will occur later (around day 56) and amounts to 0.17% of the population.
+The actual case fatality rate (CFR) is 9.8% and the perceived CFR is 13%.
+The curve following day 22 shows the importance and effectiveness of a prompt lockdown.
+The actual epidemic evolution corresponds to an intermediate scenario: the lockdown measures had a moderate effect, probably due to their incremental nature.
+We predict a range of possible future scenarios, with different measures enforced after day 50.
+Figure 3a,b shows, if the lockdown is weakened, a sudden and strong increase of the spread of disease, a prolonged emergency and more deaths (0.12% of the population in the first 350 days).
+Figure 4a,b shows the effect of such measures: the peak would be reached sooner and, after 350 days, 0.43% of the population would contract the virus (0.33%

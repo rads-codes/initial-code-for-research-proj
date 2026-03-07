@@ -1,0 +1,54 @@
+Abstract In Italy, 128,948 confirmed cases and 15,887 deaths of people who tested positive for SARS-CoV-2 were registered as of 5 April 2020.
+Ending the global SARS-CoV-2 pandemic requires implementation of multiple population-wide strategies, including social distancing, testing and contact tracing.
+We propose a new model that predicts the course of the epidemic to help plan an effective control strategy.
+The model considers eight stages of infection: susceptible (S), infected (I), diagnosed (D), ailing (A), recognized (R), threatened (T), healed (H) and extinct (E), collectively termed SIDARTHE.
+The distinction between diagnosed and non-diagnosed individuals is important because the former are typically isolated and hence less likely to spread the infection.
+This delineation also helps to explain misperceptions of the case fatality rate and of the epidemic spread.
+We compare simulation results with real data on the COVID-19 epidemic in Italy, and we model possible scenarios of implementation of countermeasures.
+Similar content being viewed by others Main After a novel strain of coronavirus, SARS-CoV-2, was identified in Wuhan (Hubei), China1,2, an exponentially growing number of patients in mainland China were diagnosed with COVID-19, prompting Chinese authorities to introduce radical measures to contain the outbreak3.
+Despite these measures, a COVID-19 pandemic ensued in the following months.
+The World Health Organisation report dated 5 April 2020 reported 1,133,758 total cases and 62,784 deaths worldwide4.
+Italy has been severely affected5.
+A 'red zone', encompassing 11 municipalities where SARS-CoV-2 infection was endemic, was instituted on 22 February 2020, and put on lockdown to contain the emerging threat.
+A campaign to identify and screen all close contacts with confirmed cases of COVID-19 resulted in taking 691,461 nasal swabs as of 5 April 2020.
+Of the 128,948 detected cases, 91,246 were currently infected (28,949 hospitalized, 3,977 admitted to intensive care units (ICUs) and 58,320 quarantined at home), 21,815 had been discharged due to recovery and 15,887 had died7.
+In the early days of the epidemic in Italy, both symptomatic and asymptomatic people underwent screening.
+A government regulation dated 26 February 2020 limited screening to symptomatic subjects only8.
+On 8 March 2020, to further contain the spread of SARS-CoV-2, the red zone was extended to the entire area of Lombardy and 14 more northern Italian provinces.
+On 9 March 2020, lockdown was declared for the entire country9 and progressively stricter restrictions were adopted.
+The estimated basic reproduction number (R0) for SARS-CoV-2 ranges from 2.0 to 3.511,12,13, which seems comparable, or possibly higher, than for SARS-CoV and MERS-CoV.
+High viral loads of SARS-CoV-2 were found in upper respiratory specimens of patients showing little or no symptoms, with a viral shedding pattern akin to that of influenza viruses14.
+Hence, inapparent transmission may play a major and underestimated role in sustaining the outbreak.
+One commonly used model is the SIR model19 for human-to-human transmission, which describes the flow of individuals through three mutually exclusive stages of infection: susceptible, infected and recovered.
+More complex models can accurately portray the dynamic spread of specific epidemics.
+For the COVID-19 pandemic, several models have been developed.
+Lin and colleagues extended a SEIR (susceptible, exposed, infectious, removed) model considering risk perception and the cumulative number of cases20, Anastassopoulou and colleagues proposed a discrete-time SIR model including dead individuals21, Casella developed a control-oriented SIR model that stresses the effects of delays and compares the outcomes of different containment policies22 and Wu and colleagues used transmission dynamics to estimate the clinical severity of COVID-1923.
+A summary of the main findings, limitations and implications of the model for policymakers is shown in Table 1.
+Our model, named SIDARTHE, discriminates between detected and undetected cases of infection and between different severity of illness (SOI), non-life-threatening cases (asymptomatic and pauci-symptomatic; minor and moderate infection) and potentially life-threatening cases (major and extreme) that require ICU admission.
+The total population is partitioned into eight stages of disease: S, susceptible (uninfected); I, infected (asymptomatic or pauci-symptomatic infected, undetected); D, diagnosed (asymptomatic infected, detected); A, ailing (symptomatic infected, undetected); R, recognized (symptomatic infected, detected); T, threatened (infected with life-threatening symptoms, detected); H, healed (recovered); E, extinct (dead).
+The interactions among these stages are shown in Fig.
+1.
+We omit the probability rate of becoming susceptible again after having recovered from the infection.
+A detailed discussion of the model considerations and parameters is provided in the Methods.
+For the COVID-19 epidemic in Italy, we estimate the model parameters based on data from 20 February 2020 (day 1) to 5 April 2020 (day 46) and show how the progressive restrictions, including the most recent lockdown progressively enforced since 9 March 2020, have affected the spread of the epidemic.
+We also model possible longer-term scenarios illustrating the effects of different countermeasures, including social distancing and population-wide testing, to contain SARS-CoV-2.
+The model parameters have been updated over time to reflect the progressive introduction of increased restrictions.
+On day 1, the basic reproduction number was R0 = 2.38, which resulted in a substantial outbreak.
+On day 4, R0 = 1.66 as a result of the introduction of basic social distancing, awareness of the epidemic, hygiene and behavioral recommendations, and early measures by the Italian government (for example, closing schools).
+At day 12, asymptomatic individuals were almost no longer detected, and screening was focused on symptomatic individuals (leading to R0 = 1.80).
+On day 22, a partially incomplete lockdown, of which the effectiveness was reduced by the movement of people from the north to the south of Italy when the country-wide lockdown was announced but not yet enforced, yielded R0 = 1.60.
+When the national lockdown was fully operational and strictly enforced, after day 28, R0 = 0.99, finally reaching below 1.
+Moreover, R0 = 0.85 was achieved after day 38 due to a wider testing campaign that identified more mildly symptomatic infected individuals.
+Of the total cases, 35% were undetected.
+2b, the infected individuals are partitioned into the different subpopulations (diagnosed or not, with different SOI classification).
+Over a 350-day horizon, in the absence of further policy changes, Fig.
+The peak of the number of concurrently infected individuals will occur on around day 50 at 0.19% of the population, while the peak of concurrently diagnosed infected individuals will occur later (around day 56) and amounts to 0.17% of the population.
+The actual case fatality rate (CFR) is 9.8% and the perceived CFR is 13%.
+Figure 2d shows that each infected subpopulation reaches its peak at a different time.
+Extended Data Fig.
+1 shows how the situation could have evolved if milder or stronger measures had been implemented earlier.
+The curve following day 22 shows the importance and effectiveness of a prompt lockdown.
+The actual epidemic evolution corresponds to an intermediate scenario: the lockdown measures had a moderate effect, probably due to their incremental nature.
+We predict a range of possible future scenarios, with different measures enforced after day 50.
+Figure 3a,b shows, if the lockdown is weakened, a sudden and strong increase of the spread of disease, a prolonged emergency and more deaths (0.12% of the population in the first 350 days).
+Figure 3c,d shows the benefits of stricter lockdown measures: after 350 days, 0.41% of the population would contract the virus (0.30% diagnosed) and 0.04% of the population would die.

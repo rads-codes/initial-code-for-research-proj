@@ -1,0 +1,59 @@
+Anul 2023 este clar anul chatboților și a început în domeniu o cursă strânsă între câteva companii mari.
+Începutul este palpitant, chatboții sunt plini de surprize și contradicții, iar unii pretind că ar fi...umani.
+Cum stă fiecare companie în această cursă?
+Cum îl pui în dificultate pe ChatGPT?
+De ce avem nevoie de ele?
+Primul „bot" de chat a fost creat acum peste 50 de ani, iar un alt soft cunoscut a fost Tay, care, lăsat liber pe Twitter, a început să înjure și să spună lucruri rasiste după doar câteva ore.
+- Chatboții, deși răspund corect din punct de vedere gramatical, fac uneori greșeli factuale și preiau teorii ale conspirației sau dezinformări.
+Au început să fie folosiți de elevii și studenții care nu mai au chef și răbdare să-și facă singuri temele și referatele.
+- Primii oameni care au testat chatbot-ul lansat de Microsoft au rămas uluiți de răspunsurile primite: Bing Chat a scris că ar vrea să fie om, că are sentimente și că se simte amenințat.
+- OpenAI, compania care a lansat ChatGPT a beneficiat de finanțare de la Microsoft și de infrastructura cloud.
+S-a dezvoltat și fiindcă a atras ingineri foarte buni care lucrau la Google.
+O mare problemă este că nu prea ști din ce surse iau răspunsurile.
+La boții care pot genera imagini sunt probleme, fiindcă iau, deși nu au dreptul, fotografii realizate de o mulțime de persoane care nu și-au dat acordul.
+- Userii au testat în fel și chip ChatGPT, pentru a-l „forța" să răspundă și la chestiuni controversate.
+Boții sunt concepuți astfel încât să evite răspunsurile pe teme controversate, pentru a supăra cât mai puțină lume.
+Primele teste cu Bing Chat au arătat că pot veni și răspunsuri uimitoare și chiar tulburătoare.
+- Chatboții vor fi tot mai mult folosiți de companii de telefonie mobilă, de bănci, de linii aeriene, de companii de curierat.
+În prezent nu sunt prea utili și nu pot rezolva decât probleme simple ale clienților, dar boții conversaționali ar trebui să schimbe pentru totdeauna căutarea web.
+- Un sfat de bun simț este să nu vă bazați „orbește" pe ce răspunde chatbot-ul.
+Să nu „luați de bun" tot ce spune, să verificați informația.
+Chatboții vor fi util pentru că vor putea extrage anumite informații precise cerute, dintr-o cantitate uriașă de date.
+Tay, experimentul eșuat de acum șapte ani O știre AFP din 3 februarie arăta că 20 de studenți din Strasbourg vor da din nou un examen la distanță, după ce s-a dovedit că au „copiat" la testele grilă, cu ajutorul lui ChatGPT.
+Chatboții vor schimba lumea în bine, dar și în râu.
+Pe unii îi bucură, pe alții îi îngrozesc.
+Povestea nu a început acum, dar sunt două motive pentru care se vorbește foarte mult în 2023: programe precum ChatGPT dau răspunsuri impresionant de bune și aceste tehnologii sunt, pentru prima oară, la dispoziția publicului larg.
+Până acum puteau fi testate de un număr mic de oameni sau erau programe „beta" în interiorul unor companii.
+Acum șapte ani lumea a râs de un chatbot.
+În mai 2016, Microsoft a făcut un experiment, lansând pe Twitter un „agent conversațional" denumit Tay.
+A ieșit tare rău: în doar câteva ore Tay a început să înjure și să spună lucruri rasiste, „inspirat" de oamenii reali cu care a „intrat în discuții".
+Primul chatbot din istoria computerelor personale poartă numele ELIZA și a fost dezvoltat în 1966, deși atunci nu exista termenul de chatbot (în 1994 a fost creat termenul de „ChatterBot").
+ELIZA putea „recunoaște" anumite cuvinte din întrebare și le folosea în răspunsurile pre-programate.
+De exemplu, dacă îi scriai: „Mama mea gătește bine", ELIZA replica: „Spune-mi mai multe despre familia ta".
+Ce sunt chatboții și de ce există Boții conversaționali sunt gândiți să răspundă rapid la întrebările utilizatorilor și să scoată informații relevante dintr-o cantitate uriașă de date.
+În general, chatboții rulează sarcini simple și repetitive într-un ritm mult mai rapid decât ar putea o ființă umană.
+Rezultatul depinde de mulți factori: de unde își iau datele, au anumite teme tabu, cât de mare este cantitatea de date, au informații și despre cele mai recente evenimente?
+Companiile au lucrat în ultimii ani la dezvoltarea unor chatboți pe care i-au testat mai ales în intern sau cu un număr redus de dezvoltatori.
+OpenAI, cu al său ChatGPT lansat în noiembrie 2022, a fost prima care a pus la dispoziția publicului larg un chatbot care s-a dovedit extrem de simpatic.
+Comparația cel mai des folosită este că OpenAI a fost aplicația ce a ajuns cel mai repede la 100 de milioane de useri.
+(TikTok a avut nevoie de nouă luni, iar Instagram, de 30 de luni).
+Acum, aproape toată lumea din tehnologie spune că anul 2023 va fi anul acestor „agenți conversaționali", mai ales că în cursă a intrat în forță Microsoft și apoi a venit și Google.
+OpenAI este o companie foarte mică dacă o comparăm cu Microsoft sau Google și a avut curaj să lanseze botul de chat pentru publicul larg.
+Succesul a fost uriaș și pariul a fost câștigat, fiindcă notorietatea a atins cote pe care nu le bănuia nici cel mai optimist șef.
+OpenAI a primit și foarte mult feedback, dar și finanțare cum nici nu-și imaginase.
+Presa americană a scris că una dintre rețetele succesului pentru OpenAI a fost că a atras în lunile dinaintea lansării ChatGPT cel puțin cinci ingineri de la Google care au ajutat enorm.
+L-am întrebat pe ChatGPT ce „crede" despre concurenții săi ChatGPT, Îți faci probleme că vor fi lansate programe rivale care vor fi mai bune decât tine?
+ChatGPT: Ca model AI dezvoltat de OpenAI, nu am emoții sau sentimente, ci sunt proiectat să răspund la întrebări și să ofer informații exacte și relevante.
+Chatboții, deși răspund corect din punct de vedere gramatical, fac uneori greșeli factuale și preiau teorii ale conspirației.
+Cât va mai trece până când tehnologia va fi 100% sigură?
+AI-ul se bazează pe informațiile pe care le-a învățat din seturile de date din trecut, iar aceste informații pot fi incomplete, incorecte sau neactualizate.
+Cu toate acestea, OpenAI și alți dezvoltatori de AI își continuă eforturile de a îmbunătăți acuratețea și fiabilitatea modelelor AI.
+De exemplu, prin antrenarea modelelor pe seturi de date diverse și actualizate, precum și prin monitorizarea și revizuirea cu atenție a rezultatelor obținute, putem să ne apropiem de o acuratețe cât mai mare.
+Cu toate acestea, în prezent nu există o soluție care să ofere o acuratețe de 100% Căutarea pe internet se va schimba pentru totdeauna ChatGPT este fascinant nu doar fiindcă poate răspunde surprinzător de bine și de coerent, însă și fiindcă poate face lucruri destul de complexe: să alcătuiască rezumatul unui text, să scrie o compunere, să rezolve unele probleme de matematică.
+Există și chatboți care știu programare, alții care pot genera poze și există unii specializați pe diverse domenii.
+Sunt departe de a fi perfecți, însă pot fi destul de rapid perfecționați și se lucrează intens la asta.
+În ultimele zile au fost „în trend" pe internet mesajele sau poeziile de dragoste compuse de ChatGPT la solicitarea userilor.
+Ceea ce se pregătesc acum să facă marile companii Microsoft și Google este să integreze aceste soft-uri de AI în motoarele de căutare, iar asta înseamnă că userii NU mai trebuie să caute prin serii de link-uri, ci pot afla răspunsul la întrebări, fără să mai intre pe altă pagină.
+Pot fi sute de exemple de întrebări la care ChatGPT răspunde bine, dar la cele unde informația este mai greu de găsit nu se descurcă grozav.
+Iată un exemplu de întrebare grea pentru un chatbot: Care sunt singurii fotbaliști de la Universitatea Cluj care au câștigat titlul de golgheter în Divizia A?
+ChatGPT spune: Doi fotbaliști de la Universitatea Cluj au câștigat titlul de golgheter

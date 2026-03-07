@@ -1,0 +1,3506 @@
+{
+  "by_model": {
+    "meta-llama/llama-3.1-8b-instruct": {
+      "accuracy": 0.20267686424474188,
+      "avg_judge_overall": 23.804971319311665,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          33,
+          97,
+          272,
+          6
+        ],
+        [
+          0,
+          4,
+          9,
+          2
+        ],
+        [
+          23,
+          7,
+          70,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.1062873300292286,
+      "n": 523,
+      "n_with_judge": 523,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 100
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.04918032786885246,
+          "precision": 0.02564102564102564,
+          "recall": 0.6,
+          "support": 15
+        },
+        "Refuted": {
+          "f1": 0.37596899224806196,
+          "precision": 0.8981481481481481,
+          "recall": 0.23774509803921567,
+          "support": 408
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.2947094718073462
+    },
+    "qwen/qwen-2.5-7b-instruct": {
+      "accuracy": 0.1147227533460803,
+      "avg_judge_overall": 24.34225621414914,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          16,
+          45,
+          345,
+          2
+        ],
+        [
+          0,
+          1,
+          13,
+          1
+        ],
+        [
+          10,
+          1,
+          87,
+          2
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.07310479375696766,
+      "n": 523,
+      "n_with_judge": 523,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.03809523809523809,
+          "precision": 0.4,
+          "recall": 0.02,
+          "support": 100
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.05652173913043478,
+          "precision": 0.029213483146067417,
+          "recall": 0.8666666666666667,
+          "support": 15
+        },
+        "Refuted": {
+          "f1": 0.1978021978021978,
+          "precision": 0.9574468085106383,
+          "recall": 0.11029411764705882,
+          "support": 408
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.1632134734221358
+    }
+  },
+  "by_model_condition": {
+    "meta-llama/llama-3.1-8b-instruct||gold": {
+      "accuracy": 0.205607476635514,
+      "avg_judge_overall": 23.523364485981308,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          10,
+          20,
+          52,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          5,
+          1,
+          14,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.10932260228034875,
+      "n": 107,
+      "n_with_judge": 107,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 20
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.056338028169014086,
+          "precision": 0.029411764705882353,
+          "recall": 0.6666666666666666,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.38095238095238093,
+          "precision": 0.9523809523809523,
+          "recall": 0.23809523809523808,
+          "support": 84
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.30064499144399104
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_20": {
+      "accuracy": 0.23076923076923078,
+      "avg_judge_overall": 23.778846153846153,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          6,
+          21,
+          53,
+          1
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          8,
+          1,
+          11,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.12337031900138695,
+      "n": 104,
+      "n_with_judge": 104,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 20
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.08571428571428572,
+          "precision": 0.04477611940298507,
+          "recall": 1.0,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.40776699029126207,
+          "precision": 0.9545454545454546,
+          "recall": 0.25925925925925924,
+          "support": 81
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.3200602795262989
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_50": {
+      "accuracy": 0.19230769230769232,
+      "avg_judge_overall": 23.875,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          5,
+          19,
+          55,
+          2
+        ],
+        [
+          0,
+          1,
+          1,
+          1
+        ],
+        [
+          5,
+          3,
+          12,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.0983884073672806,
+      "n": 104,
+      "n_with_judge": 104,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 20
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.028169014084507043,
+          "precision": 0.014705882352941176,
+          "recall": 0.3333333333333333,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.36538461538461536,
+          "precision": 0.8260869565217391,
+          "recall": 0.2345679012345679,
+          "support": 81
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.28539097008084
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_20": {
+      "accuracy": 0.21153846153846154,
+      "avg_judge_overall": 23.778846153846153,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          6,
+          21,
+          53,
+          1
+        ],
+        [
+          0,
+          2,
+          1,
+          0
+        ],
+        [
+          3,
+          1,
+          16,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.10684931506849314,
+      "n": 104,
+      "n_with_judge": 104,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 20
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0273972602739726,
+          "precision": 0.014285714285714285,
+          "recall": 0.3333333333333333,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.39999999999999997,
+          "precision": 0.875,
+          "recall": 0.25925925925925924,
+          "support": 81
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.3123287671232876
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_50": {
+      "accuracy": 0.17307692307692307,
+      "avg_judge_overall": 24.076923076923077,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          6,
+          16,
+          59,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          0
+        ],
+        [
+          2,
+          1,
+          17,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.09315375982042648,
+      "n": 104,
+      "n_with_judge": 104,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 20
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.04938271604938271,
+          "precision": 0.02564102564102564,
+          "recall": 0.6666666666666666,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.3232323232323232,
+          "precision": 0.8888888888888888,
+          "recall": 0.19753086419753085,
+          "support": 81
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.2531727531727532
+    },
+    "qwen/qwen-2.5-7b-instruct||gold": {
+      "accuracy": 0.16822429906542055,
+      "avg_judge_overall": 24.05607476635514,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          14,
+          66,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          1,
+          0,
+          18,
+          1
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.1119047619047619,
+      "n": 107,
+      "n_with_judge": 107,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.09523809523809523,
+          "precision": 1.0,
+          "recall": 0.05,
+          "support": 20
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.06666666666666667,
+          "precision": 0.034482758620689655,
+          "recall": 1.0,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.2857142857142857,
+          "precision": 1.0,
+          "recall": 0.16666666666666666,
+          "support": 84
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.24396973742768135
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_20": {
+      "accuracy": 0.1346153846153846,
+      "avg_judge_overall": 24.403846153846153,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          10,
+          66,
+          1
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          2,
+          0,
+          17,
+          1
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.09452626025659733,
+      "n": 104,
+      "n_with_judge": 104,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.09090909090909091,
+          "precision": 0.5,
+          "recall": 0.05,
+          "support": 20
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.06741573033707865,
+          "precision": 0.03488372093023256,
+          "recall": 1.0,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.21978021978021975,
+          "precision": 1.0,
+          "recall": 0.12345679012345678,
+          "support": 81
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.19060218087875822
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_50": {
+      "accuracy": 0.10576923076923077,
+      "avg_judge_overall": 24.51923076923077,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          8,
+          70,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          17,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.061072852482783616,
+      "n": 104,
+      "n_with_judge": 104,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 20
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.06451612903225806,
+          "precision": 0.03333333333333333,
+          "recall": 1.0,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.1797752808988764,
+          "precision": 1.0,
+          "recall": 0.09876543209876543,
+          "support": 81
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.14187832826832464
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_20": {
+      "accuracy": 0.08653846153846154,
+      "avg_judge_overall": 24.182692307692307,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          7,
+          70,
+          1
+        ],
+        [
+          0,
+          1,
+          2,
+          0
+        ],
+        [
+          3,
+          1,
+          16,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.04987789987789988,
+      "n": 104,
+      "n_with_judge": 104,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 20
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.04395604395604396,
+          "precision": 0.022727272727272728,
+          "recall": 0.6666666666666666,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.15555555555555556,
+          "precision": 0.7777777777777778,
+          "recall": 0.08641975308641975,
+          "support": 81
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.1224218089602705
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_50": {
+      "accuracy": 0.07692307692307693,
+      "avg_judge_overall": 24.557692307692307,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          6,
+          73,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          1,
+          0,
+          19,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.04479203697120512,
+      "n": 104,
+      "n_with_judge": 104,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 20
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.041237113402061855,
+          "precision": 0.02127659574468085,
+          "recall": 0.6666666666666666,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.13793103448275862,
+          "precision": 1.0,
+          "recall": 0.07407407407407407,
+          "support": 81
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.10861658782028494
+    }
+  },
+  "by_model_condition_language": {
+    "meta-llama/llama-3.1-8b-instruct||gold||de": {
+      "accuracy": 0.32142857142857145,
+      "avg_judge_overall": 23.214285714285715,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          9,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          5,
+          0,
+          8,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.18749999999999997,
+      "n": 28,
+      "n_with_judge": 28,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 13
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.7499999999999999,
+          "precision": 1.0,
+          "recall": 0.6,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.40178571428571425
+    },
+    "meta-llama/llama-3.1-8b-instruct||gold||el": {
+      "accuracy": 0.16666666666666666,
+      "avg_judge_overall": 22.38888888888889,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          10,
+          1
+        ],
+        [
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.09791666666666667,
+      "n": 18,
+      "n_with_judge": 18,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.26666666666666666,
+          "precision": 0.16666666666666666,
+          "recall": 0.6666666666666666,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.125,
+          "precision": 1.0,
+          "recall": 0.06666666666666667,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.1486111111111111
+    },
+    "meta-llama/llama-3.1-8b-instruct||gold||en": {
+      "accuracy": 0.2413793103448276,
+      "avg_judge_overall": 23.724137931034484,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          7,
+          16,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.1,
+      "n": 29,
+      "n_with_judge": 29,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.4,
+          "precision": 1.0,
+          "recall": 0.25,
+          "support": 28
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.3862068965517242
+    },
+    "meta-llama/llama-3.1-8b-instruct||gold||ro": {
+      "accuracy": 0.09375,
+      "avg_judge_overall": 24.25,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          3,
+          21,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          5,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.049999999999999996,
+      "n": 32,
+      "n_with_judge": 32,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.19999999999999998,
+          "precision": 0.75,
+          "recall": 0.11538461538461539,
+          "support": 26
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.16249999999999998
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_20||de": {
+      "accuracy": 0.21428571428571427,
+      "avg_judge_overall": 23.25,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          6,
+          8,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          7,
+          1,
+          5,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.13636363636363638,
+      "n": 28,
+      "n_with_judge": 28,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 13
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.5454545454545455,
+          "precision": 0.8571428571428571,
+          "recall": 0.4,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.29220779220779225
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_20||el": {
+      "accuracy": 0.2777777777777778,
+      "avg_judge_overall": 24.333333333333332,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          12,
+          1
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.14215686274509803,
+      "n": 18,
+      "n_with_judge": 18,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.33333333333333337,
+          "precision": 0.2,
+          "recall": 1.0,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.23529411764705882,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.25163398692810457
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_20||en": {
+      "accuracy": 0.37037037037037035,
+      "avg_judge_overall": 23.814814814814813,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          10,
+          13,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.1388888888888889,
+      "n": 27,
+      "n_with_judge": 27,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.5555555555555556,
+          "precision": 1.0,
+          "recall": 0.38461538461538464,
+          "support": 26
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.5349794238683128
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_20||ro": {
+      "accuracy": 0.0967741935483871,
+      "avg_judge_overall": 23.903225806451612,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          3,
+          20,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          5,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.05357142857142856,
+      "n": 31,
+      "n_with_judge": 31,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.21428571428571425,
+          "precision": 1.0,
+          "recall": 0.12,
+          "support": 25
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.17281105990783405
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_50||de": {
+      "accuracy": 0.17857142857142858,
+      "avg_judge_overall": 23.392857142857142,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          5,
+          9,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          5,
+          1,
+          7,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.11904761904761904,
+      "n": 28,
+      "n_with_judge": 28,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 13
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.47619047619047616,
+          "precision": 0.8333333333333334,
+          "recall": 0.3333333333333333,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.25510204081632654
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_50||el": {
+      "accuracy": 0.16666666666666666,
+      "avg_judge_overall": 22.22222222222222,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          11,
+          1
+        ],
+        [
+          0,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.08888888888888888,
+      "n": 18,
+      "n_with_judge": 18,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.13333333333333333,
+          "precision": 0.08333333333333333,
+          "recall": 0.3333333333333333,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.2222222222222222,
+          "precision": 0.6666666666666666,
+          "recall": 0.13333333333333333,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.20740740740740737
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_50||en": {
+      "accuracy": 0.3333333333333333,
+      "avg_judge_overall": 24.25925925925926,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          9,
+          13,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.12857142857142856,
+      "n": 27,
+      "n_with_judge": 27,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.5142857142857142,
+          "precision": 1.0,
+          "recall": 0.34615384615384615,
+          "support": 26
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.4952380952380952
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_50||ro": {
+      "accuracy": 0.0967741935483871,
+      "avg_judge_overall": 24.93548387096774,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          3,
+          22,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          4,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.049999999999999996,
+      "n": 31,
+      "n_with_judge": 31,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.19999999999999998,
+          "precision": 0.6,
+          "recall": 0.12,
+          "support": 25
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.16129032258064516
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_20||de": {
+      "accuracy": 0.21428571428571427,
+      "avg_judge_overall": 23.821428571428573,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          6,
+          8,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          10,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.14285714285714288,
+      "n": 28,
+      "n_with_judge": 28,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 13
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.5714285714285715,
+          "precision": 1.0,
+          "recall": 0.4,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.3061224489795919
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_20||el": {
+      "accuracy": 0.16666666666666666,
+      "avg_judge_overall": 22.72222222222222,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          12,
+          0
+        ],
+        [
+          0,
+          2,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.08388157894736842,
+      "n": 18,
+      "n_with_judge": 18,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.125,
+          "precision": 0.07692307692307693,
+          "recall": 0.3333333333333333,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.2105263157894737,
+          "precision": 0.5,
+          "recall": 0.13333333333333333,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.1962719298245614
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_20||en": {
+      "accuracy": 0.2962962962962963,
+      "avg_judge_overall": 24.074074074074073,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          8,
+          14,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.11764705882352941,
+      "n": 27,
+      "n_with_judge": 27,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.47058823529411764,
+          "precision": 1.0,
+          "recall": 0.3076923076923077,
+          "support": 26
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.4531590413943355
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_20||ro": {
+      "accuracy": 0.16129032258064516,
+      "avg_judge_overall": 24.096774193548388,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          5,
+          19,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          5,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.08064516129032258,
+      "n": 31,
+      "n_with_judge": 31,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.3225806451612903,
+          "precision": 0.8333333333333334,
+          "recall": 0.2,
+          "support": 25
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.2601456815816857
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_50||de": {
+      "accuracy": 0.10714285714285714,
+      "avg_judge_overall": 23.857142857142858,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          3,
+          10,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          11,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.08333333333333334,
+      "n": 28,
+      "n_with_judge": 28,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 13
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.33333333333333337,
+          "precision": 1.0,
+          "recall": 0.2,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.1785714285714286
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_50||el": {
+      "accuracy": 0.16666666666666666,
+      "avg_judge_overall": 24.666666666666668,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          14,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.08204334365325078,
+      "n": 18,
+      "n_with_judge": 18,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.21052631578947367,
+          "precision": 0.125,
+          "recall": 0.6666666666666666,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.11764705882352941,
+          "precision": 0.5,
+          "recall": 0.06666666666666667,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.13312693498452013
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_50||en": {
+      "accuracy": 0.2962962962962963,
+      "avg_judge_overall": 24.11111111111111,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          8,
+          15,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.11764705882352941,
+      "n": 27,
+      "n_with_judge": 27,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.47058823529411764,
+          "precision": 1.0,
+          "recall": 0.3076923076923077,
+          "support": 26
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.4531590413943355
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_50||ro": {
+      "accuracy": 0.12903225806451613,
+      "avg_judge_overall": 23.903225806451612,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          4,
+          20,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          5,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.06666666666666667,
+      "n": 31,
+      "n_with_judge": 31,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.26666666666666666,
+          "precision": 0.8,
+          "recall": 0.16,
+          "support": 25
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.21505376344086022
+    },
+    "qwen/qwen-2.5-7b-instruct||gold||de": {
+      "accuracy": 0.14285714285714285,
+      "avg_judge_overall": 24.0,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          3,
+          11,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          11,
+          1
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.11904761904761907,
+      "n": 28,
+      "n_with_judge": 28,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.14285714285714288,
+          "precision": 1.0,
+          "recall": 0.07692307692307693,
+          "support": 13
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.33333333333333337,
+          "precision": 1.0,
+          "recall": 0.2,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.24489795918367352
+    },
+    "qwen/qwen-2.5-7b-instruct||gold||el": {
+      "accuracy": 0.3333333333333333,
+      "avg_judge_overall": 22.38888888888889,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          3,
+          10,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.17708333333333334,
+      "n": 18,
+      "n_with_judge": 18,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.375,
+          "precision": 0.23076923076923078,
+          "recall": 1.0,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.33333333333333337,
+          "precision": 1.0,
+          "recall": 0.2,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.34027777777777785
+    },
+    "qwen/qwen-2.5-7b-instruct||gold||en": {
+      "accuracy": 0.1724137931034483,
+      "avg_judge_overall": 24.551724137931036,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          5,
+          22,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.07575757575757576,
+      "n": 29,
+      "n_with_judge": 29,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.30303030303030304,
+          "precision": 1.0,
+          "recall": 0.17857142857142858,
+          "support": 28
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.29258098223615464
+    },
+    "qwen/qwen-2.5-7b-instruct||gold||ro": {
+      "accuracy": 0.09375,
+      "avg_judge_overall": 24.59375,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          3,
+          23,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          6,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.05172413793103448,
+      "n": 32,
+      "n_with_judge": 32,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.20689655172413793,
+          "precision": 1.0,
+          "recall": 0.11538461538461539,
+          "support": 26
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.16810344827586207
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_20||de": {
+      "accuracy": 0.10714285714285714,
+      "avg_judge_overall": 24.178571428571427,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          11,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          10,
+          1
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.09215686274509804,
+      "n": 28,
+      "n_with_judge": 28,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.13333333333333336,
+          "precision": 0.5,
+          "recall": 0.07692307692307693,
+          "support": 13
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.23529411764705882,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.18795518207282913
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_20||el": {
+      "accuracy": 0.2777777777777778,
+      "avg_judge_overall": 24.0,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          12,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.14215686274509803,
+      "n": 18,
+      "n_with_judge": 18,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.33333333333333337,
+          "precision": 0.2,
+          "recall": 1.0,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.23529411764705882,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.25163398692810457
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_20||en": {
+      "accuracy": 0.1111111111111111,
+      "avg_judge_overall": 24.666666666666668,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          3,
+          22,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.05172413793103448,
+      "n": 27,
+      "n_with_judge": 27,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.20689655172413793,
+          "precision": 1.0,
+          "recall": 0.11538461538461539,
+          "support": 26
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.1992337164750958
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_20||ro": {
+      "accuracy": 0.0967741935483871,
+      "avg_judge_overall": 24.612903225806452,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          3,
+          21,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          6,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.05357142857142856,
+      "n": 31,
+      "n_with_judge": 31,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.21428571428571425,
+          "precision": 1.0,
+          "recall": 0.12,
+          "support": 25
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.17281105990783405
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_50||de": {
+      "accuracy": 0.03571428571428571,
+      "avg_judge_overall": 24.321428571428573,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          14,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          10,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.03125,
+      "n": 28,
+      "n_with_judge": 28,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 13
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.125,
+          "precision": 1.0,
+          "recall": 0.06666666666666667,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.06696428571428571
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_50||el": {
+      "accuracy": 0.2222222222222222,
+      "avg_judge_overall": 23.944444444444443,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          13,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.11019736842105263,
+      "n": 18,
+      "n_with_judge": 18,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.3157894736842105,
+          "precision": 0.1875,
+          "recall": 1.0,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.125,
+          "precision": 1.0,
+          "recall": 0.06666666666666667,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.15679824561403508
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_50||en": {
+      "accuracy": 0.14814814814814814,
+      "avg_judge_overall": 24.555555555555557,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          4,
+          20,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.06666666666666668,
+      "n": 27,
+      "n_with_judge": 27,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.2666666666666667,
+          "precision": 1.0,
+          "recall": 0.15384615384615385,
+          "support": 26
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.25679012345679014
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_50||ro": {
+      "accuracy": 0.06451612903225806,
+      "avg_judge_overall": 25.0,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          23,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          6,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.037037037037037035,
+      "n": 31,
+      "n_with_judge": 31,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.14814814814814814,
+          "precision": 1.0,
+          "recall": 0.08,
+          "support": 25
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.1194743130227001
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_20||de": {
+      "accuracy": 0.07142857142857142,
+      "avg_judge_overall": 24.107142857142858,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          12,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          9,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.05555555555555555,
+      "n": 28,
+      "n_with_judge": 28,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 13
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.2222222222222222,
+          "precision": 0.6666666666666666,
+          "recall": 0.13333333333333333,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.11904761904761904
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_20||el": {
+      "accuracy": 0.1111111111111111,
+      "avg_judge_overall": 22.944444444444443,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          14,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.05263157894736842,
+      "n": 18,
+      "n_with_judge": 18,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.21052631578947367,
+          "precision": 0.125,
+          "recall": 0.6666666666666666,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.03508771929824561
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_20||en": {
+      "accuracy": 0.1111111111111111,
+      "avg_judge_overall": 24.74074074074074,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          3,
+          21,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.05172413793103448,
+      "n": 27,
+      "n_with_judge": 27,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.20689655172413793,
+          "precision": 1.0,
+          "recall": 0.11538461538461539,
+          "support": 26
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.1992337164750958
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_20||ro": {
+      "accuracy": 0.06451612903225806,
+      "avg_judge_overall": 24.483870967741936,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          23,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          6,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.037037037037037035,
+      "n": 31,
+      "n_with_judge": 31,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.14814814814814814,
+          "precision": 1.0,
+          "recall": 0.08,
+          "support": 25
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.1194743130227001
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_50||de": {
+      "accuracy": 0.07142857142857142,
+      "avg_judge_overall": 24.75,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          13,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          12,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.058823529411764705,
+      "n": 28,
+      "n_with_judge": 28,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 13
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.23529411764705882,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.12605042016806722
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_50||el": {
+      "accuracy": 0.1111111111111111,
+      "avg_judge_overall": 24.22222222222222,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          14,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.05263157894736842,
+      "n": 18,
+      "n_with_judge": 18,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.21052631578947367,
+          "precision": 0.125,
+          "recall": 0.6666666666666666,
+          "support": 3
+        },
+        "Refuted": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 15
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.03508771929824561
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_50||en": {
+      "accuracy": 0.1111111111111111,
+      "avg_judge_overall": 24.59259259259259,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          3,
+          22,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.05172413793103448,
+      "n": 27,
+      "n_with_judge": 27,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.20689655172413793,
+          "precision": 1.0,
+          "recall": 0.11538461538461539,
+          "support": 26
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.1992337164750958
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_50||ro": {
+      "accuracy": 0.03225806451612903,
+      "avg_judge_overall": 24.548387096774192,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          24,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          6,
+          0
+        ]
+      ],
+      "labels": [
+        "Supported",
+        "Refuted",
+        "Not_Enough_Evidence",
+        "Conflicting_Evidence"
+      ],
+      "macro_f1": 0.019230769230769232,
+      "n": 31,
+      "n_with_judge": 31,
+      "per_class": {
+        "Conflicting_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "Not_Enough_Evidence": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "Refuted": {
+          "f1": 0.07692307692307693,
+          "precision": 1.0,
+          "recall": 0.04,
+          "support": 25
+        },
+        "Supported": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      },
+      "weighted_f1": 0.062034739454094295
+    }
+  },
+  "overall": {
+    "accuracy": 0.1586998087954111,
+    "avg_judge_overall": 24.0736137667304,
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        49,
+        142,
+        617,
+        8
+      ],
+      [
+        0,
+        5,
+        22,
+        3
+      ],
+      [
+        33,
+        8,
+        157,
+        2
+      ]
+    ],
+    "labels": [
+      "Supported",
+      "Refuted",
+      "Not_Enough_Evidence",
+      "Conflicting_Evidence"
+    ],
+    "macro_f1": 0.09113252129978051,
+    "n": 1046,
+    "n_with_judge": 1046,
+    "per_class": {
+      "Conflicting_Evidence": {
+        "f1": 0.018779342723004695,
+        "precision": 0.15384615384615385,
+        "recall": 0.01,
+        "support": 200
+      },
+      "Not_Enough_Evidence": {
+        "f1": 0.05326876513317192,
+        "precision": 0.02763819095477387,
+        "recall": 0.7333333333333333,
+        "support": 30
+      },
+      "Refuted": {
+        "f1": 0.29248197734294545,
+        "precision": 0.9161290322580645,
+        "recall": 0.17401960784313725,
+        "support": 816
+      },
+      "Supported": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 0
+      }
+    },
+    "weighted_f1": 0.23328797802145276
+  }
+}

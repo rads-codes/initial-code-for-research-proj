@@ -1,0 +1,33 @@
+That sustainability know-how could earn big bucks as a service for fleets worldwide going electric.
+So how much electricity might Amazon need for 100,000 trucks?
+Still, at this scale a back of the envelope calculation will do for a first look.
+Rivian offers its current vehicle platform as a truck or an SUV.
+The smallest battery is 105 kWh and the largest 180 kWh.
+Let's assume the Amazon truck battery will be 200 kWh with speed limited to preserve range, and reduce insurance costs.
+By today's standards Amazon is probably the largest planned battery operator in the world, by a long way.
+Therefore, Amazon will need about 5 GW of wind power.
+However, no power plant operates at 100 per cent capacity all the time.
+Wind is variable, but predictable.
+In some countries, regulation doesn't yet allow sourcing power directly from wind and solar power plants.
+A $20 billion clean-truck transition What will it cost?
+A truck might be $100,000, including about $20,000 for the battery, for a fleet cost of $10 billion.
+Wind power plants about $9-10 billion.
+So, the source-to-service solution is about $20 billion, give or take, or $2 billion a year for 10 years.
+Leasing is an option for trucks and batteries.
+There's a precedent.
+Amazon will capture reams of data from electric trucks to design, train and refine algorithms for optimising routes, electricity and batteries.
+Amazon's expertise in artificial intelligence (AI), especially machine learning, will be critical.
+Getting the most value out of the mobile battery fleet extends beyond shipping into electricity trading.
+Selling energy in vehicle batteries back to the grid is an emerging opportunity over the coming decade.
+Countries with open electricity markets, such as Australia, India, Malaysia and the US, will be in the vanguard.
+Such vehicle-to-grid (V2G) services, conceptually, could result in vehicle owners earning cash or electricity credits.
+Amazon's batteries are potentially the largest collection of VPPs in the world, at least outside China.
+If most of Amazon's vehicles are on the road during peak periods the V2G opportunity is small.
+That's a good probability and risk opportunity for AI to solve.
+Batteries have a second-life after trucking.
+After its second-life value is exhausted there's money from recycling materials into new products, such as batteries.
+Amazon fleet services for a few billion electric trucks and buses Running a fleet of electric trucks is going to save money in energy and maintenance costs compared to diesel trucks.
+It will complement Amazon's push into delivery drone services and prepare the company for the electrification of short-haul aircraft in the late 2020s.
+In which case, free delivery on everything?
+Like this content?
+Unlock unlimited access to our content and members-only perks.

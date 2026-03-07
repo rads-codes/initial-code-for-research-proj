@@ -1,0 +1,30 @@
+OpenAI, cu sediul în San Francisco, a pus la dispoziție ultima sa creație, chatbotul ChatGPT.
+La numai o săptămână de la lansare, peste un milion de utilizatori testaseră deja ChatGPT, potrivit lui Sam Altman, cofondator și director executiv al OpenAI, scrie euronews.com.
+Popularitatea lui a crescut rapid în ultimele săptămână și, totodată, a început să ridice câteva semne de întrebare.
+Ce este ChatGPT și cum funcționează ChatGPT a fost lansat pe 30 noiembrie, dar face parte dintr-un set mai larg de tehnologii dezvoltate de OpenAI, un startup cu sediul în San Francisco, care are o relație strânsă cu Microsoft.
+Dar, spre deosebire de iterațiile anterioare ale așa-numitelor „modele lingvistice mari", cum ar fi GPT-3 de la OpenAI, lansat în 2020, instrumentul ChatGPT este disponibil gratuit pentru oricine are o conexiune la internet și este conceput pentru a fi mai ușor de utilizat.
+Milioane de oameni s-au "jucat" cu el în ultima lună, folosindu-l pentru a scrie poezii sau cântece, pentru a încerca să îl păcălească sau în scopuri mai practice, cum ar fi să ajute la redactarea unui e-mail.
+Toate aceste interogări, solicitări, fac ChatGPT și mai inteligent, relatează Associated Press.
+La ce poate fi folosit ChatGPT Un instrument precum ChatGPT ar putea fi utilizat în aplicații din lumea reală, cum ar fi marketingul digital, crearea de conținut online, răspunsurile la întrebări ale serviciului de asistență pentru clienți sau, după cum au constatat unii utilizatori, chiar pentru a ajuta la depanarea codului.
+Sam Altman, directorul general al OpenAI, a declarat că sistemul este „o primă demonstrație a ceea ce este posibil".
+„În curând veți putea avea asistenți utili care să vă vorbească, să vă răspundă la întrebări și să vă dea sfaturi.
+Mai târziu, veți putea avea ceva care să plece și să facă sarcini pentru dumneavoastră.
+În cele din urmă veți putea avea ceva care pleacă și descoperă noi cunoștințe pentru dumneavoastră", potrivit The Guardian.
+ChatGPT poate fi însă problematic în sistemul de învățământ, mai ales după ce mai mulți elevi și studenți au început să-l folosească pentru a-și scrie referatele, temele și proiectele primite la cursuri.
+Școlile din SUA au intrat în alertă, iar în New York autoritățile au decis deja să interzică studenților, elevilor și profesorilor să folosească acest instrument în activitatea educațională.
+Care sunt capcanele ChatGPT Ca și în cazul altor sisteme similare, ChatGPT poate genera proză convingătoare, dar asta nu înseamnă că ceea ce spune este faptic sau logic.
+Lansarea sa a fost însoțită de puține îndrumări privind modul de utilizare, în afară de promisiunea că ChatGPT va recunoaște când greșește, va contesta „premisele incorecte" și va respinge cererile menite să genereze răspunsuri ofensatoare.
+De atunci, însă, popularitatea sa i-a determinat pe creatorii săi să încerce să reducă așteptările unor persoane.
+„ChatGPT este incredibil de limitat, dar suficient de bun la unele lucruri pentru a crea o impresie înșelătoare de măreție", a declarat pe Twitter, în decembrie, directorul general al OpenAI, Sam Altman.
+Altman a adăugat că „este o greșeală să te bazezi pe el pentru ceva important în acest moment".
+„Este o avanpremieră a progresului; mai avem mult de lucru în ceea ce privește robustețea și veridicitatea".
+„Pentru a determina dacă ceva a fost scris de un om sau de o inteligență artificială, puteți căuta absența experiențelor personale sau a emoțiilor, puteți verifica inconsecvența stilului de scriere și puteți urmări utilizarea de cuvinte de umplutură sau fraze repetitive.
+OpenAI a declarat săptămâna aceasta, într-o declarație scrisă de un om, că intenționează să colaboreze cu educatorii pe măsură ce învață din modul în care oamenii experimentează cu ChatGPT în lumea reală.
+„Nu vrem ca ChatGPT să fie folosit în scopuri înșelătoare în școli sau oriunde altundeva, așa că deja dezvoltăm măsuri de atenuare pentru a ajuta pe oricine să identifice textul generat de acest sistem", a declarat compania.
+Este Google amenințat de ChatGPT?
+Au existat unele speculații conform cărora ChatGPT ar putea distruge afacerea de căutare pe internet, dominată în prezent de Google, însă gigantul tehnologic lucrează la o tehnologie similară de ani de zile - doar că este mai precaut în ceea ce privește lansarea ei în mediul natural.
+Google a fost cea care a contribuit la lansarea tendinței de a crea modele lingvistice de inteligență artificială din ce în ce mai mari și mai inteligente, care ar putea fi „pre-antrenate" pe un număr mare de scrieri.
+În 2018, compania a introdus un sistem cunoscut sub numele de BERT, care utilizează o tehnică de „transformare" care compară cuvintele dintr-o propoziție pentru a prezice sensul și contextul.
+Unele dintre aceste progrese sunt acum încorporate în căutările Google.
+Dar nu există nicio îndoială că iterațiile succesive ale GPT - care înseamnă Generative Pre-trained Transformer - au un impact.
+Microsoft a investit cel puțin 1 miliard de dolari în OpenAI și deține o licență exclusivă pentru utilizarea GPT-3.

@@ -1,0 +1,34 @@
+Our SIDARTHE model discriminates between infected individuals depending on whether they have been diagnosed and on the severity of their symptoms.
+The World Health Organisation report dated 5 April 2020 reported 1,133,758 total cases and 62,784 deaths worldwide4.
+Italy has been severely affected5.
+After the first indigenous case on 21 February 2020 in Lodi province, several suspect cases (initially epidemiologically linked) began to emerge in the south and southwest territory of Lombardy6.
+A 'red zone', encompassing 11 municipalities where SARS-CoV-2 infection was endemic, was instituted on 22 February 2020, and put on lockdown to contain the emerging threat.
+In the early days of the epidemic in Italy, both symptomatic and asymptomatic people underwent screening.
+A government regulation dated 26 February 2020 limited screening to symptomatic subjects only8.
+On 8 March 2020, to further contain the spread of SARS-CoV-2, the red zone was extended to the entire area of Lombardy and 14 more northern Italian provinces.
+On 9 March 2020, lockdown was declared for the entire country9 and progressively stricter restrictions were adopted.
+One commonly used model is the SIR model19 for human-to-human transmission, which describes the flow of individuals through three mutually exclusive stages of infection: susceptible, infected and recovered.
+Stochastic transmission models have also been considered24,25.
+A summary of the main findings, limitations and implications of the model for policymakers is shown in Table 1.
+Our model, named SIDARTHE, discriminates between detected and undetected cases of infection and between different severity of illness (SOI), non-life-threatening cases (asymptomatic and pauci-symptomatic; minor and moderate infection) and potentially life-threatening cases (major and extreme) that require ICU admission.
+The total population is partitioned into eight stages of disease: S, susceptible (uninfected); I, infected (asymptomatic or pauci-symptomatic infected, undetected); D, diagnosed (asymptomatic infected, detected); A, ailing (symptomatic infected, undetected); R, recognized (symptomatic infected, detected); T, threatened (infected with life-threatening symptoms, detected); H, healed (recovered); E, extinct (dead).
+The interactions among these stages are shown in Fig.
+1.
+A detailed discussion of the model considerations and parameters is provided in the Methods.
+The model parameters have been updated over time to reflect the progressive introduction of increased restrictions.
+On day 1, the basic reproduction number was R0 = 2.38, which resulted in a substantial outbreak.
+On day 4, R0 = 1.66 as a result of the introduction of basic social distancing, awareness of the epidemic, hygiene and behavioral recommendations, and early measures by the Italian government (for example, closing schools).
+At day 12, asymptomatic individuals were almost no longer detected, and screening was focused on symptomatic individuals (leading to R0 = 1.80).
+On day 22, a partially incomplete lockdown, of which the effectiveness was reduced by the movement of people from the north to the south of Italy when the country-wide lockdown was announced but not yet enforced, yielded R0 = 1.60.
+When the national lockdown was fully operational and strictly enforced, after day 28, R0 = 0.99, finally reaching below 1.
+Of the total cases, 35% were undetected.
+In Fig.
+2b, the infected individuals are partitioned into the different subpopulations (diagnosed or not, with different SOI classification).
+Over a 350-day horizon, in the absence of further policy changes, Fig.
+The actual case fatality rate (CFR) is 9.8% and the perceived CFR is 13%.
+Extended Data Fig.
+1 shows how the situation could have evolved if milder or stronger measures had been implemented earlier.
+The curve following day 22 shows the importance and effectiveness of a prompt lockdown.
+We predict a range of possible future scenarios, with different measures enforced after day 50.
+Figure 3a,b shows, if the lockdown is weakened, a sudden and strong increase of the spread of disease, a prolonged emergency and more deaths (0.12% of the population in the first 350 days).
+A policy of population-wide testing and contact tracing would help to rapidly end the epidemic, as suggested by Peto28.

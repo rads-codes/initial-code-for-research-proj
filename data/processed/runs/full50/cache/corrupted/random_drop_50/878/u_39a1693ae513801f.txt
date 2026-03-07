@@ -1,0 +1,19 @@
+Utilizarea inteligenței artificiale (AI) în tehnologiile emergente continuă să avanseze rapid.
+OpenAI, cu sediul în San Francisco, a pus la dispoziție ultima sa creație, chatbotul ChatGPT.
+Ce este ChatGPT și cum funcționează ChatGPT a fost lansat pe 30 noiembrie, dar face parte dintr-un set mai larg de tehnologii dezvoltate de OpenAI, un startup cu sediul în San Francisco, care are o relație strânsă cu Microsoft.
+Face parte dintr-o nouă generație de sisteme de inteligență artificială care pot conversa, pot genera text lizibil la cerere și chiar pot produce imagini și videoclipuri inedite pe baza a ceea ce au învățat dintr-o bază de date vastă de cărți digitale, scrieri online și alte mijloace media.
+Acesta funcționează ca un dialog scris între sistemul de inteligență artificială și persoana care îi adresează întrebări.
+Milioane de oameni s-au "jucat" cu el în ultima lună, folosindu-l pentru a scrie poezii sau cântece, pentru a încerca să îl păcălească sau în scopuri mai practice, cum ar fi să ajute la redactarea unui e-mail.
+Toate aceste interogări, solicitări, fac ChatGPT și mai inteligent, relatează Associated Press.
+Robotul poate răspunde la o gamă largă de întrebări, imitând în același timp stilul de vorbire al oamenilor.
+„În curând veți putea avea asistenți utili care să vă vorbească, să vă răspundă la întrebări și să vă dea sfaturi.
+În cele din urmă veți putea avea ceva care pleacă și descoperă noi cunoștințe pentru dumneavoastră", potrivit The Guardian.
+ChatGPT poate fi însă problematic în sistemul de învățământ, mai ales după ce mai mulți elevi și studenți au început să-l folosească pentru a-și scrie referatele, temele și proiectele primite la cursuri.
+Școlile din SUA au intrat în alertă, iar în New York autoritățile au decis deja să interzică studenților, elevilor și profesorilor să folosească acest instrument în activitatea educațională.
+De atunci, însă, popularitatea sa i-a determinat pe creatorii săi să încerce să reducă așteptările unor persoane.
+Oameni sau inteligență artificială?
+„Pentru a determina dacă ceva a fost scris de un om sau de o inteligență artificială, puteți căuta absența experiențelor personale sau a emoțiilor, puteți verifica inconsecvența stilului de scriere și puteți urmări utilizarea de cuvinte de umplutură sau fraze repetitive.
+Este Google amenințat de ChatGPT?
+În 2018, compania a introdus un sistem cunoscut sub numele de BERT, care utilizează o tehnică de „transformare" care compară cuvintele dintr-o propoziție pentru a prezice sensul și contextul.
+Unele dintre aceste progrese sunt acum încorporate în căutările Google.
+Dar nu există nicio îndoială că iterațiile succesive ale GPT - care înseamnă Generative Pre-trained Transformer - au un impact.

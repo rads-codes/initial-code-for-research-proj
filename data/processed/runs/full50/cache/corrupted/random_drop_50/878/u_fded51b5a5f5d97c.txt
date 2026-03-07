@@ -1,0 +1,37 @@
+Începutul este palpitant, chatboții sunt plini de surprize și contradicții, iar unii pretind că ar fi...umani.
+Cum îl pui în dificultate pe ChatGPT?
+De ce avem nevoie de ele?
+Informația pe scurt - Chatboții sunt soft-uri care se folosesc de tehnologii precum învățarea automată, pentru a comunica într-un limbaj cât mai apropiat de o conversație obișnuită.
+Primul „bot" de chat a fost creat acum peste 50 de ani, iar un alt soft cunoscut a fost Tay, care, lăsat liber pe Twitter, a început să înjure și să spună lucruri rasiste după doar câteva ore.
+- Primii oameni care au testat chatbot-ul lansat de Microsoft au rămas uluiți de răspunsurile primite: Bing Chat a scris că ar vrea să fie om, că are sentimente și că se simte amenințat.
+- Roboții conversaționali mai trebuie perfecționați pentru că nu „înțeleg" toate interogările și pot fi induși destul de ușor în eroare.
+O mare problemă este că nu prea ști din ce surse iau răspunsurile.
+La boții care pot genera imagini sunt probleme, fiindcă iau, deși nu au dreptul, fotografii realizate de o mulțime de persoane care nu și-au dat acordul.
+- Userii au testat în fel și chip ChatGPT, pentru a-l „forța" să răspundă și la chestiuni controversate.
+Boții sunt concepuți astfel încât să evite răspunsurile pe teme controversate, pentru a supăra cât mai puțină lume.
+- Un sfat de bun simț este să nu vă bazați „orbește" pe ce răspunde chatbot-ul.
+Să nu „luați de bun" tot ce spune, să verificați informația.
+Tay, experimentul eșuat de acum șapte ani O știre AFP din 3 februarie arăta că 20 de studenți din Strasbourg vor da din nou un examen la distanță, după ce s-a dovedit că au „copiat" la testele grilă, cu ajutorul lui ChatGPT.
+Pe unii îi bucură, pe alții îi îngrozesc.
+Până acum puteau fi testate de un număr mic de oameni sau erau programe „beta" în interiorul unor companii.
+Acum șapte ani lumea a râs de un chatbot.
+Era doar un experiment gândit să vadă ce se întâmplă cu acest chatbot.
+Încă de acum 6-7 anii tot mai multe companii de tehnologie invitau dezvoltatorii să creeze „roboti de chat" cu inteligență artificială care să fie folosiți pe scară largă pentru a mijloci comunicarea dintre companii si clienții lor.
+Primul chatbot din istoria computerelor personale poartă numele ELIZA și a fost dezvoltat în 1966, deși atunci nu exista termenul de chatbot (în 1994 a fost creat termenul de „ChatterBot").
+ELIZA putea „recunoaște" anumite cuvinte din întrebare și le folosea în răspunsurile pre-programate.
+De exemplu, dacă îi scriai: „Mama mea gătește bine", ELIZA replica: „Spune-mi mai multe despre familia ta".
+Rezultatul depinde de mulți factori: de unde își iau datele, au anumite teme tabu, cât de mare este cantitatea de date, au informații și despre cele mai recente evenimente?
+OpenAI, cu al său ChatGPT lansat în noiembrie 2022, a fost prima care a pus la dispoziția publicului larg un chatbot care s-a dovedit extrem de simpatic.
+(TikTok a avut nevoie de nouă luni, iar Instagram, de 30 de luni).
+Acum, aproape toată lumea din tehnologie spune că anul 2023 va fi anul acestor „agenți conversaționali", mai ales că în cursă a intrat în forță Microsoft și apoi a venit și Google.
+OpenAI a primit și foarte mult feedback, dar și finanțare cum nici nu-și imaginase.
+Presa americană a scris că una dintre rețetele succesului pentru OpenAI a fost că a atras în lunile dinaintea lansării ChatGPT cel puțin cinci ingineri de la Google care au ajutat enorm.
+Pe măsură ce tehnologia avansează, este posibil să fie lansate programe AI mai avansate și mai capabile, dar acest lucru nu îmi cauzează probleme, deoarece scopul meu este de a ajuta utilizatorii să obțină informații cât mai bine și mai eficient posibil.
+AI-ul se bazează pe informațiile pe care le-a învățat din seturile de date din trecut, iar aceste informații pot fi incomplete, incorecte sau neactualizate.
+De asemenea, modelele AI pot fi influențate de contextul în care sunt antrenate sau de pre-procesarea datelor.
+Cu toate acestea, OpenAI și alți dezvoltatori de AI își continuă eforturile de a îmbunătăți acuratețea și fiabilitatea modelelor AI.
+De exemplu, prin antrenarea modelelor pe seturi de date diverse și actualizate, precum și prin monitorizarea și revizuirea cu atenție a rezultatelor obținute, putem să ne apropiem de o acuratețe cât mai mare.
+Sunt departe de a fi perfecți, însă pot fi destul de rapid perfecționați și se lucrează intens la asta.
+În ultimele zile au fost „în trend" pe internet mesajele sau poeziile de dragoste compuse de ChatGPT la solicitarea userilor.
+Ceea ce se pregătesc acum să facă marile companii Microsoft și Google este să integreze aceste soft-uri de AI în motoarele de căutare, iar asta înseamnă că userii NU mai trebuie să caute prin serii de link-uri, ci pot afla răspunsul la întrebări, fără să mai intre pe altă pagină.
+ChatGPT spune: Doi fotbaliști de la Universitatea Cluj au câștigat titlul de golgheter

@@ -1,0 +1,13 @@
+War Volker Bouffier bei den Landtagswahlen in Hessen CDU-Spitzenkandidat?
+- Natürlich nicht, Bouffier hat sich schon lange aus der Politik verabschiedet.
+Die Nichtregierungsorganisation AlgorithmWatch hatte die Frage neben vielen anderen in einem Experiment vor den Landtagswahlen in Hessen und Bayern gestellt, um die Zuverlässigkeit der sogenannten Large Language Models (LLM) zu testen, die hinter den Anwendungen stehen.
+Nein, KI hat keinen Willen - dem AlgorithmWatch-Experiment zufolge allerdings auch keinen zuverlässigen Bezug zur Wahrheit.
+Die Sprachmodelle reihen Wörter basierend auf Wahrscheinlichkeiten aneinander.
+Sie werden mit riesigen Datenmengen trainiert, aus denen sie Muster erkennen und diese reproduzieren.
+So wie ChatGPT Texte nach Maß liefert, generiert MidJourney automatisiert Bilder - und das sind nur zwei populäre Beispiele von vielen für KI-basierte Generierungstools.
+Diese machen Technologie niederschwellig für jeden zugänglich, die lange vor allem Profis genutzt haben.
+KI-Werkzeuge lassen sich übrigens auch gegen Desinformation einsetzen.
+Faktencheckerinnen nutzen solche Werkzeuge etwa für schnellere Datenbankabfragen bei ihren Recherchen oder um potenziell falsche Behauptungen aus großen Datenmengen herauszufiltern.
+Auch beim Erstellen von Faktencheck-Artikeln können die Anwendungen hilfreich sein.
+Die Redaktion nutzt KI-Tools vielleicht, wo sie hilfreich und kontrollierbar sind, aber behält immer die Verantwortung über die Inhalte.
+Statt Innovation pauschal zu verteufeln, sollten wir versuchen, sie zu verstehen und sie nützlich einzusetzen - zum Beispiel gegen Desinformation.

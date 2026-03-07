@@ -1,0 +1,5 @@
+Making sure you're not a bot!
+Loading...
+Anubis is a compromise.
+Ultimately, this is a placeholder solution so that more time can be spent on fingerprinting and identifying headless browsers (EG: via how they do font rendering) so that the challenge proof of work page doesn't need to be presented to users that are much more likely to be legitimate.
+Please disable JShelter or other such plugins for this domain.

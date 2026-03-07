@@ -1,0 +1,25 @@
+Potrivit unor media internaţionale, au fost introduse în luptă şi puţinele avioane Su-57 pentru lovirea sistemelor antiaeriene cu rază lungă de acţiune S-300 ucrainene sau bombardarea poziţiilor deţinute de ucraineni.
+De ce nu este în acest club select şi ce-l desparte de acesta reprezintă o poveste mai complicată.
+În cele ce urmează, vom analiza la capitolele esenţiale performanţele şi echipamentele avionului rusesc comparativ cu aparatul 5G al momentului - F-35 (sau F-22) pentru a evidenţia limitările şi diferenţele majore care îl exclud pe Su-57 din categoria aparatelor 5G.
+Sursă: Ministerul rus al Apărării Totodată, SUA dispun de mai multe companii aerospaţiale (Lockheed-Martin, Northrop-Grumman sau Boeing) cu peste 40 de ani de experienţă în proiectarea, dezvoltarea şi fabricarea avioanelor cu amprentă mică de radiolocaţie-RCS (Radar Cross Section) sau "stealth" cum mai sunt denumite.
+În cei peste 40 de ani de primul zbor al F-117, SUA au dezvoltat tipuri diferite de avioane, de la avionul de bombardament precis F-117 Nighthawk, bombardierul strategic B-2A Spirit şi până la actualele avioane de vânătoare F-22 Raptor sau F-35 Lightning II, care au participat la diferite conflicte şi operaţii.
+Simpla dislocare a unui număr redus de aparate Su-57 în Siria sau primele misiuni de luptă în Ucraina ţine mai mult de marketing şi prea puţin de aspectele operaţionale, influenţa acestora fiind minimă.
+Aceasta este realitatea dincolo de show-uri aeriene impresionante, păreri nerealiste şi exagerări în privinţa realizărilor industriei aerospaţiale ex-sovietice/ruseşti.
+Este greu de crezut cum unele persoane pot specula ce vor face peste ani câteva Su-57 comparativ cu ce fac deja de ani buni sute de aparate americane 5G.
+Mai mult, F-35A câştigă cam toate competiţiile pentru achiziţionarea unui avion de vânătoare 5G (vezi Polonia-32 buc., Elveţia-36 sau Finlanda-64).
+Amprenta de radiolocaţie şi mascarea pasivă Ca să complicăm puţin lucrurile, vom menţiona că aparatele F-35 Lightning II sunt dezvoltate în trei variante: F-35A, cu decolare/aterizare convenţională, F-35 B, cu decolare scurtă şi aterizare verticală-STOVL (Short Take-Off and Vertical Landing) şi F-35C, cu decolare de pe portavioane.
+Diferenţele între versiuni influenţează preţul aeronavelor, acesta mergând de la 77,8 mil.
+La acestea, se adaugă costurile pentru întreţinere, ora de zbor şi altele, care nu sunt deloc mici.
+Această valoare reprezintă de fapt RCS-ul frontal al aparatului, conform chiar firmei constructoare Suhoi, care s-a concentrat (doar) pe acest aspect în detrimentul dezvoltării unui aparat cu "stealth" total, datorită dificultăţilor tehnologice inerente.
+Pentru simplitate vom folosi doar valoarea 0.0001, deşi unii piloţi care au zburat pe ambele aeronave au declarat că F-35 are RCS mai mic decât F-22.
+Numai această diferenţă uriaşă în RCS şi distanţa de descoperire şi de angajare între cele două aparate arată cât de inferior este aparatul rusesc în faţa F-35 (sau F-22).
+Nu este de mirare că, în cadrul exerciţiilor de luptă aeriană cu adversar, cum ar fi Red Flags sau Northern Edge, F-35 a obţinut scoruri de 28-1 împotriva unor adversari aerieni, superiori numeric, care zburau pe avioane capabile 4G++(F-15 sau F/A-18 sau Eurofighter) sprijinite de AWACS şi sisteme antiaeriene, potrivit airforcemagazine.com.
+Practic, nici nu mai contează cât de capabil este radarul de bord sau sistemele de luptă radioelectronică instalate pe avion, acestea nu pot compensa diferenţa enormă în distanţa de descoperire a unei platforme 5G ca F-35.
+Chiar şi în lupta aeriană apropiată (WVR), în care Su-57 are şanse mai favorabile să reziste, trebuie ţinut cont că există o diferenţa enormă între posibilitatea descoperirii acestor aparate versus posibilitatea executării focului asupra acestor platforme 5G, aspect care este mult mai greu în realitate decât pare în teorie.
+Alţi piloţi au subliniat că le-a fost imposibil să se apropie de avioane F-35/F-22 fără să fie descoperite şi "doborâte".
+Orice luptă aeriană cu aceste avioane va conduce la un "masacru", iar aparate ca Su-35 sau Su-57, chiar şi Su-75, vor fi doborâte fără să ştie că adversarul este în apropiere.
+În afară de problemele tehnice şi întârzierile programului Su-57, în afara mascării pasive, acesta rămâne serios în urma platformelor 5G americane la capitolul echipamente electronice sau fuziune senzorială - aspecte cruciale pentru o aeronavă 5G.
+Radarul AN/APG-81 de pe F-35 este a treia generaţie de radar AESA faţă de prima generaţia abia instalată pe Su-57 - radarul N036-1-01 (bandă X).
+Dacă radarul N036 va descoperi o ţintă cu RCS 0,1 undeva la 160km, Conform materialelor video înregistrate de compania constructoare Northrop Grumman în timpul zborurilor de testare, APG-81 execută cercetarea aeriană de volum în 2-3 secunde.
+În timpul testelor, a descoperit şi urmărit 19 ţinte aeriene care evoluau la peste 160km în sub 3 sec., inclusiv ţintele aeriene care se îndepărtau.
+Radarele americane sunt mult mai puternice şi mult mai d

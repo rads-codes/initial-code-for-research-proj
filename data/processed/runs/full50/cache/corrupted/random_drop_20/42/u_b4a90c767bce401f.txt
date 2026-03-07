@@ -1,0 +1,64 @@
+Die YouTube-Präsentation der DARPA sieht auf den ersten Blick wie ein Amateurvideo aus.
+Handtellergroß surren sie wie ein Vogelschwarm durch die Luft.
+Ändern die Richtung.
+Fliegen auseinander.
+Finden zusammen.
+Einige Minuten später sitzen die Männer vor einem Bildschirm.
+Sie beobachten hunderte schwarze Punkte, die sich auf ein Zielquadrat zubewegen.
+Als sie sich innerhalb weniger Sekunden in einem großen Fleck auflösen, lächeln sie.
+Das Projekt, das die Jungs in diesem Video präsentieren, beschreibt die „next generation in autonomous warfare", wie das gewöhnlich gut unterrichtete Fachmagazin Jane's International Defence Review berichtet.
+Das Projekt „Offensive Swarm-Enabled Tactics" (OFFSET) war ein voller Erfolg, in der Testphase.
+Dutzende kleine Drohnen erreichten und zerstörten ein Ziel.
+OFFSET gehört laut Jane's zu über 100 Programmen des zivilen wie militärischen Sektors in den Vereinigten Staaten, die mit Hochdruck an der technischen Weiterentwicklung von Drohnenschwärmen arbeiten.
+Allein DARPA stehen bis 2023 rund zwei Milliarden Dollar zur Verfügung, um „die nächste Technologiewelle zu entwickeln".
+Wohl kaum.
+Der Wettlauf um autonome Waffensysteme hat längst begonnen.
+Wolfgang Ischinger, Chef der Münchner Sicherheitskonferenz, warnte anlässlich der Tagung im Februar in einem Tagesspiegel-Interview: „Die klassische Vorstellung, dass ein Pilot in einem Flugzeug irgendwo fliegt und Bomben abwirft, ist aus dem letzten Jahrhundert.
+Unbemannte Systeme mit Künstlicher Intelligenz werden die Herausforderung der Zukunft sein." Fachleute wie der amerikanische Drohnenexperte Paul Scharre schätzen, dass es nur noch ein paar Jahre dauern wird, bis die autonomen Waffen, auch LAWS (Lethal Autonomous Weapon Systems) genannt, Realität werden.
+Der Einzug der Künstlichen Intelligenz in die Waffentechnologie, die seit rund einem Jahrzehnt voranschreitet, wird die Dimensionen zukünftiger Kriege völlig verändern.
+Es geht nicht mehr um selbstfahrende Roboter oder von Piloten ferngesteuerte Flugobjekte, sondern um Systeme, die eigenständig handeln.
+Kalaschnikows der Lüfte Die Frage ist: Gibt es die LAWS wirklich schon?
+Oder ist das DARPA-Video noch Science-Fiction?
+Oder wie der Jane's-Autor Andrew White schreibt: „Die Fähigkeit, unbemannte Schwarmoperationen zu starten, ist für Militärmächte entscheidend, um sich den Vorsprung im Bereich der autonomen Technologien zu sichern." Eines hat die Geschichte der Drohnen bis heute gezeigt: Ihr Einsatz ist nicht mehr allein ein Monopol der Großmächte.
+Immer mehr nichtstaatliche Akteure wie Terrorgruppen und Milizen setzen auf die „Kalaschnikows der Lüfte", die zunehmend in Schwärmen auftauchen.
+Januar 2018 auf dem vom russischen Militär genutzten Flughafen Hmeimim in Syrien abspielt, kommt dem DARPA-Video schon sehr nahe.
+In den frühen Morgenstunden erscheint plötzlich ein Schwarm von Drohnen auf dem Radar der russischen Luftstreitkräfte.
+Zwei Tage später gibt das russische Verteidigungsministerium bekannt: Sieben Flugkörper seien abgeschossen worden, der Rest „unter Kontrolle gebracht".
+Und: Sie hätten Hilfe gehabt.
+Präsident Putin selbst lenkt den Verdacht auf die USA, denn die Technik könne nur „von einem Land kommen, das über Hochtechnologiemöglichkeiten verfügt".
+Die Drohnen erreichen zwar ihr Ziel nicht.
+Findige Reporter der Nachrichten-Website „The Daily Beast" veröffentlichen nur wenige Tage nach dem Angriff einen Artikel, in dem sie über die Herkunft der Drohnen spekulieren: Fast baugleiche Exemplare der Flugkörper, die ungefähr zwei Meter Spannweite haben, per GPS gesteuert werden und Sprengstoffladungen tragen können, sind im Social-Media-Dienst „Telegram" aufgetaucht.
+Die auch für verschlüsselte Nachrichten geeignete Messaging-App ist unter IS-Anhängern wie Sympathisanten von Terrorgruppen beliebt.
+Die Drohnen, die auch auf Fotos des russischen Verteidigungsministeriums zu sehen sind, lassen auf eine simple Bauweise schließen.
+Der Sprengstoff wird mit Klebeband am Rumpf der Drohne befestigt.
+„Killer-Bienen" aus dem Baukasten, herzustellen für ein paar tausend Dollar in der Garage.
+Doch nicht die Bauweise alarmiert Militärexperten, sondern ihr Schwarmverhalten.
+Noch nie waren so viele Drohnen zusammen im Einsatz.
+Am 14.
+September 2019 werden zwei Anlagen der saudischen Ölgesellschaft Saudi Aramco in Abqaiq und Churais attackiert.
+Huthi-Rebellen aus dem Jemen reklamieren den Anschlag für sich.
+Ihre Waffen: Dutzende „Kamikaze-Drohnen", die gemeinsam auf ein Ziel zusteuern und dort gezielt abstürzen.
+Ein UN-Bericht des „Panel of Experts on Yemen" vom Januar 2019 schildert dezidiert, wie die Drohnen aus iranischer Produktion mit Motoren chinesischer oder deutscher Herkunft präpariert werden.
+Und: Sie fliegen nicht allein.
+Der Schwarm ist die eigentliche Waffe.
+Was macht ihn so effektiv, dass Mächte mit großen Verteidigungsindustrien wie die USA, China, Russland, Großbritannien, Israel und auch Südkorea hunderte Milliarden Dollar in die Entwicklung ihrer LAWS stecken?
+Ein Blick zum Himmel hilft als Erklärung.
+Ein Vogelschwarm ordnet seine Bewegungen scheinbar instinktiv, ein sich selbst organisierendes System.
+Sie fliegen, ohne sich zu berühren.
+Auch wenn Teile des Schwarmes ausfallen, die Masse hält die Richtung.
+Übersetzt in militärische Kategorien: Ein Flugzeug kann abgeschossen werden.
+Einen Schwarm zu vernichten, ist weitaus schwieriger.
+Im Gegensatz zu den großen Flugobjekten wie die amerikanische Drohne „MQ-9 Reaper" - die mit einer Geschwindigkeit von nahe 500 km/h und ausgestattet mit Hellfire Missiles zur Tötung des iranischen Generals Qasem Soleimani im Januar 2020 eingesetzt wurde -, geht der Trend zu Mini-Drohnen wie der „Perdix".
+Entwickelt vom Strategic Capabilities Office (SCO) des US-Verteidigungsministeriums, haben die nur knapp 300 Gramm schweren Drohnen aus dem 3D-Drucker bei einem Test schon 2016 demonstriert, dass Fliegen im Schwarm möglich ist.
+„Perdix-Drohnen sind wie ein kollektiver Organismus, der über ein Gehirn verfügt.
+Sie agieren wie ein Schwarm in der Natur", so der damalige SCO-Chefentwickler William Roper.
+Mittlerweile ist Roper verantwortlich für das Technologieprogramm der US-Luftwaffe mit einem jährlichen Budget von 60 Milliarden Dollar.
+Wie das aussehen könnte, zeigt das 2017 schnell viral gehende Video „Slaughterbots" des Aktivisten Stuart Russell vom „Future for Life"-Institut.
+In dem 8-Minuten-Clip organisieren sich Schwärme von Mini-Drohnen mittels Künstlicher Intelligenz zu Killer-Maschinen, die politische Gegner oder protestierende Studenten mit Hilfe von zuvor programmierten Informationen erkennen und vernichten.
+Das sich selbst als unabhängig bezeichnende Forschungsinstitut aus Boston, dem Stephen Hawking (bis zu seinem Tod 2018) und der Tesla-Gründer Elon Musk angehören, zählt zu den prominentesten Gegnern der Weiterentwicklung der LAWS.
+Es fordert nicht nur eine Ächtung der autonomen Waffen, sondern vor allem auch ein Ende der Zusammenarbeit zwischen Militär und privater Wirtschaft.
+Bei der Künstlichen Intelligenz ist es jetzt anders.
+Sie kommt aus dem zivilen Bereich, der unglaublich viele Daten zur Verfügung stellt.
+Wir veröffentlichen unser Bild, unseren Namen, unser Alter, das sind alles Daten, die man für das maschinelle Lernen benutzen kann." Gegen eine zivil-militärische Kooperation haben sich 2018 Google-Mitarbeiter in einer Protestnote gewehrt: „Wir glauben, dass Google im Kriegsgeschäft nichts zu suchen hat." Auch der Aufruf des „Future for Life"-Instituts, unterzeichnet von führenden Wissenschaftlern und Unternehmen im KI-Bereich, hat eine klare Botschaft: „Wir fordern die Regierungen auf, strenge internationale Normen und Gesetze gegen LAWS zu schaffen".
+Laut Marcel Dickow ist die entscheidende Frage sowohl im zivilen und erst recht im militärischen Bereich: „Haben wir die Technologie unter Kontrolle?
+Sind die Aufgaben, die wir diesen Systemen geben,

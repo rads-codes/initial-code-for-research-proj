@@ -1,0 +1,39 @@
+Analiză: Su-57 Felon încă se doreşte un rival al F-35 Carol FloreaLa peste patru luni de la începerea conflictului din Ucraina, aviaţia rusă a pierdut 35 de aparate, dintre care 16 Su-30/34/35 şi 48 de elicoptere, şi nu a reuşit să obţină superioritatea aeriană deasupra Ucrainei, deşi aflat în faţa unui adversar cu capabilităţi aeriene şi antiaeriene modeste.
+Astfel, după Siria, puţinele Su-57 intră în conflictul din Ucraina într-o încercare de a obţine controlul spaţiului aerian ucrainean şi de a-şi trece în palmares faptul că a participat la acţiuni militare.
+Deşi (auto) prezentat ca aparţinând generaţiei a V-a, fiind cel mai modern avion rusesc, Su-57 este încă departe de a fi considerat un omolog al F-22 sau F-35, din cauza caracteristicilor şi dotărilor limitate, precum şi a dificultăţilor tehnologice nedepăşite de o industrie aerospaţială rusească neputincioasă.
+De ce nu este în acest club select şi ce-l desparte de acesta reprezintă o poveste mai complicată.
+În cele ce urmează, vom analiza la capitolele esenţiale performanţele şi echipamentele avionului rusesc comparativ cu aparatul 5G al momentului - F-35 (sau F-22) pentru a evidenţia limitările şi diferenţele majore care îl exclud pe Su-57 din categoria aparatelor 5G.
+Vom începe cu numere: în prezent, aviaţia rusă dispune de 6 (şase) avioane Su-57 (Felon în codificarea NATO) din producţia de serie, conform avia.pro, în timp ce SUA şi ţările aliate dispun de câţiva ani de peste 800 de avioane 5G F-35/F-22 (plus 20 de bombardiere strategice B-2A Spirit), conform publicaţiei flightglobal.
+Sursă: Ministerul rus al Apărării Totodată, SUA dispun de mai multe companii aerospaţiale (Lockheed-Martin, Northrop-Grumman sau Boeing) cu peste 40 de ani de experienţă în proiectarea, dezvoltarea şi fabricarea avioanelor cu amprentă mică de radiolocaţie-RCS (Radar Cross Section) sau "stealth" cum mai sunt denumite.
+În cei peste 40 de ani de primul zbor al F-117, SUA au dezvoltat tipuri diferite de avioane, de la avionul de bombardament precis F-117 Nighthawk, bombardierul strategic B-2A Spirit şi până la actualele avioane de vânătoare F-22 Raptor sau F-35 Lightning II, care au participat la diferite conflicte şi operaţii.
+De partea ruşilor, la capitolul avioane "stealth", oricât ne-am strădui, nu observăm avioane omoloage, comenzi la export (au existat tentative din partea Turciei şi Indiei, Algeria speră să-l achiziţioneze din 2028, iar Vietnamul se mai gândeşte) sau prea multe lucruri care să susţină teoriile că Su-57 reprezintă un competitor real al aparatelor americane.
+Simpla dislocare a unui număr redus de aparate Su-57 în Siria sau primele misiuni de luptă în Ucraina ţine mai mult de marketing şi prea puţin de aspectele operaţionale, influenţa acestora fiind minimă.
+Aceasta este realitatea dincolo de show-uri aeriene impresionante, păreri nerealiste şi exagerări în privinţa realizărilor industriei aerospaţiale ex-sovietice/ruseşti.
+Cu toate acestea, avionul rusesc Su-57 nu duce lipsă de fani şi simpatizanţi, de articole laudative şi suporteri, inclusiv din România.
+Este greu de crezut cum unele persoane pot specula ce vor face peste ani câteva Su-57 comparativ cu ce fac deja de ani buni sute de aparate americane 5G.
+Mai mult, F-35A câştigă cam toate competiţiile pentru achiziţionarea unui avion de vânătoare 5G (vezi Polonia-32 buc., Elveţia-36 sau Finlanda-64).
+O simplă privire la programele Su-57 Felon (sau Su-75 Checkmate) arată limitele şi neputinţa industriei aerospaţiale ruseşti în a dezvolta un avion 5G adevărat, cu performanţe superioare reale, capabil să facă faţă sutelor de avioane americane din 5G - F-35 sau F-22, dezvoltate de o industrie cu o experienţă de peste 40 de ani în construirea aparatelor cu suprafaţă mică de reflexie.
+Amprenta de radiolocaţie şi mascarea pasivă Ca să complicăm puţin lucrurile, vom menţiona că aparatele F-35 Lightning II sunt dezvoltate în trei variante: F-35A, cu decolare/aterizare convenţională, F-35 B, cu decolare scurtă şi aterizare verticală-STOVL (Short Take-Off and Vertical Landing) şi F-35C, cu decolare de pe portavioane.
+Diferenţele între versiuni influenţează preţul aeronavelor, acesta mergând de la 77,8 mil.
+$ pentru F-35A, 101,3 mil $ pentru F-35B şi 94,1 mil $ pentru F-35C.
+La acestea, se adaugă costurile pentru întreţinere, ora de zbor şi altele, care nu sunt deloc mici.
+Sursă: USAF În majoritatea articolelor media, Su-57 Felon apare, nefiresc, ca un competitor direct al aparatelor americane F-35 Lightning II şi F-22 Raptor, însă chiar prezentarea constructorului Suhoi subliniază că Su-57 dispune de o amprentă de radiolocaţie situată undeva între 0,1 şi 1 m2.
+În al doilea rând, trebuie subliniat faptul că această amprentă de radiolocaţie nu este o valoare medie, valabilă pentru toate zonele aparatului ("all-aspect"), care poate ar fi convenit fanilor avionului rus.
+Această valoare reprezintă de fapt RCS-ul frontal al aparatului, conform chiar firmei constructoare Suhoi, care s-a concentrat (doar) pe acest aspect în detrimentul dezvoltării unui aparat cu "stealth" total, datorită dificultăţilor tehnologice inerente.
+Concluzia este evidentă: Su-57 nu este un aparat "stealth".
+Nu numai că Su-57 dispune de o amprentă de radiolocaţie mai mare decât a unui F-35 - dar aceasta este 1.000 ori mai mare (0,0001 m2 în cazul F-22/F-35).
+Pentru simplitate vom folosi doar valoarea 0.0001, deşi unii piloţi care au zburat pe ambele aeronave au declarat că F-35 are RCS mai mic decât F-22.
+Valoarea RCS influenţează distanţa de descoperire a unei aeronave, un F-35/F-22 având posibilitate de descoperire a unui Su-57 de la o distanţă 5,6 ori mai mare decât aparatul rusesc.
+Numai această diferenţă uriaşă în RCS şi distanţa de descoperire şi de angajare între cele două aparate arată cât de inferior este aparatul rusesc în faţa F-35 (sau F-22).
+Echipa F-22 a obţinut chiar şi un incredibil 241-0 împotriva avioanelor 4G++.
+În mod clar, RCS-ul redus al aparatelor F-35/F-22 (care este "all aspect"), reprezintă factorul determinant, responsabil de aceste diferenţe de scor.
+Practic, nici nu mai contează cât de capabil este radarul de bord sau sistemele de luptă radioelectronică instalate pe avion, acestea nu pot compensa diferenţa enormă în distanţa de descoperire a unei platforme 5G ca F-35.
+Chiar şi în lupta aeriană apropiată (WVR), în care Su-57 are şanse mai favorabile să reziste, trebuie ţinut cont că există o diferenţa enormă între posibilitatea descoperirii acestor aparate versus posibilitatea executării focului asupra acestor platforme 5G, aspect care este mult mai greu în realitate decât pare în teorie.
+În afară de problemele tehnice şi întârzierile programului Su-57, în afara mascării pasive, acesta rămâne serios în urma platformelor 5G americane la capitolul echipamente electronice sau fuziune senzorială - aspecte cruciale pentru o aeronavă 5G.
+O altă problemă pentru Su-57 ar fi aceea că nu dispune de magistrale de date protejate cu probabilitate mică de interceptare/bruiere, cum ar fi MADL (pe F-35) sau IFDL (pe F-22).
+Desigur, asta nu ar fi o problemă în Ucraina, când adversarul dispune de echipamente de război electronic cu limitări sau (puţine) platforme 4G, dar dacă adversarul este echipat cu F-35 (sau F-22) atunci lucrurile se complică.
+Radarul AN/APG-81 de pe F-35 este a treia generaţie de radar AESA faţă de prima generaţia abia instalată pe Su-57 - radarul N036-1-01 (bandă X).
+Constructiv, APG-81 dispune de 1.678 de module de transmisie/recepţie (TRM) faţă de 1.552 TRM pe N036 - radarul de pe Felon.
+În timpul testelor, a descoperit şi urmărit 19 ţinte aeriene care evoluau la peste 160km în sub 3 sec., inclusiv ţintele aeriene care se îndepărtau.
+Radarul AN/APG-77v1 de pe Raptor dispune de şi mai multe TRM - circa 2.000.
+Radarele americane sunt mult mai puternice şi mult mai d
