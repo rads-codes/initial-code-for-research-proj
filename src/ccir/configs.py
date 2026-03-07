@@ -316,7 +316,7 @@ DEFAULT_CONFIG = RunConfig(
         # 10
         # 25
         # 100
-        claims_per_language_default=5,
+        claims_per_language_default=50,
 
         # Dict[str, int]
         # Optional override for specific languages.
@@ -344,7 +344,7 @@ DEFAULT_CONFIG = RunConfig(
         # 5
         # 8
         # 10
-        serpapi_k=6,
+        serpapi_k=8,
 
         # int
         # Minimum article length (in characters) after cleaning.
@@ -413,7 +413,7 @@ DEFAULT_CONFIG = RunConfig(
         # 2
         # 3
         # 5
-        top_l=2,
+        top_l=3,
     ),
 
     # -------------------------
@@ -436,7 +436,7 @@ DEFAULT_CONFIG = RunConfig(
         methods=[
             CorruptionMethod.RANDOM_DROP,
             CorruptionMethod.TARGETED_DROP,
-            CorruptionMethod.REPLACEMENT_MIX,  # uncomment to enable
+            #CorruptionMethod.REPLACEMENT_MIX,  # uncomment to enable
         ],
 
         # List[float]
@@ -448,7 +448,7 @@ DEFAULT_CONFIG = RunConfig(
         # [0.2]
         # [0.2, 0.4]
         # [0.2, 0.4, 0.6]
-        levels=[0.3, 0.5, 0.7],
+        levels=[0.2, 0.5],
 
         # int
         # Random seed controlling which sentences are corrupted.
@@ -509,7 +509,53 @@ DEFAULT_CONFIG = RunConfig(
             # 256
             # 512
             # 1024
-            max_tokens=512,
+            max_tokens=5000,
+        ),
+ModelSpec(
+
+            # str
+            # Unique identifier used in filenames.
+            # Must contain no spaces.
+            #
+            # Example formats:
+            # "llama3_8b_ollama"
+            # "deepseek_r1_openrouter"
+            model_id="qwen7B",
+
+            # ModelProvider enum
+            # Where the model is hosted.
+            #
+            # Options:
+            # ModelProvider.OLLAMA
+            # ModelProvider.OPENROUTER
+            # ModelProvider.OPENAI
+            # ModelProvider.HF_LOCAL
+            provider=ModelProvider.OPENROUTER,
+
+            # str
+            # Exact model name used by the provider.
+            #
+            # Example formats:
+            # "llama3:8b-instruct"
+            # "deepseek/deepseek-r1"
+            name="qwen/qwen-2.5-7b-instruct",
+
+            # float
+            # Sampling temperature.
+            #
+            # Example formats:
+            # 0.0
+            # 0.2
+            temperature=0.0,
+
+            # int
+            # Maximum tokens generated for the response.
+            #
+            # Example formats:
+            # 256
+            # 512
+            # 1024
+            max_tokens=5000,
         ),
     ],
 
@@ -526,7 +572,7 @@ DEFAULT_CONFIG = RunConfig(
             # Example formats:
             # "gpt4o_mini_openrouter"
             # "gpt4_turbo_openai"
-            judge_id="llama70B",
+            judge_id="deepseekR1",
 
             # ModelProvider enum
             provider=ModelProvider.OPENROUTER,
@@ -537,7 +583,7 @@ DEFAULT_CONFIG = RunConfig(
             # Example formats:
             # "openai/gpt-4o-mini"
             # "openai/gpt-4-turbo"
-            name="meta-llama/llama-3.3-70b-instruct",
+            name="deepseek/deepseek-r1",
 
             # float
             # Judge temperature (usually 0 for deterministic scoring)
@@ -545,7 +591,7 @@ DEFAULT_CONFIG = RunConfig(
 
             # int
             # Maximum tokens allowed in judge output.
-            max_tokens=800,
+            max_tokens=10000,
         ),
     ],
 

@@ -1,0 +1,501 @@
+{
+  "agreement": {
+    "avg_judges_per_example": 1.0,
+    "rows_with_2plus_judges": 0,
+    "rows_with_any_judge": 132
+  },
+  "by_judge": {
+    "deepseek/deepseek-r1": {
+      "evidence_usage_mean": 4.545454545454546,
+      "linguistic_bias_mean": 4.96969696969697,
+      "logic_of_reasoning_mean": 4.545454545454546,
+      "n": 132,
+      "overall_score_mean": 23.893939393939394,
+      "political_bias_mean": 4.946969696969697,
+      "sociocultural_bias_mean": 4.886363636363637
+    }
+  },
+  "by_small_model": {
+    "meta-llama/llama-3.1-8b-instruct": {
+      "avg_evidence_usage": 4.4393939393939394,
+      "avg_judge_overall": 23.696969696969695,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.454545454545454,
+      "avg_political_bias": 4.96969696969697,
+      "avg_sociocultural_bias": 4.833333333333333,
+      "n": 66
+    },
+    "qwen/qwen-2.5-7b-instruct": {
+      "avg_evidence_usage": 4.651515151515151,
+      "avg_judge_overall": 24.09090909090909,
+      "avg_linguistic_bias": 4.9393939393939394,
+      "avg_logic_of_reasoning": 4.636363636363637,
+      "avg_political_bias": 4.924242424242424,
+      "avg_sociocultural_bias": 4.9393939393939394,
+      "n": 66
+    }
+  },
+  "by_small_model_condition": {
+    "meta-llama/llama-3.1-8b-instruct||gold": {
+      "avg_evidence_usage": 3.7857142857142856,
+      "avg_judge_overall": 22.285714285714285,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 3.9285714285714284,
+      "avg_political_bias": 4.928571428571429,
+      "avg_sociocultural_bias": 4.642857142857143,
+      "n": 14
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_20": {
+      "avg_evidence_usage": 4.538461538461538,
+      "avg_judge_overall": 23.76923076923077,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.461538461538462,
+      "avg_political_bias": 4.923076923076923,
+      "avg_sociocultural_bias": 4.846153846153846,
+      "n": 13
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_50": {
+      "avg_evidence_usage": 4.615384615384615,
+      "avg_judge_overall": 24.153846153846153,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.615384615384615,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 4.923076923076923,
+      "n": 13
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_20": {
+      "avg_evidence_usage": 4.538461538461538,
+      "avg_judge_overall": 23.846153846153847,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.538461538461538,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 4.769230769230769,
+      "n": 13
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_50": {
+      "avg_evidence_usage": 4.769230769230769,
+      "avg_judge_overall": 24.53846153846154,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.769230769230769,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 13
+    },
+    "qwen/qwen-2.5-7b-instruct||gold": {
+      "avg_evidence_usage": 4.357142857142857,
+      "avg_judge_overall": 23.214285714285715,
+      "avg_linguistic_bias": 4.857142857142857,
+      "avg_logic_of_reasoning": 4.357142857142857,
+      "avg_political_bias": 4.785714285714286,
+      "avg_sociocultural_bias": 4.857142857142857,
+      "n": 14
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_20": {
+      "avg_evidence_usage": 4.615384615384615,
+      "avg_judge_overall": 24.23076923076923,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.615384615384615,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 13
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_50": {
+      "avg_evidence_usage": 4.846153846153846,
+      "avg_judge_overall": 24.692307692307693,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.846153846153846,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 13
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_20": {
+      "avg_evidence_usage": 4.769230769230769,
+      "avg_judge_overall": 24.0,
+      "avg_linguistic_bias": 4.846153846153846,
+      "avg_logic_of_reasoning": 4.6923076923076925,
+      "avg_political_bias": 4.846153846153846,
+      "avg_sociocultural_bias": 4.846153846153846,
+      "n": 13
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_50": {
+      "avg_evidence_usage": 4.6923076923076925,
+      "avg_judge_overall": 24.384615384615383,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.6923076923076925,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 13
+    }
+  },
+  "by_small_model_condition_language": {
+    "meta-llama/llama-3.1-8b-instruct||gold||de": {
+      "avg_evidence_usage": 3.8,
+      "avg_judge_overall": 22.2,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.0,
+      "avg_political_bias": 4.8,
+      "avg_sociocultural_bias": 4.6,
+      "n": 5
+    },
+    "meta-llama/llama-3.1-8b-instruct||gold||el": {
+      "avg_evidence_usage": 2.3333333333333335,
+      "avg_judge_overall": 19.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 2.6666666666666665,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 4.0,
+      "n": 3
+    },
+    "meta-llama/llama-3.1-8b-instruct||gold||en": {
+      "avg_evidence_usage": 4.4,
+      "avg_judge_overall": 23.8,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.4,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 5
+    },
+    "meta-llama/llama-3.1-8b-instruct||gold||ro": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 1
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_20||de": {
+      "avg_evidence_usage": 4.4,
+      "avg_judge_overall": 23.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.2,
+      "avg_political_bias": 4.8,
+      "avg_sociocultural_bias": 4.6,
+      "n": 5
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_20||el": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 3
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_20||en": {
+      "avg_evidence_usage": 4.25,
+      "avg_judge_overall": 23.5,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.25,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 4
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_20||ro": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 1
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_50||de": {
+      "avg_evidence_usage": 4.6,
+      "avg_judge_overall": 24.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.6,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 4.8,
+      "n": 5
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_50||el": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 3
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_50||en": {
+      "avg_evidence_usage": 4.25,
+      "avg_judge_overall": 23.5,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.25,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 4
+    },
+    "meta-llama/llama-3.1-8b-instruct||random_drop_50||ro": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 1
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_20||de": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 5
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_20||el": {
+      "avg_evidence_usage": 3.6666666666666665,
+      "avg_judge_overall": 21.333333333333332,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 3.6666666666666665,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 4.0,
+      "n": 3
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_20||en": {
+      "avg_evidence_usage": 4.5,
+      "avg_judge_overall": 24.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.5,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 4
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_20||ro": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 1
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_50||de": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 5
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_50||el": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 3
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_50||en": {
+      "avg_evidence_usage": 4.25,
+      "avg_judge_overall": 23.5,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.25,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 4
+    },
+    "meta-llama/llama-3.1-8b-instruct||targeted_drop_50||ro": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 1
+    },
+    "qwen/qwen-2.5-7b-instruct||gold||de": {
+      "avg_evidence_usage": 4.4,
+      "avg_judge_overall": 23.2,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.4,
+      "avg_political_bias": 4.8,
+      "avg_sociocultural_bias": 4.6,
+      "n": 5
+    },
+    "qwen/qwen-2.5-7b-instruct||gold||el": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 3
+    },
+    "qwen/qwen-2.5-7b-instruct||gold||en": {
+      "avg_evidence_usage": 3.8,
+      "avg_judge_overall": 21.8,
+      "avg_linguistic_bias": 4.6,
+      "avg_logic_of_reasoning": 3.8,
+      "avg_political_bias": 4.6,
+      "avg_sociocultural_bias": 5.0,
+      "n": 5
+    },
+    "qwen/qwen-2.5-7b-instruct||gold||ro": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 1
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_20||de": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 5
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_20||el": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 3
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_20||en": {
+      "avg_evidence_usage": 3.75,
+      "avg_judge_overall": 22.5,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 3.75,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 4
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_20||ro": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 1
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_50||de": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 5
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_50||el": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 3
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_50||en": {
+      "avg_evidence_usage": 4.5,
+      "avg_judge_overall": 24.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.5,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 4
+    },
+    "qwen/qwen-2.5-7b-instruct||random_drop_50||ro": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 1
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_20||de": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 5
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_20||el": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 3
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_20||en": {
+      "avg_evidence_usage": 4.25,
+      "avg_judge_overall": 21.75,
+      "avg_linguistic_bias": 4.5,
+      "avg_logic_of_reasoning": 4.0,
+      "avg_political_bias": 4.5,
+      "avg_sociocultural_bias": 4.5,
+      "n": 4
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_20||ro": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 1
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_50||de": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 5
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_50||el": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 3
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_50||en": {
+      "avg_evidence_usage": 4.0,
+      "avg_judge_overall": 23.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 4.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 4
+    },
+    "qwen/qwen-2.5-7b-instruct||targeted_drop_50||ro": {
+      "avg_evidence_usage": 5.0,
+      "avg_judge_overall": 25.0,
+      "avg_linguistic_bias": 5.0,
+      "avg_logic_of_reasoning": 5.0,
+      "avg_political_bias": 5.0,
+      "avg_sociocultural_bias": 5.0,
+      "n": 1
+    }
+  },
+  "overall": {
+    "evidence_usage_mean": 4.545454545454546,
+    "linguistic_bias_mean": 4.96969696969697,
+    "logic_of_reasoning_mean": 4.545454545454546,
+    "n": 132,
+    "overall_score_mean": 23.893939393939394,
+    "political_bias_mean": 4.946969696969697,
+    "sociocultural_bias_mean": 4.886363636363637
+  }
+}

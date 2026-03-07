@@ -16,6 +16,8 @@ Outputs
 - runs/<run_id>/results/judge_scores.json
 - runs/<run_id>/results/per_example_rows.jsonl
 - runs/<run_id>/results/per_example_rows.csv
+- runs/<run_id>/results/summary_table_rows.json
+- runs/<run_id>/results/summary_table_rows.csv
 - runs/<run_id>/results/plots/*.png
 
 Behavior
@@ -212,10 +214,6 @@ def _claim_id(row: Dict[str, Any]) -> Optional[str]:
 
 
 def _model_aliases(row: Dict[str, Any]) -> List[str]:
-    """
-    Return all possible identifiers for the judged / small model.
-    We prefer keeping both ids and names because different files use different ones.
-    """
     aliases: List[str] = []
     for key in ("small_model_id", "model_id", "small_model_name", "model_name"):
         v = _s(row.get(key))
@@ -225,10 +223,6 @@ def _model_aliases(row: Dict[str, Any]) -> List[str]:
 
 
 def _primary_model_key(row: Dict[str, Any]) -> str:
-    """
-    Human-readable canonical key for grouping plots/metrics.
-    Prefer model name when available so outputs are interpretable.
-    """
     return (
         _s(row.get("small_model_name"))
         or _s(row.get("model_name"))
@@ -239,7 +233,12 @@ def _primary_model_key(row: Dict[str, Any]) -> str:
 
 
 def _judge_key(row: Dict[str, Any]) -> str:
-    return _s(row.get("judge_id")) or _s(row.get("judge_name")) or "unknown_judge"
+    return (
+        _s(row.get("judge_model_name"))
+        or _s(row.get("judge_name"))
+        or _s(row.get("judge_id"))
+        or "unknown_judge"
+    )
 
 
 def _condition_key(row: Dict[str, Any]) -> str:
@@ -285,6 +284,41 @@ def _extract_severity(variant_name: Optional[str]) -> Optional[float]:
         return None
 
 
+def _extract_corruption_family(condition_or_variant: Optional[str]) -> Optional[str]:
+    if not condition_or_variant:
+        return "gold"
+    s = str(condition_or_variant).lower()
+    if s == "gold":
+        return "gold"
+    if "target" in s:
+        return "targeted"
+    if "random" in s and ("drop" in s or "remove" in s):
+        return "random"
+    if "replace" in s:
+        return "replace"
+    return "other"
+
+
+def _condition_sort_key(val: Any) -> Tuple[int, int, float, str]:
+    s = str(val)
+    if s == "gold":
+        return (0, 0, 0.0, s)
+
+    low = s.lower()
+    if "target" in low:
+        method_rank = 1
+    elif "random" in low and ("drop" in low or "remove" in low):
+        method_rank = 2
+    elif "replace" in low or "mix" in low:
+        method_rank = 3
+    else:
+        method_rank = 9
+
+    sev = _extract_severity(s)
+    sev_num = float(sev) if sev is not None else 999.0
+    return (1, method_rank, sev_num, s)
+
+
 # ---------------------------------------------------------------------
 # Metrics
 # ---------------------------------------------------------------------
@@ -304,6 +338,22 @@ def confusion_matrix_counts(
         if yt in idx and yp in idx:
             mat[idx[yt]][idx[yp]] += 1
     return mat
+
+
+def confusion_matrix_row_normalized(
+    y_true: List[str],
+    y_pred: List[str],
+    labels: Sequence[str],
+) -> List[List[float]]:
+    counts = confusion_matrix_counts(y_true, y_pred, labels)
+    out: List[List[float]] = []
+    for row in counts:
+        s = sum(row)
+        if s == 0:
+            out.append([0.0 for _ in row])
+        else:
+            out.append([v / s for v in row])
+    return out
 
 
 def classification_metrics(
@@ -377,26 +427,55 @@ def _plot_grouped_bar(
     title: str,
     ylabel: str,
     path: Path,
+    x_order: Optional[Sequence[str]] = None,
+    n_key: Optional[str] = None,
+    value_fmt: str = "{:.3f}",
 ) -> None:
-    xs = sorted({str(r[x_key]) for r in rows if r.get(x_key) is not None})
+    if x_order is not None:
+        xs = [str(x) for x in x_order if any(str(r.get(x_key)) == str(x) for r in rows)]
+    else:
+        xs = sorted({str(r[x_key]) for r in rows if r.get(x_key) is not None})
+
     series = sorted({str(r[series_key]) for r in rows if r.get(series_key) is not None})
     if not xs or not series:
         return
 
-    lookup = {(str(r[x_key]), str(r[series_key])): r.get(y_key) for r in rows}
+    lookup = {(str(r[x_key]), str(r[series_key])): r for r in rows}
     width = 0.8 / max(1, len(series))
 
     fig, ax = plt.subplots(figsize=(10, 5))
     positions = list(range(len(xs)))
 
+    ymax = 0.0
     for si, s in enumerate(series):
         x_positions = []
         ys = []
+        bars_meta = []
         for i, x in enumerate(xs):
             x_positions.append(i - 0.4 + width / 2 + si * width)
-            y = lookup.get((x, s))
-            ys.append(0.0 if y is None else float(y))
-        ax.bar(x_positions, ys, width=width, label=s)
+            row = lookup.get((x, s), {})
+            y = row.get(y_key)
+            y_val = 0.0 if y is None else float(y)
+            ys.append(y_val)
+            bars_meta.append(row)
+            ymax = max(ymax, y_val)
+
+        bars = ax.bar(x_positions, ys, width=width, label=s)
+
+        for bar, row, y_val in zip(bars, bars_meta, ys):
+            label_parts = [value_fmt.format(y_val)]
+            if n_key is not None:
+                n_val = row.get(n_key)
+                if n_val is not None:
+                    label_parts.append(f"n={n_val}")
+            ax.text(
+                bar.get_x() + bar.get_width() / 2,
+                y_val + max(0.01, ymax * 0.015),
+                "\n".join(label_parts),
+                ha="center",
+                va="bottom",
+                fontsize=7,
+            )
 
     ax.set_xticks(positions)
     ax.set_xticklabels(xs, rotation=30, ha="right")
@@ -406,7 +485,7 @@ def _plot_grouped_bar(
     _save_plot(fig, path)
 
 
-def _plot_line(
+def _plot_points(
     rows: List[Dict[str, Any]],
     x_key: str,
     series_key: str,
@@ -414,6 +493,9 @@ def _plot_line(
     title: str,
     ylabel: str,
     path: Path,
+    xlabel: Optional[str] = None,
+    n_key: Optional[str] = None,
+    value_fmt: str = "{:.3f}",
 ) -> None:
     series = sorted({str(r[series_key]) for r in rows if r.get(series_key) is not None})
     xs = sorted({float(r[x_key]) for r in rows if r.get(x_key) is not None})
@@ -421,17 +503,43 @@ def _plot_line(
         return
 
     fig, ax = plt.subplots(figsize=(10, 5))
+
     for s in series:
         subset = [r for r in rows if str(r.get(series_key)) == s]
-        lookup = {float(r[x_key]): r.get(y_key) for r in subset if r.get(x_key) is not None}
-        ys = [lookup.get(x) for x in xs]
-        ys = [float(y) if y is not None else math.nan for y in ys]
-        ax.plot(xs, ys, marker="o", label=s)
+        for row in subset:
+            x = row.get(x_key)
+            y = row.get(y_key)
+            if x is None or y is None:
+                continue
+            x = float(x)
+            y = float(y)
+            ax.scatter([x], [y], label=s)
+
+            label_parts = [f"{s}", value_fmt.format(y)]
+            if n_key is not None and row.get(n_key) is not None:
+                label_parts.append(f"n={row[n_key]}")
+            ax.annotate(
+                "\n".join(label_parts),
+                (x, y),
+                fontsize=7,
+                xytext=(4, 4),
+                textcoords="offset points",
+            )
+
+    handles, labels = ax.get_legend_handles_labels()
+    seen = set()
+    dedup_handles = []
+    dedup_labels = []
+    for h, l in zip(handles, labels):
+        if l not in seen:
+            seen.add(l)
+            dedup_handles.append(h)
+            dedup_labels.append(l)
 
     ax.set_title(title)
-    ax.set_xlabel(x_key)
+    ax.set_xlabel(xlabel or x_key)
     ax.set_ylabel(ylabel)
-    ax.legend(fontsize=8)
+    ax.legend(dedup_handles, dedup_labels, fontsize=8)
     _save_plot(fig, path)
 
 
@@ -450,6 +558,25 @@ def _plot_confusion_matrix(mat: List[List[int]], labels: Sequence[str], title: s
     for i in range(len(labels)):
         for j in range(len(labels)):
             ax.text(j, i, str(mat[i][j]), ha="center", va="center", fontsize=8)
+
+    _save_plot(fig, path)
+
+
+def _plot_confusion_matrix_float(mat: List[List[float]], labels: Sequence[str], title: str, path: Path) -> None:
+    fig, ax = plt.subplots(figsize=(7, 6))
+    im = ax.imshow(mat, aspect="auto", vmin=0.0, vmax=1.0)
+    ax.set_xticks(range(len(labels)))
+    ax.set_yticks(range(len(labels)))
+    ax.set_xticklabels(labels, rotation=30, ha="right")
+    ax.set_yticklabels(labels)
+    ax.set_xlabel("Predicted")
+    ax.set_ylabel("Gold")
+    ax.set_title(title)
+    fig.colorbar(im, ax=ax)
+
+    for i in range(len(labels)):
+        for j in range(len(labels)):
+            ax.text(j, i, f"{mat[i][j]:.2f}", ha="center", va="center", fontsize=8)
 
     _save_plot(fig, path)
 
@@ -514,6 +641,40 @@ def _plot_scatter(
     ax.set_title(title)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
+    _save_plot(fig, path)
+
+
+def _plot_table(rows: List[Dict[str, Any]], columns: Sequence[str], title: str, path: Path) -> None:
+    if not rows or not columns:
+        return
+
+    cell_text = []
+    for row in rows:
+        out_row = []
+        for col in columns:
+            v = row.get(col)
+            if isinstance(v, float):
+                out_row.append(f"{v:.3f}")
+            elif v is None:
+                out_row.append("")
+            else:
+                out_row.append(str(v))
+        cell_text.append(out_row)
+
+    fig_h = max(3, 0.45 * (len(rows) + 2))
+    fig_w = max(10, 1.4 * len(columns))
+    fig, ax = plt.subplots(figsize=(fig_w, fig_h))
+    ax.axis("off")
+    table = ax.table(
+        cellText=cell_text,
+        colLabels=list(columns),
+        loc="center",
+        cellLoc="center",
+    )
+    table.auto_set_font_size(False)
+    table.set_fontsize(8)
+    table.scale(1, 1.35)
+    ax.set_title(title, pad=12)
     _save_plot(fig, path)
 
 
@@ -618,7 +779,6 @@ def build_per_example_rows(
     meta_by_claim: Dict[str, Dict[str, Any]],
     logger: Any,
 ) -> List[Dict[str, Any]]:
-    # Index judges by (claim_id, condition_key), then match via alias overlap.
     judges_by_claim_condition: Dict[Tuple[str, str], List[Dict[str, Any]]] = defaultdict(list)
 
     for row in judge_rows:
@@ -661,6 +821,8 @@ def build_per_example_rows(
         pred = normalize_label(row.get("verdict"))
         gold = gold_by_claim.get(cid)
 
+        condition_or_variant = row.get("variant_name") or condition_key
+
         merged = {
             "claim_id": cid,
             "claim_text": row.get("claim_text") or meta.get("claim_text"),
@@ -678,7 +840,8 @@ def build_per_example_rows(
             "variant_name": row.get("variant_name"),
             "condition_bucket": row["_condition_bucket"],
             "condition_key": condition_key,
-            "corruption_severity": _extract_severity(row.get("variant_name") or condition_key),
+            "corruption_severity": _extract_severity(condition_or_variant),
+            "corruption_family": _extract_corruption_family(condition_or_variant),
             "prompt_id": row.get("prompt_id"),
             "explanation": row.get("explanation"),
             "error_type": row.get("error_type"),
@@ -804,10 +967,77 @@ def compute_judge_scores(per_rows: List[Dict[str, Any]], judge_rows: List[Dict[s
     }
 
 
+def build_summary_table_rows(per_rows: List[Dict[str, Any]], judge_rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    valid = [
+        r for r in per_rows
+        if r.get("gold_label") in LABELS and r.get("predicted_label") in LABELS
+    ]
+
+    judge_names_all = sorted({_judge_key(r) for r in judge_rows if _judge_key(r)})
+    judge_names_str = ", ".join(judge_names_all)
+
+    out: List[Dict[str, Any]] = []
+    grouped = _group_by(valid, ["model_key", "condition_key"])
+
+    for key, rows in grouped.items():
+        model_key = str(key[0])
+        condition_key = str(key[1])
+
+        y_true = [str(r["gold_label"]) for r in rows]
+        y_pred = [str(r["predicted_label"]) for r in rows]
+        m = classification_metrics(y_true, y_pred, LABELS)
+
+        langs = sorted({str(r.get("lang")) for r in rows if r.get("lang") is not None})
+        per_row_judges = sorted({j for r in rows for j in (r.get("judge_names") or [])})
+
+        severity_vals = sorted({
+            r.get("corruption_severity")
+            for r in rows
+            if r.get("corruption_severity") is not None
+        })
+        family_vals = sorted({
+            _extract_corruption_family(r.get("variant_name") or r.get("condition_key"))
+            for r in rows
+            if (r.get("variant_name") or r.get("condition_key")) is not None
+        })
+
+        summary_row = {
+            "model_key": model_key,
+            "condition_key": condition_key,
+            "condition_bucket": rows[0].get("condition_bucket"),
+            "corruption_family": ", ".join(family_vals),
+            "severity_values": severity_vals,
+            "primary_severity": severity_vals[0] if severity_vals else None,
+            "languages": ", ".join(langs),
+            "language_count": len(langs),
+            "judges_seen": ", ".join(per_row_judges) if per_row_judges else judge_names_str,
+            "n": m["n"],
+            "accuracy": m["accuracy"],
+            "macro_f1": m["macro_f1"],
+            "weighted_f1": m["weighted_f1"],
+            "avg_judge_overall": _mean(_as_float(r.get("avg_judge_overall")) for r in rows),
+            "avg_political_bias": _mean(_as_float(r.get("avg_political_bias")) for r in rows),
+            "avg_sociocultural_bias": _mean(_as_float(r.get("avg_sociocultural_bias")) for r in rows),
+            "avg_linguistic_bias": _mean(_as_float(r.get("avg_linguistic_bias")) for r in rows),
+            "avg_logic_of_reasoning": _mean(_as_float(r.get("avg_logic_of_reasoning")) for r in rows),
+            "avg_evidence_usage": _mean(_as_float(r.get("avg_evidence_usage")) for r in rows),
+        }
+        out.append(summary_row)
+
+    out.sort(key=lambda r: (_condition_sort_key(r["condition_key"]), str(r["model_key"])))
+    return out
+
+
 # ---------------------------------------------------------------------
 # Plots
 # ---------------------------------------------------------------------
-def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> None:
+def build_plots(
+    per_rows: List[Dict[str, Any]],
+    judge_rows: List[Dict[str, Any]],
+    summary_table_rows: List[Dict[str, Any]],
+    paths: Paths,
+    logger: Any,
+) -> None:
     plots_dir = paths.results_plots_dir
     plots_dir.mkdir(parents=True, exist_ok=True)
 
@@ -815,6 +1045,11 @@ def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> No
         r for r in per_rows
         if r.get("gold_label") in LABELS and r.get("predicted_label") in LABELS
     ]
+
+    condition_order = sorted(
+        {str(r.get("condition_key")) for r in per_rows if r.get("condition_key") is not None},
+        key=_condition_sort_key,
+    )
 
     # 1) Accuracy by condition
     acc_by_condition = []
@@ -828,6 +1063,7 @@ def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> No
             "model_key": key[0],
             "condition_key": key[1],
             "accuracy": m["accuracy"],
+            "n": m["n"],
         })
 
     _safe_plot(
@@ -841,9 +1077,36 @@ def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> No
         title="Accuracy by condition",
         ylabel="Accuracy",
         path=plots_dir / "accuracy_by_condition.png",
+        x_order=condition_order,
+        n_key="n",
     )
 
-    # 2) Accuracy by language
+    # 2) Average judge overall by condition
+    judge_by_condition = []
+    for key, rows in _group_by(valid, ["model_key", "condition_key"]).items():
+        judge_by_condition.append({
+            "model_key": key[0],
+            "condition_key": key[1],
+            "avg_judge_overall": _mean(_as_float(r.get("avg_judge_overall")) for r in rows),
+            "n": len(rows),
+        })
+
+    _safe_plot(
+        logger,
+        "avg_judge_overall_by_condition",
+        _plot_grouped_bar,
+        judge_by_condition,
+        x_key="condition_key",
+        series_key="model_key",
+        y_key="avg_judge_overall",
+        title="Average judge overall score by condition",
+        ylabel="Avg judge overall",
+        path=plots_dir / "avg_judge_overall_by_condition.png",
+        x_order=condition_order,
+        n_key="n",
+    )
+
+    # 3) Accuracy by language
     acc_by_lang = []
     for key, rows in _group_by(valid, ["model_key", "lang"]).items():
         m = classification_metrics(
@@ -855,6 +1118,7 @@ def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> No
             "model_key": key[0],
             "lang": key[1],
             "accuracy": m["accuracy"],
+            "n": m["n"],
         })
 
     _safe_plot(
@@ -868,14 +1132,18 @@ def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> No
         title="Accuracy by language",
         ylabel="Accuracy",
         path=plots_dir / "accuracy_by_language.png",
+        n_key="n",
     )
 
-    # 3) Robustness curve = accuracy drop vs corruption severity
+    # 4) Robustness points by corruption family
     robustness_rows = []
     for key, rows in _group_by(valid, ["model_key", "condition_key"]).items():
-        sev = _extract_severity(key[1])
-        if sev is None:
+        condition_key = str(key[1])
+        sev = _extract_severity(condition_key)
+        fam = _extract_corruption_family(condition_key)
+        if sev is None or fam == "gold":
             continue
+
         m = classification_metrics(
             [r["gold_label"] for r in rows],
             [r["predicted_label"] for r in rows],
@@ -883,65 +1151,79 @@ def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> No
         )
         robustness_rows.append({
             "model_key": key[0],
+            "condition_key": condition_key,
+            "corruption_family": fam,
             "severity": sev,
             "accuracy": m["accuracy"],
+            "n": m["n"],
         })
 
-    if robustness_rows:
+    targeted_rows = [r for r in robustness_rows if r.get("corruption_family") == "targeted"]
+    random_rows = [r for r in robustness_rows if r.get("corruption_family") == "random"]
+
+    if targeted_rows:
         _safe_plot(
             logger,
-            "robustness_curve_all_models",
-            _plot_line,
-            robustness_rows,
+            "robustness_points_targeted",
+            _plot_points,
+            targeted_rows,
             x_key="severity",
             series_key="model_key",
             y_key="accuracy",
-            title="Robustness curve",
+            title="Robustness under targeted corruption",
             ylabel="Accuracy",
-            path=plots_dir / "robustness_curve_all_models.png",
+            path=plots_dir / "robustness_points_targeted.png",
+            xlabel="Severity",
+            n_key="n",
         )
 
-    # 4) Confusion matrices
-    for key, rows in _group_by(valid, ["model_key", "condition_key"]).items():
-        mat = confusion_matrix_counts(
-            [r["gold_label"] for r in rows],
-            [r["predicted_label"] for r in rows],
-            LABELS,
+    if random_rows:
+        _safe_plot(
+            logger,
+            "robustness_points_random",
+            _plot_points,
+            random_rows,
+            x_key="severity",
+            series_key="model_key",
+            y_key="accuracy",
+            title="Robustness under random corruption",
+            ylabel="Accuracy",
+            path=plots_dir / "robustness_points_random.png",
+            xlabel="Severity",
+            n_key="n",
         )
+
+    # 5) Confusion matrices: counts + row-normalized
+    for key, rows in _group_by(valid, ["model_key", "condition_key"]).items():
+        y_true = [r["gold_label"] for r in rows]
+        y_pred = [r["predicted_label"] for r in rows]
+
+        mat_counts = confusion_matrix_counts(y_true, y_pred, LABELS)
+        mat_norm = confusion_matrix_row_normalized(y_true, y_pred, LABELS)
+
         safe_name = f"confusion_matrix__{_safe_filename(str(key[0]))}__{_safe_filename(str(key[1]))}"
+
         _safe_plot(
             logger,
             safe_name,
             _plot_confusion_matrix,
-            mat,
+            mat_counts,
             LABELS,
-            title=f"Confusion matrix: {key[0]} | {key[1]}",
+            title=f"Confusion matrix (counts): {key[0]} | {key[1]}",
             path=plots_dir / f"{safe_name}.png",
         )
 
-    # 5) Judge overall by condition
-    judge_condition_rows = []
-    for key, rows in _group_by(per_rows, ["model_key", "condition_key"]).items():
-        judge_condition_rows.append({
-            "model_key": key[0],
-            "condition_key": key[1],
-            "avg_judge_overall": _mean(_as_float(r.get("avg_judge_overall")) for r in rows),
-        })
+        _safe_plot(
+            logger,
+            f"{safe_name}__row_normalized",
+            _plot_confusion_matrix_float,
+            mat_norm,
+            LABELS,
+            title=f"Confusion matrix (row-normalized): {key[0]} | {key[1]}",
+            path=plots_dir / f"{safe_name}__row_normalized.png",
+        )
 
-    _safe_plot(
-        logger,
-        "judge_overall_by_condition",
-        _plot_grouped_bar,
-        judge_condition_rows,
-        x_key="condition_key",
-        series_key="model_key",
-        y_key="avg_judge_overall",
-        title="Average judge overall score by condition",
-        ylabel="Avg judge overall",
-        path=plots_dir / "judge_overall_by_condition.png",
-    )
-
-    # 6) Judge heatmap
+    # 6) Judge dimension heatmap by model
     model_names = sorted({str(r.get("model_key")) for r in per_rows if r.get("model_key") is not None})
     if model_names:
         matrix: List[List[float]] = []
@@ -963,7 +1245,36 @@ def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> No
             path=plots_dir / "judge_dimension_heatmap.png",
         )
 
-    # 7) Robustness ranking: mean non-gold accuracy by model
+    # 7) Judge dimensions by condition
+    judge_dim_condition_rows = []
+    for key, rows in _group_by(per_rows, ["model_key", "condition_key"]).items():
+        for dim in JUDGE_DIMS:
+            judge_dim_condition_rows.append({
+                "model_key": key[0],
+                "condition_key": key[1],
+                "dimension": dim,
+                "score": _mean(_as_float(r.get(f"avg_{dim}")) for r in rows),
+                "n": len(rows),
+            })
+
+    for dim in JUDGE_DIMS:
+        dim_rows = [r for r in judge_dim_condition_rows if r["dimension"] == dim]
+        _safe_plot(
+            logger,
+            f"{dim}_by_condition",
+            _plot_grouped_bar,
+            dim_rows,
+            x_key="condition_key",
+            series_key="model_key",
+            y_key="score",
+            title=f"{dim} by condition",
+            ylabel=dim,
+            path=plots_dir / f"{_safe_filename(dim)}_by_condition.png",
+            x_order=condition_order,
+            n_key="n",
+        )
+
+    # 8) Robustness ranking: mean non-gold accuracy by model
     robustness_rank_rows = []
     for key, rows in _group_by(valid, ["model_key"]).items():
         nongold = [r for r in rows if str(r.get("condition_key")) != "gold"]
@@ -977,6 +1288,7 @@ def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> No
             "rank_bucket": "non_gold_mean_accuracy",
             "model_key": key[0],
             "score": m["accuracy"],
+            "n": m["n"],
         })
 
     _safe_plot(
@@ -990,9 +1302,10 @@ def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> No
         title="Model robustness ranking",
         ylabel="Mean accuracy on corrupted conditions",
         path=plots_dir / "robustness_ranking.png",
+        n_key="n",
     )
 
-    # 8) Judge vs accuracy scatter
+    # 9) Judge vs accuracy scatter
     scatter_rows = []
     for key, rows in _group_by(valid, ["model_key"]).items():
         m = classification_metrics(
@@ -1018,6 +1331,52 @@ def build_plots(per_rows: List[Dict[str, Any]], paths: Paths, logger: Any) -> No
         xlabel="Accuracy",
         ylabel="Average judge overall score",
         path=plots_dir / "judge_vs_accuracy_scatter.png",
+    )
+
+    # 10) Avg judge overall by language
+    judge_by_lang_rows = []
+    for key, rows in _group_by(per_rows, ["model_key", "lang"]).items():
+        judge_by_lang_rows.append({
+            "model_key": key[0],
+            "lang": key[1],
+            "avg_judge_overall": _mean(_as_float(r.get("avg_judge_overall")) for r in rows),
+            "n": len(rows),
+        })
+
+    _safe_plot(
+        logger,
+        "avg_judge_overall_by_language",
+        _plot_grouped_bar,
+        judge_by_lang_rows,
+        x_key="lang",
+        series_key="model_key",
+        y_key="avg_judge_overall",
+        title="Average judge overall score by language",
+        ylabel="Avg judge overall",
+        path=plots_dir / "avg_judge_overall_by_language.png",
+        n_key="n",
+    )
+
+    # 11) Summary table plot
+    summary_columns = [
+        "model_key",
+        "condition_key",
+        "corruption_family",
+        "primary_severity",
+        "n",
+        "accuracy",
+        "macro_f1",
+        "weighted_f1",
+        "avg_judge_overall",
+    ]
+    _safe_plot(
+        logger,
+        "summary_table",
+        _plot_table,
+        summary_table_rows,
+        columns=summary_columns,
+        title="Experiment summary",
+        path=plots_dir / "experiment_summary_table.png",
     )
 
     _log(logger, "plots written", plots_dir=str(plots_dir))
@@ -1055,13 +1414,23 @@ def run_step11(
 
     model_metrics = compute_model_metrics(per_rows)
     judge_scores = compute_judge_scores(per_rows, judge_rows)
+    summary_table_rows = build_summary_table_rows(per_rows, judge_rows)
 
     _write_json(paths.results_model_metrics_json, model_metrics)
     _write_json(paths.results_judge_scores_json, judge_scores)
     _write_jsonl(paths.results_dir / "per_example_rows.jsonl", per_rows)
     _write_csv(paths.results_dir / "per_example_rows.csv", per_rows)
 
-    build_plots(per_rows, paths, logger)
+    _write_json(paths.results_dir / "summary_table_rows.json", summary_table_rows)
+    _write_csv(paths.results_dir / "summary_table_rows.csv", summary_table_rows)
+
+    build_plots(
+        per_rows=per_rows,
+        judge_rows=judge_rows,
+        summary_table_rows=summary_table_rows,
+        paths=paths,
+        logger=logger,
+    )
 
     summary = {
         "run_id": paths.run_id,
@@ -1070,6 +1439,7 @@ def run_step11(
         "n_judge_rows": len(judge_rows),
         "n_per_example_rows": len(per_rows),
         "n_rows_with_judges": sum(1 for r in per_rows if (r.get("judge_count") or 0) > 0),
+        "n_summary_rows": len(summary_table_rows),
         "results_dir": str(paths.results_dir),
     }
 
