@@ -44,4 +44,4 @@ data/processed/cache/
 
 #bc lots of JSONL artifacts generated
 *.tmp
-*.cache
+*.cachedata/raw/german.txt
