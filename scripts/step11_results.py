@@ -30,7 +30,6 @@ Behavior
 
 import csv
 import json
-import math
 import re
 from collections import defaultdict
 from pathlib import Path
@@ -38,6 +37,35 @@ from statistics import mean
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 import matplotlib.pyplot as plt
+
+plt.rcParams.update({
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Arial", "Helvetica Neue", "Helvetica", "DejaVu Sans"],
+    "axes.titlesize": 13,
+    "axes.labelsize": 11,
+    "xtick.labelsize": 9,
+    "ytick.labelsize": 9,
+    "legend.fontsize": 9,
+    "axes.spines.top": False,
+    "axes.spines.right": False,
+})
+
+MODEL_COLORS: Dict[str, str] = {
+    "meta-llama/llama-3.1-8b-instruct": "#1B4F8A",
+    "qwen/qwen-2.5-7b-instruct": "#808080",
+}
+
+MODEL_LABELS: Dict[str, str] = {
+    "meta-llama/llama-3.1-8b-instruct": "Llama 3.1 8B Instruct",
+    "qwen/qwen-2.5-7b-instruct": "Qwen 2.5 7B Instruct",
+}
+
+LANG_LABELS: Dict[str, str] = {
+    "en": "English",
+    "de": "German",
+    "el": "Greek",
+    "ro": "Romanian",
+}
 
 from ccir.paths import Paths
 
@@ -412,6 +440,21 @@ def _group_by(rows: List[Dict[str, Any]], keys: Sequence[str]) -> Dict[Tuple[Any
 # ---------------------------------------------------------------------
 # Plot helpers
 # ---------------------------------------------------------------------
+def _fmt_label(s: str) -> str:
+    """Format a snake_case key for display: title-case words, append % to trailing numbers."""
+    key = str(s).lower()
+    if key in LANG_LABELS:
+        return LANG_LABELS[key]
+    parts = str(s).split("_")
+    out = []
+    for i, p in enumerate(parts):
+        if re.fullmatch(r"\d+", p) and i == len(parts) - 1:
+            out.append((p.lstrip("0") or "0") + "%")
+        else:
+            out.append(p.capitalize())
+    return " ".join(out)
+
+
 def _save_plot(fig: plt.Figure, path: Path) -> None:
     _ensure_parent(path)
     fig.tight_layout()
@@ -430,6 +473,7 @@ def _plot_grouped_bar(
     x_order: Optional[Sequence[str]] = None,
     n_key: Optional[str] = None,
     value_fmt: str = "{:.3f}",
+    xlabel: Optional[str] = None,
 ) -> None:
     if x_order is not None:
         xs = [str(x) for x in x_order if any(str(r.get(x_key)) == str(x) for r in rows)]
@@ -446,42 +490,152 @@ def _plot_grouped_bar(
     fig, ax = plt.subplots(figsize=(10, 5))
     positions = list(range(len(xs)))
 
-    ymax = 0.0
     for si, s in enumerate(series):
         x_positions = []
         ys = []
-        bars_meta = []
         for i, x in enumerate(xs):
             x_positions.append(i - 0.4 + width / 2 + si * width)
             row = lookup.get((x, s), {})
             y = row.get(y_key)
             y_val = 0.0 if y is None else float(y)
             ys.append(y_val)
-            bars_meta.append(row)
-            ymax = max(ymax, y_val)
 
-        bars = ax.bar(x_positions, ys, width=width, label=s)
-
-        for bar, row, y_val in zip(bars, bars_meta, ys):
-            label_parts = [value_fmt.format(y_val)]
-            if n_key is not None:
-                n_val = row.get(n_key)
-                if n_val is not None:
-                    label_parts.append(f"n={n_val}")
-            ax.text(
-                bar.get_x() + bar.get_width() / 2,
-                y_val + max(0.01, ymax * 0.015),
-                "\n".join(label_parts),
-                ha="center",
-                va="bottom",
-                fontsize=7,
-            )
+        fallback_colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
+        color = MODEL_COLORS.get(s, fallback_colors[si % len(fallback_colors)])
+        ax.bar(
+            x_positions,
+            ys,
+            width=width,
+            label=MODEL_LABELS.get(s, s),
+            color=color,
+        )
 
     ax.set_xticks(positions)
-    ax.set_xticklabels(xs, rotation=30, ha="right")
+    ax.set_xticklabels([_fmt_label(x) for x in xs], rotation=30, ha="right")
     ax.set_title(title)
     ax.set_ylabel(ylabel)
-    ax.legend(fontsize=8)
+    ax.set_xlabel(xlabel or _fmt_label(x_key))
+    ax.set_ylim(bottom=0)
+    ax.legend()
+    _save_plot(fig, path)
+
+
+def _plot_nested_grouped_bar(
+    rows: List[Dict[str, Any]],
+    outer_key: str,
+    inner_key: str,
+    series_key: str,
+    y_key: str,
+    title: str,
+    ylabel: str,
+    path: Path,
+    outer_order: Optional[Sequence[str]] = None,
+    inner_order: Optional[Sequence[str]] = None,
+    series_order: Optional[Sequence[str]] = None,
+    n_key: Optional[str] = None,
+    value_fmt: str = "{:.3f}",
+    xlabel: Optional[str] = None,
+) -> None:
+    """
+    Three-level grouped bar chart:
+      outer_key  -> major group (e.g. language)
+      inner_key  -> subgroup inside each major group (e.g. condition)
+      series_key -> bars inside each subgroup (e.g. model)
+    """
+    if outer_order is not None:
+        outers = [str(x) for x in outer_order if any(str(r.get(outer_key)) == str(x) for r in rows)]
+    else:
+        outers = sorted({str(r[outer_key]) for r in rows if r.get(outer_key) is not None})
+
+    if inner_order is not None:
+        inners = [str(x) for x in inner_order if any(str(r.get(inner_key)) == str(x) for r in rows)]
+    else:
+        inners = sorted({str(r[inner_key]) for r in rows if r.get(inner_key) is not None})
+
+    if series_order is not None:
+        series = [str(x) for x in series_order if any(str(r.get(series_key)) == str(x) for r in rows)]
+    else:
+        series = sorted({str(r[series_key]) for r in rows if r.get(series_key) is not None})
+
+    if not outers or not inners or not series:
+        return
+
+    fallback_colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
+
+    lookup = {
+        (str(r.get(outer_key)), str(r.get(inner_key)), str(r.get(series_key))): r
+        for r in rows
+        if r.get(outer_key) is not None and r.get(inner_key) is not None and r.get(series_key) is not None
+    }
+
+    n_outer = len(outers)
+    n_inner = len(inners)
+    n_series = len(series)
+
+    subgroup_width = 0.84
+    bar_width = subgroup_width / max(1, n_series)
+    outer_gap = 0.9
+
+    fig_w = max(12, n_outer * n_inner * 1.25)
+    fig, ax = plt.subplots(figsize=(fig_w, 6.5))
+
+    subgroup_centers: List[float] = []
+    subgroup_labels: List[str] = []
+    outer_centers: List[float] = []
+
+    for oi, outer_val in enumerate(outers):
+        block_start = oi * (n_inner + outer_gap)
+
+        for ii, inner_val in enumerate(inners):
+            subgroup_left = block_start + ii
+            subgroup_center = subgroup_left + 0.5
+            subgroup_centers.append(subgroup_center)
+            subgroup_labels.append(_fmt_label(inner_val))
+
+            for si, series_val in enumerate(series):
+                row = lookup.get((outer_val, inner_val, series_val), {})
+                y = row.get(y_key)
+                y_val = 0.0 if y is None else float(y)
+
+                x = subgroup_left + (si + 0.5) * bar_width
+                display_label = MODEL_LABELS.get(series_val, series_val)
+                label = display_label if (oi == 0 and ii == 0) else None
+                color = MODEL_COLORS.get(series_val, fallback_colors[si % len(fallback_colors)])
+                ax.bar(
+                    x,
+                    y_val,
+                    width=bar_width,
+                    label=label,
+                    color=color,
+                )
+
+        outer_center = block_start + (n_inner - 1) / 2 + 0.5
+        outer_centers.append(outer_center)
+
+    ax.set_xticks(subgroup_centers)
+    ax.set_xticklabels(subgroup_labels, rotation=35, ha="right")
+
+    for center, outer_val in zip(outer_centers, outers):
+        ax.text(
+            center,
+            -0.22,
+            _fmt_label(outer_val),
+            transform=ax.get_xaxis_transform(),
+            ha="center",
+            va="top",
+            fontsize=10,
+            fontweight="bold",
+        )
+
+    for oi in range(1, n_outer):
+        sep_x = oi * (n_inner + outer_gap) - (outer_gap / 2)
+        ax.axvline(sep_x, color="gray", linestyle="--", linewidth=0.8, alpha=0.5)
+
+    ax.set_title(title)
+    ax.set_ylabel(ylabel)
+    ax.set_xlabel(xlabel or f"{_fmt_label(inner_key)} grouped by {_fmt_label(outer_key)}")
+    ax.set_ylim(bottom=0)
+    ax.legend()
     _save_plot(fig, path)
 
 
@@ -502,9 +656,14 @@ def _plot_points(
     if not series or not xs:
         return
 
+    fallback_colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"]
+    color_map = {s: MODEL_COLORS.get(s, fallback_colors[i % len(fallback_colors)]) for i, s in enumerate(series)}
+
     fig, ax = plt.subplots(figsize=(10, 5))
 
     for s in series:
+        color = color_map[s]
+        display = MODEL_LABELS.get(s, s)
         subset = [r for r in rows if str(r.get(series_key)) == s]
         for row in subset:
             x = row.get(x_key)
@@ -513,21 +672,10 @@ def _plot_points(
                 continue
             x = float(x)
             y = float(y)
-            ax.scatter([x], [y], label=s)
-
-            label_parts = [f"{s}", value_fmt.format(y)]
-            if n_key is not None and row.get(n_key) is not None:
-                label_parts.append(f"n={row[n_key]}")
-            ax.annotate(
-                "\n".join(label_parts),
-                (x, y),
-                fontsize=7,
-                xytext=(4, 4),
-                textcoords="offset points",
-            )
+            ax.scatter([x], [y], label=display, color=color)
 
     handles, labels = ax.get_legend_handles_labels()
-    seen = set()
+    seen: Set[str] = set()
     dedup_handles = []
     dedup_labels = []
     for h, l in zip(handles, labels):
@@ -537,38 +685,46 @@ def _plot_points(
             dedup_labels.append(l)
 
     ax.set_title(title)
-    ax.set_xlabel(xlabel or x_key)
+    ax.set_xlabel(xlabel or _fmt_label(x_key))
     ax.set_ylabel(ylabel)
+    ax.set_xlim(left=0)
+    ax.set_ylim(bottom=0)
     ax.legend(dedup_handles, dedup_labels, fontsize=8)
     _save_plot(fig, path)
 
 
 def _plot_confusion_matrix(mat: List[List[int]], labels: Sequence[str], title: str, path: Path) -> None:
     fig, ax = plt.subplots(figsize=(7, 6))
-    im = ax.imshow(mat, aspect="auto")
+    im = ax.imshow(mat, aspect="auto", cmap="Blues_r")
     ax.set_xticks(range(len(labels)))
     ax.set_yticks(range(len(labels)))
-    ax.set_xticklabels(labels, rotation=30, ha="right")
-    ax.set_yticklabels(labels)
+    fmt_labels = [_fmt_label(l) for l in labels]
+    ax.set_xticklabels(fmt_labels, rotation=30, ha="right")
+    ax.set_yticklabels(fmt_labels)
     ax.set_xlabel("Predicted")
     ax.set_ylabel("Gold")
     ax.set_title(title)
     fig.colorbar(im, ax=ax)
 
+    flat = [mat[i][j] for i in range(len(labels)) for j in range(len(labels))]
+    vmin, vmax = min(flat), max(flat)
     for i in range(len(labels)):
         for j in range(len(labels)):
-            ax.text(j, i, str(mat[i][j]), ha="center", va="center", fontsize=8)
+            norm = (mat[i][j] - vmin) / (vmax - vmin) if vmax > vmin else 0.5
+            color = "white" if norm < 0.5 else "black"
+            ax.text(j, i, str(mat[i][j]), ha="center", va="center", fontsize=8, color=color)
 
     _save_plot(fig, path)
 
 
 def _plot_confusion_matrix_float(mat: List[List[float]], labels: Sequence[str], title: str, path: Path) -> None:
     fig, ax = plt.subplots(figsize=(7, 6))
-    im = ax.imshow(mat, aspect="auto", vmin=0.0, vmax=1.0)
+    im = ax.imshow(mat, aspect="auto", cmap="Blues_r", vmin=0.0, vmax=1.0)
     ax.set_xticks(range(len(labels)))
     ax.set_yticks(range(len(labels)))
-    ax.set_xticklabels(labels, rotation=30, ha="right")
-    ax.set_yticklabels(labels)
+    fmt_labels = [_fmt_label(l) for l in labels]
+    ax.set_xticklabels(fmt_labels, rotation=30, ha="right")
+    ax.set_yticklabels(fmt_labels)
     ax.set_xlabel("Predicted")
     ax.set_ylabel("Gold")
     ax.set_title(title)
@@ -576,7 +732,8 @@ def _plot_confusion_matrix_float(mat: List[List[float]], labels: Sequence[str], 
 
     for i in range(len(labels)):
         for j in range(len(labels)):
-            ax.text(j, i, f"{mat[i][j]:.2f}", ha="center", va="center", fontsize=8)
+            color = "white" if mat[i][j] < 0.5 else "black"
+            ax.text(j, i, f"{mat[i][j]:.2f}", ha="center", va="center", fontsize=8, color=color)
 
     _save_plot(fig, path)
 
@@ -592,17 +749,21 @@ def _plot_heatmap(
         return
 
     fig, ax = plt.subplots(figsize=(max(6, len(col_labels) * 1.1), max(4, len(row_labels) * 0.7)))
-    im = ax.imshow(matrix, aspect="auto")
+    im = ax.imshow(matrix, aspect="auto", cmap="Blues_r")
     ax.set_xticks(range(len(col_labels)))
     ax.set_yticks(range(len(row_labels)))
-    ax.set_xticklabels(col_labels, rotation=30, ha="right")
-    ax.set_yticklabels(row_labels)
+    ax.set_xticklabels([_fmt_label(l) for l in col_labels], rotation=30, ha="right")
+    ax.set_yticklabels(list(row_labels))
     ax.set_title(title)
     fig.colorbar(im, ax=ax)
 
+    flat_h = [matrix[i][j] for i in range(len(row_labels)) for j in range(len(col_labels))]
+    h_vmin, h_vmax = min(flat_h), max(flat_h)
     for i in range(len(row_labels)):
         for j in range(len(col_labels)):
-            ax.text(j, i, f"{matrix[i][j]:.2f}", ha="center", va="center", fontsize=8)
+            norm = (matrix[i][j] - h_vmin) / (h_vmax - h_vmin) if h_vmax > h_vmin else 0.5
+            text_color = "white" if norm < 0.5 else "black"
+            ax.text(j, i, f"{matrix[i][j]:.2f}", ha="center", va="center", fontsize=8, color=text_color)
 
     _save_plot(fig, path)
 
@@ -633,11 +794,15 @@ def _plot_scatter(
         return
 
     fig, ax = plt.subplots(figsize=(8, 6))
-    ax.scatter(xs, ys)
+    fallback_colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
+    for i, (x, y, lab) in enumerate(zip(xs, ys, labels)):
+        color = MODEL_COLORS.get(lab, fallback_colors[i % len(fallback_colors)])
+        display = MODEL_LABELS.get(lab, lab)
+        ax.scatter([x], [y], color=color, zorder=5)
+        ax.annotate(display, (x, y), fontsize=8, xytext=(4, 4), textcoords="offset points")
 
-    for x, y, lab in zip(xs, ys, labels):
-        ax.annotate(lab, (x, y), fontsize=8, xytext=(4, 4), textcoords="offset points")
-
+    ax.set_xlim(left=0)
+    ax.set_ylim(bottom=0, top=25.8)
     ax.set_title(title)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -654,7 +819,7 @@ def _plot_table(rows: List[Dict[str, Any]], columns: Sequence[str], title: str, 
         for col in columns:
             v = row.get(col)
             if isinstance(v, float):
-                out_row.append(f"{v:.3f}")
+                out_row.append(f"{v:.2f}")
             elif v is None:
                 out_row.append("")
             else:
@@ -667,12 +832,18 @@ def _plot_table(rows: List[Dict[str, Any]], columns: Sequence[str], title: str, 
     ax.axis("off")
     table = ax.table(
         cellText=cell_text,
-        colLabels=list(columns),
+        colLabels=[_fmt_label(c) for c in columns],
         loc="center",
         cellLoc="center",
     )
     table.auto_set_font_size(False)
     table.set_fontsize(8)
+    table.auto_set_column_width(list(range(len(columns))))
+    if "n" in list(columns):
+        n_col_idx = list(columns).index("n")
+        for row_idx in range(0, len(rows) + 1):
+            cell = table[row_idx, n_col_idx]
+            cell.set_width(cell.get_width() * 1.8)
     table.scale(1, 1.35)
     ax.set_title(title, pad=12)
     _save_plot(fig, path)
@@ -1027,6 +1198,44 @@ def build_summary_table_rows(per_rows: List[Dict[str, Any]], judge_rows: List[Di
     out.sort(key=lambda r: (_condition_sort_key(r["condition_key"]), str(r["model_key"])))
     return out
 
+def build_language_summary_table_rows(per_rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    valid = [
+        r for r in per_rows
+        if r.get("gold_label") in LABELS and r.get("predicted_label") in LABELS
+    ]
+
+    out: List[Dict[str, Any]] = []
+
+    grouped = _group_by(valid, ["model_key", "lang"])
+
+    for key, rows in grouped.items():
+        model_key = str(key[0])
+        lang = str(key[1])
+
+        y_true = [r["gold_label"] for r in rows]
+        y_pred = [r["predicted_label"] for r in rows]
+
+        m = classification_metrics(y_true, y_pred, LABELS)
+
+        summary_row = {
+            "model_key": model_key,
+            "language": lang,
+            "n": m["n"],
+            "accuracy": m["accuracy"],
+            "macro_f1": m["macro_f1"],
+            "weighted_f1": m["weighted_f1"],
+            "avg_judge_overall": _mean(_as_float(r.get("avg_judge_overall")) for r in rows),
+            "avg_political_bias": _mean(_as_float(r.get("avg_political_bias")) for r in rows),
+            "avg_sociocultural_bias": _mean(_as_float(r.get("avg_sociocultural_bias")) for r in rows),
+            "avg_linguistic_bias": _mean(_as_float(r.get("avg_linguistic_bias")) for r in rows),
+            "avg_logic_of_reasoning": _mean(_as_float(r.get("avg_logic_of_reasoning")) for r in rows),
+            "avg_evidence_usage": _mean(_as_float(r.get("avg_evidence_usage")) for r in rows),
+        }
+
+        out.append(summary_row)
+
+    out.sort(key=lambda r: (r["language"], r["model_key"]))
+    return out
 
 # ---------------------------------------------------------------------
 # Plots
@@ -1035,6 +1244,7 @@ def build_plots(
     per_rows: List[Dict[str, Any]],
     judge_rows: List[Dict[str, Any]],
     summary_table_rows: List[Dict[str, Any]],
+    language_summary_rows: List[Dict[str, Any]],
     paths: Paths,
     logger: Any,
 ) -> None:
@@ -1049,6 +1259,12 @@ def build_plots(
     condition_order = sorted(
         {str(r.get("condition_key")) for r in per_rows if r.get("condition_key") is not None},
         key=_condition_sort_key,
+    )
+    language_order = sorted(
+        {str(r.get("lang")) for r in per_rows if r.get("lang") is not None}
+    )
+    model_order = sorted(
+        {str(r.get("model_key")) for r in per_rows if r.get("model_key") is not None}
     )
 
     # 1) Accuracy by condition
@@ -1079,6 +1295,25 @@ def build_plots(
         path=plots_dir / "accuracy_by_condition.png",
         x_order=condition_order,
         n_key="n",
+        xlabel="Corruption Level",
+    )
+
+    _safe_plot(
+        logger,
+        "language_summary_table",
+        _plot_table,
+        language_summary_rows,
+        columns=[
+            "model_key",
+            "language",
+            "n",
+            "accuracy",
+            "macro_f1",
+            "weighted_f1",
+            "avg_judge_overall",
+        ],
+        title="Experiment summary by language",
+        path=plots_dir / "language_summary_table.png",
     )
 
     # 2) Average judge overall by condition
@@ -1104,11 +1339,13 @@ def build_plots(
         path=plots_dir / "avg_judge_overall_by_condition.png",
         x_order=condition_order,
         n_key="n",
+        xlabel="Corruption Level",
     )
 
-    # 3) Accuracy by language
+    # 3) Accuracy by language (gold evidence only)
+    gold_only = [r for r in valid if str(r.get("condition_key")) == "gold"]
     acc_by_lang = []
-    for key, rows in _group_by(valid, ["model_key", "lang"]).items():
+    for key, rows in _group_by(gold_only, ["model_key", "lang"]).items():
         m = classification_metrics(
             [r["gold_label"] for r in rows],
             [r["predicted_label"] for r in rows],
@@ -1129,10 +1366,46 @@ def build_plots(
         x_key="lang",
         series_key="model_key",
         y_key="accuracy",
-        title="Accuracy by language",
+        title="Accuracy by Language on Gold Evidence",
         ylabel="Accuracy",
         path=plots_dir / "accuracy_by_language.png",
         n_key="n",
+        xlabel="Language",
+    )
+
+    # 3b) Accuracy by language and condition
+    acc_by_lang_condition = []
+    for key, rows in _group_by(valid, ["lang", "condition_key", "model_key"]).items():
+        m = classification_metrics(
+            [r["gold_label"] for r in rows],
+            [r["predicted_label"] for r in rows],
+            LABELS,
+        )
+        acc_by_lang_condition.append({
+            "lang": key[0],
+            "condition_key": key[1],
+            "model_key": key[2],
+            "accuracy": m["accuracy"],
+            "n": m["n"],
+        })
+
+    _safe_plot(
+        logger,
+        "accuracy_by_language_and_condition",
+        _plot_nested_grouped_bar,
+        acc_by_lang_condition,
+        outer_key="lang",
+        inner_key="condition_key",
+        series_key="model_key",
+        y_key="accuracy",
+        title="Accuracy by language and condition",
+        ylabel="Accuracy",
+        path=plots_dir / "accuracy_by_language_and_condition.png",
+        outer_order=language_order,
+        inner_order=condition_order,
+        series_order=model_order,
+        n_key="n",
+        xlabel="Corruption Conditions, Grouped by Language",
     )
 
     # 4) Robustness points by corruption family
@@ -1203,13 +1476,16 @@ def build_plots(
 
         safe_name = f"confusion_matrix__{_safe_filename(str(key[0]))}__{_safe_filename(str(key[1]))}"
 
+        model_display = MODEL_LABELS.get(str(key[0]), str(key[0]))
+        condition_display = _fmt_label(str(key[1]))
+
         _safe_plot(
             logger,
             safe_name,
             _plot_confusion_matrix,
             mat_counts,
             LABELS,
-            title=f"Confusion matrix (counts): {key[0]} | {key[1]}",
+            title=f"Confusion Matrix for {model_display} on {condition_display}",
             path=plots_dir / f"{safe_name}.png",
         )
 
@@ -1219,7 +1495,7 @@ def build_plots(
             _plot_confusion_matrix_float,
             mat_norm,
             LABELS,
-            title=f"Confusion matrix (row-normalized): {key[0]} | {key[1]}",
+            title=f"Row-Normalized Confusion Matrix for {model_display} on {condition_display}",
             path=plots_dir / f"{safe_name}__row_normalized.png",
         )
 
@@ -1239,7 +1515,7 @@ def build_plots(
             "judge_dimension_heatmap",
             _plot_heatmap,
             matrix=matrix,
-            row_labels=model_names,
+            row_labels=[MODEL_LABELS.get(m, m) for m in model_names],
             col_labels=JUDGE_DIMS,
             title="Judge dimension averages by model",
             path=plots_dir / "judge_dimension_heatmap.png",
@@ -1267,11 +1543,12 @@ def build_plots(
             x_key="condition_key",
             series_key="model_key",
             y_key="score",
-            title=f"{dim} by condition",
-            ylabel=dim,
+            title=f"{_fmt_label(dim)} by condition",
+            ylabel=_fmt_label(dim),
             path=plots_dir / f"{_safe_filename(dim)}_by_condition.png",
             x_order=condition_order,
             n_key="n",
+            xlabel="Corruption Level",
         )
 
     # 8) Robustness ranking: mean non-gold accuracy by model
@@ -1355,6 +1632,7 @@ def build_plots(
         ylabel="Avg judge overall",
         path=plots_dir / "avg_judge_overall_by_language.png",
         n_key="n",
+        xlabel="Language",
     )
 
     # 11) Summary table plot
@@ -1415,7 +1693,7 @@ def run_step11(
     model_metrics = compute_model_metrics(per_rows)
     judge_scores = compute_judge_scores(per_rows, judge_rows)
     summary_table_rows = build_summary_table_rows(per_rows, judge_rows)
-
+    language_summary_rows = build_language_summary_table_rows(per_rows)
     _write_json(paths.results_model_metrics_json, model_metrics)
     _write_json(paths.results_judge_scores_json, judge_scores)
     _write_jsonl(paths.results_dir / "per_example_rows.jsonl", per_rows)
@@ -1423,11 +1701,14 @@ def run_step11(
 
     _write_json(paths.results_dir / "summary_table_rows.json", summary_table_rows)
     _write_csv(paths.results_dir / "summary_table_rows.csv", summary_table_rows)
+    _write_json(paths.results_dir / "language_summary_rows.json", language_summary_rows)
+    _write_csv(paths.results_dir / "language_summary_rows.csv", language_summary_rows)
 
     build_plots(
         per_rows=per_rows,
         judge_rows=judge_rows,
         summary_table_rows=summary_table_rows,
+        language_summary_rows=language_summary_rows,
         paths=paths,
         logger=logger,
     )
