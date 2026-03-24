@@ -48,6 +48,7 @@ class CorruptionMethod(str, Enum):
     RANDOM_DROP = "random_drop"
     TARGETED_DROP = "targeted_drop"
     REPLACEMENT_MIX = "replacement_mix"
+    MISLEADING_EDIT = "misleading_edit"
 
 
 class ModelProvider(str, Enum):
@@ -114,12 +115,15 @@ class CorruptionConfig:
     - methods: which corruption strategies to generate.
     - levels: fraction of sentences affected for each method (e.g., [0.2, 0.4, 0.6]).
     - random_seed: seed for any pseudorandom selection (random_drop, replacement_mix).
+    - top_k_candidates: for misleading_edit, number of top pool candidates to sample
+      replacement from (ranked by embedding similarity to original span).
     """
     methods: List[CorruptionMethod] = field(
         default_factory=lambda: [CorruptionMethod.RANDOM_DROP, CorruptionMethod.TARGETED_DROP, CorruptionMethod.REPLACEMENT_MIX]
     )
     levels: List[float] = field(default_factory=lambda: [0.2, 0.4, 0.6])
     random_seed: int = 12345
+    top_k_candidates: int = 5
 
     def variant_names(self) -> List[str]:
         """
@@ -132,6 +136,33 @@ class CorruptionConfig:
                 pct = int(round(lvl * 100))
                 out.append(f"{m.value}_{pct}")
         return out
+
+
+@dataclass(frozen=True)
+class TranslationConfig:
+    """
+    Configuration for the Romanian-to-English machine translation condition (ro_mt_en).
+
+    Activated by adding "ro_mt_en" to dataset.languages (e.g. ["en", "de", "ro", "ro_mt_en"]).
+    When active, step02b reads Romanian claims from forLLMs.jsonl, translates each to English
+    using the specified LLM, and appends new rows with lang="ro_mt_en" and the English
+    claim_text. All other fields (claim_id suffix "_mt", claim_date, etc.) are preserved so
+    downstream steps treat them as normal rows.
+
+    The translated rows use English-language SerpAPI retrieval (step03), giving English
+    evidence for what were originally Romanian claims. Step11 can compare "ro" vs "ro_mt_en"
+    on the same source claims by matching claim_ids (ro_mt_en rows have claim_id = orig+"_mt").
+
+    Fields:
+    - provider: which API provider to use for translation calls.
+    - model_name: exact model name on that provider (e.g., "openai/gpt-4o-mini").
+    - temperature: sampling temperature (0.0 = deterministic, recommended).
+    - max_tokens: max tokens for the translated output.
+    """
+    provider: ModelProvider = ModelProvider.OPENROUTER
+    model_name: str = "openai/gpt-4o-mini"
+    temperature: float = 0.0
+    max_tokens: int = 512
 
 
 @dataclass(frozen=True)
@@ -177,6 +208,8 @@ class RunConfig:
     retrieval: RetrievalConfig = field(default_factory=RetrievalConfig)
     bm25: Bm25Config = field(default_factory=Bm25Config)
     corruption: CorruptionConfig = field(default_factory=CorruptionConfig)
+
+    translation: TranslationConfig = field(default_factory=TranslationConfig)
 
     models: List[ModelSpec] = field(default_factory=lambda: [
         ModelSpec(model_id="llama3_8b_ollama", provider=ModelProvider.OLLAMA, name="llama3:8b-instruct", temperature=0.0),
@@ -231,6 +264,8 @@ class RunConfig:
                 raise ValueError(f"corruption.levels entries must be in (0,1); got {lvl}")
         if len(set(self.corruption.levels)) != len(self.corruption.levels):
             raise ValueError(f"corruption.levels has duplicates: {self.corruption.levels}")
+        if self.corruption.top_k_candidates < 1:
+            raise ValueError("corruption.top_k_candidates must be >= 1.")
 
         # Models/Judges
         if not self.models:
@@ -261,6 +296,17 @@ class RunConfig:
             if not (0.0 < j.top_p <= 1.0):
                 raise ValueError(f"JudgeSpec.top_p out of range for {j.judge_id}: {j.top_p}")
 
+        # Translation
+        t = self.translation
+        if not (0.0 <= t.temperature <= 2.0):
+            raise ValueError(f"translation.temperature must be in [0.0, 2.0]; got {t.temperature}")
+        if t.max_tokens <= 0:
+            raise ValueError(f"translation.max_tokens must be > 0; got {t.max_tokens}")
+        if not t.model_name:
+            raise ValueError("translation.model_name must be non-empty")
+        if "ro_mt_en" in self.dataset.languages and "ro" not in self.dataset.languages:
+            raise ValueError("dataset.languages includes 'ro_mt_en' but not 'ro'; 'ro' is required as the translation source.")
+
         if self.global_seed < 0:
             raise ValueError("global_seed must be >= 0.")
         if self.corruption.random_seed < 0:
@@ -275,6 +321,7 @@ class RunConfig:
 
         # Normalize enums to values
         d["corruption"]["methods"] = [m.value for m in self.corruption.methods]
+        d["translation"]["provider"] = self.translation.provider.value
 
         # Ensure stable ordering for dicts that don't have semantic order
         d["dataset"]["claims_per_language_override"] = dict(sorted(d["dataset"]["claims_per_language_override"].items(), key=lambda kv: kv[0]))
@@ -307,7 +354,7 @@ DEFAULT_CONFIG = RunConfig(
         # ["en"]
         # ["en", "de"]
         # ["en", "de", "ro", "el"]
-        languages=["en", "de", "el", "ro"],
+        languages=["en", "de", "el", "ro", "ro_mt_en"],
 
         # int
         # Default number of claims evaluated for each language.
@@ -316,7 +363,7 @@ DEFAULT_CONFIG = RunConfig(
         # 10
         # 25
         # 100
-        claims_per_language_default=50,
+        claims_per_language_default=190,
 
         # Dict[str, int]
         # Optional override for specific languages.
@@ -428,6 +475,7 @@ DEFAULT_CONFIG = RunConfig(
         # CorruptionMethod.RANDOM_DROP
         # CorruptionMethod.TARGETED_DROP
         # CorruptionMethod.REPLACEMENT_MIX
+        # CorruptionMethod.MISLEADING_EDIT
         #
         # Example formats:
         # [CorruptionMethod.RANDOM_DROP]
@@ -436,8 +484,19 @@ DEFAULT_CONFIG = RunConfig(
         methods=[
             CorruptionMethod.RANDOM_DROP,
             CorruptionMethod.TARGETED_DROP,
-            #CorruptionMethod.REPLACEMENT_MIX,  # uncomment to enable
+            CorruptionMethod.REPLACEMENT_MIX,
+            CorruptionMethod.MISLEADING_EDIT,
         ],
+
+        # int
+        # For misleading_edit: number of top pool candidates to sample
+        # replacement entity from (ranked by embedding similarity to original span).
+        #
+        # Example formats:
+        # 3
+        # 5
+        # 10
+        top_k_candidates=3,
 
         # List[float]
         # Fraction of sentences corrupted.
@@ -448,7 +507,7 @@ DEFAULT_CONFIG = RunConfig(
         # [0.2]
         # [0.2, 0.4]
         # [0.2, 0.4, 0.6]
-        levels=[0.2, 0.5],
+        levels=[0.3, 0.6],
 
         # int
         # Random seed controlling which sentences are corrupted.
@@ -458,6 +517,32 @@ DEFAULT_CONFIG = RunConfig(
         # 123
         # 12345
         random_seed=12345,
+    ),
+
+    # -------------------------
+    # TRANSLATION SETTINGS (STEP 02b)
+    # -------------------------
+    translation=TranslationConfig(
+
+        # ModelProvider enum
+        # Provider used for translation LLM calls.
+        # Only used when "ro_mt_en" is in dataset.languages.
+        # Options: ModelProvider.OPENROUTER, ModelProvider.OPENAI, ModelProvider.OLLAMA
+        provider=ModelProvider.OPENROUTER,
+
+        # str
+        # Exact model name on the provider for translation.
+        # A fast, capable model is recommended (translation is straightforward).
+        # Example: "openai/gpt-4o-mini", "openai/gpt-4o", "google/gemini-flash-1.5"
+        model_name="openai/gpt-4o-mini",
+
+        # float
+        # Temperature for translation (0.0 = deterministic, recommended for reproducibility).
+        temperature=0.0,
+
+        # int
+        # Max tokens for the translated output. Claims are short, 512 is ample.
+        max_tokens=512,
     ),
 
     # -------------------------
@@ -557,6 +642,52 @@ ModelSpec(
             # 1024
             max_tokens=5000,
         ),
+ModelSpec(
+
+            # str
+            # Unique identifier used in filenames.
+            # Must contain no spaces.
+            #
+            # Example formats:
+            # "llama3_8b_ollama"
+            # "deepseek_r1_openrouter"
+            model_id="gemma9B",
+
+            # ModelProvider enum
+            # Where the model is hosted.
+            #
+            # Options:
+            # ModelProvider.OLLAMA
+            # ModelProvider.OPENROUTER
+            # ModelProvider.OPENAI
+            # ModelProvider.HF_LOCAL
+            provider=ModelProvider.OPENROUTER,
+
+            # str
+            # Exact model name used by the provider.
+            #
+            # Example formats:
+            # "llama3:8b-instruct"
+            # "deepseek/deepseek-r1"
+            name="google/gemma-2-9b-it",
+
+            # float
+            # Sampling temperature.
+            #
+            # Example formats:
+            # 0.0
+            # 0.2
+            temperature=0.0,
+
+            # int
+            # Maximum tokens generated for the response.
+            #
+            # Example formats:
+            # 256
+            # 512
+            # 1024
+            max_tokens=5000,
+        ),
     ],
 
     # -------------------------
@@ -593,6 +724,35 @@ ModelSpec(
             # Maximum tokens allowed in judge output.
             max_tokens=10000,
         ),
+JudgeSpec(
+
+            # str
+            # Unique identifier for judge output filenames.
+            #
+            # Example formats:
+            # "gpt4o_mini_openrouter"
+            # "gpt4_turbo_openai"
+            judge_id="gpt-4.1",
+
+            # ModelProvider enum
+            provider=ModelProvider.OPENROUTER,
+
+            # str
+            # Actual judge model name.
+            #
+            # Example formats:
+            # "openai/gpt-4o-mini"
+            # "openai/gpt-4-turbo"
+            name="openai/gpt-4.1",
+
+            # float
+            # Judge temperature (usually 0 for deterministic scoring)
+            temperature=0.0,
+
+            # int
+            # Maximum tokens allowed in judge output.
+            max_tokens=10000,
+        ),
     ],
 
     # -------------------------
@@ -607,7 +767,7 @@ ModelSpec(
     # "pilot_run"
     # "multilingual_v1"
     # "experiment_A"
-    code_version="pilot3",
+    code_version="full_run",
 
     # int
     # Global random seed used for reproducibility.

@@ -1,0 +1,3 @@
+model_key,language,n,accuracy,macro_f1,weighted_f1,avg_judge_overall,avg_political_bias,avg_sociocultural_bias,avg_linguistic_bias,avg_logic_of_reasoning,avg_evidence_usage
+meta-llama/llama-3.1-8b-instruct,de,5,0.0,0.0,0.0,25.0,5.0,5.0,5.0,5.0,5.0
+meta-llama/llama-3.1-8b-instruct,ro,5,0.0,0.0,0.0,21.6,5.0,5.0,5.0,3.2,3.4

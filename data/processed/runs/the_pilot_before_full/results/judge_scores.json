@@ -1,0 +1,20 @@
+{
+  "agreement": {
+    "avg_judges_per_example": null,
+    "rows_with_2plus_judges": 0,
+    "rows_with_any_judge": 0
+  },
+  "by_judge": {},
+  "by_small_model": {},
+  "by_small_model_condition": {},
+  "by_small_model_condition_language": {},
+  "overall": {
+    "evidence_usage_mean": null,
+    "linguistic_bias_mean": null,
+    "logic_of_reasoning_mean": null,
+    "n": 0,
+    "overall_score_mean": null,
+    "political_bias_mean": null,
+    "sociocultural_bias_mean": null
+  }
+}

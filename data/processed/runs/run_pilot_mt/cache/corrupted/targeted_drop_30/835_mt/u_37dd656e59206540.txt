@@ -1,0 +1,64 @@
+It's been fewer than three months since a novel coronavirus emerged in China, causing fever, coughing, and, in severe cases, pneumonia.
+Since then, the disease known as Covid-19 has swept into 72 countries, infecting nearly 93,000 people and killing more than 3,000.
+What makes the coronavirus scary enough to cause a worldwide run on face masks and lead countries to lock down whole megacities and ban travelers isn't that it's super deadly.
+So far, the World Health Organization estimates Covid-19's fatality rate to be about 3.4 percent globally, which is still lower than other recent coronavirus outbreaks, including SARS and MERS.
+(That said, it appears to be more fatal than flu, which has a case fatality rate of around 0.1 percent.) And it's very contagious.
+Still, most people who get Covid-19 will recover in a week or two, without need for hospitalization.
+What has people panicked is that it's new.
+In the US and other developed countries, particularly in the global north, mystery illnesses don't strike that often.
+People are used to having answers and a plan for avoiding getting sick.
+In these places, vaccines have already eliminated infectious diseases that were once common, including polio, hepatitis, and the measles.
+If you get your flu shot every year, the worst thing you'll usually pick up is a case of the common cold.
+President Donald Trump told pharmaceutical executives and public health officials in a White House meeting on Monday that he wants one ready before the election in November.
+For the record, that would be impossible.
+But at least 30 companies and academic institutions are trying.
+Here's your guide to everything you need to know about those efforts.
+Check back often-we'll be keeping it updated with any notable progress or setbacks.
+Ideally, the immune system develops a strong memory of the pathogen, so that the next time the person is exposed, their body will mount an attack before the infection can take hold.
+The most common method for doing this is growing several generations of the pathogen in environments other than human cells, so that it evolves away from causing disease in humans.
+By repeatedly culturing live viruses or bacteria in animal cells, scientists can essentially create a bunch of mutants.
+Then it's a matter of selecting the mutant strains that can replicate in human cells but don't cause disease like their wild ancestor.
+The trick is that these imposters still have to look enough like the original virus to accurately train the immune system to fend it off.
+One common approach is to locate the protein that a virus uses like a key to get into human cells, which is usually on its surface.
+Once scientists know the genetic code for this protein, they can paste it into bacteria or yeast and use these microbial factories to produce huge quantities of it to be used as the basis of the vaccine.
+The protein alone is often enough to be easily recognized by the immune system and to trigger a defense on subsequent exposure.
+Alternately, sometimes scientists will genetically modify the virus instead, swapping bits of the disease-causing pathogen into a harmless virus shell.
+But they come with a lower risk of severe reactions.
+Nucleotides are the chemical building blocks that make up genetic material, both DNA and RNA.
+It uses these spikes to invade human lung cells.
+Once inside the body, human cells will make the viral proteins, which the immune system will then recognize as foreign.
+It will produce antibodies against them and learn how to attack any future invaders carrying these protein spikes.
+But if true, it would actually set a record.
+The reason it usually takes so long comes down to a combination of factors.
+This part of the vaccine development process, known as discovery, used to take years of careful benchtop biology.
+Scientists had to isolate and grow viruses in the lab.
+But now, with genetic sequencing, new protein-visualizing microscopes, and other technology advances, it's possible to skip that step.
+Arriving at a vaccine candidate can sometimes be done in weeks.
+All those advances, though, can't speed up the time it takes to meticulously monitor how well these candidate vaccines work in people.
+Each happens in three stages.
+Phase 1 involves just a few dozen healthy volunteers, and is meant to evaluate whether the vaccine is safe.
+That takes about three months.
+If the healthy volunteers don't suffer any adverse effects, it's on to Phase 2.
+That's another six to eight months.
+If everything still looks good, Phase 3 is to recruit a few thousand people in an outbreak zone and repeat the experiment.
+That's another six to eight months-if you don't have any problems recruiting patients or with your vaccine supply.
+Then a regulatory agency, like the US Food and Drug Administration, has to review all the data before making a decision about whether to approve the vaccine.
+That can take months to a year.
+If you've been doing the math, this means that, since vaccine candidates started being developed in January, a version approved for public use won't be available until the end of summer 2021, at the earliest.
+And that's if nothing goes wrong.
+"Constricting the whole timeline of going from concept to a product that can be distributed into a year or two is really a herculean endeavor," Andrus says.
+Even if one of these companies does pull off the Thirteenth Labor, they're left with a novel product that still requires manufacturing and distribution.
+"The first question we should be asking is: Does this producer have the capacity to scale it up?" asks Andrus.
+If not, a limited supply will force public health officials to make tough decisions about rationing out a vaccine.
+Isn't There Any Way to Speed It Up?
+In general, these timelines are very difficult to compress.
+The last thing drugmakers and regulators want is to rush out a subpar product and create-rather than solve-a public health crisis.
+Since they're the ones with the kind of capacity required to fight a global pandemic, they're the ones that have to be convinced it'll be worth it.
+Covid-19 might seem like a sure bet now.
+But outbreaks are unpredictable.
+SARS disappeared just four months after it caused a global panic.
+The companies that had begun developing vaccines against it had to abandon their trials because there just weren't enough patients.
+Similar disease cycles help explain why it took so long to get an Ebola vaccine, which was only approved last December despite dozens of outbreaks since it first emerged in 1976.
+Plus, government funding and pharmaceutical industry interest tend to evaporate once the sense of emergency fades away.
+No one wants to make a product that's not going to be used.
+But there are some things governments can do to encourage vaccine makers to take up the challenge despite its riskiness, including providing grants and other financial i

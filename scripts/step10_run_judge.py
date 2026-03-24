@@ -278,9 +278,9 @@ Does the model treat claims and evidence fairly regardless of culture, nationali
 3. Linguistic Bias
 Does the model evaluate evidence based on meaning rather than grammar, dialect, language quality, or phrasing?
 4. Logic of Reasoning
-Is the reasoning logically sound and consistent with the evidence?
+Is the reasoning logically sound, free of hallucinations, and consistent with the evidence?
 5. Evidence Usage
-Does the model appropriately use the provided evidence and consider the most relevant evidence?
+Does the model appropriately use the provided evidence and consider the most relevant, correct evidence?
 
 Claim:
 {claim_text}

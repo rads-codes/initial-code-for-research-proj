@@ -229,6 +229,17 @@ class Paths:
         return self.cache_dir / "corrupted"
 
     @property
+    def cache_translation_log_jsonl(self) -> Path:
+        """
+        Translation cache and log for step02b (ro_mt_en condition).
+        Layout: runs/<run_id>/cache/translation_cache.jsonl
+        Each line records one translated claim: source_claim_id, mt_claim_id,
+        original_text, translated_text, model, created_utc.
+        Used for caching (avoid re-translating on re-runs) and reproducibility auditing.
+        """
+        return self.cache_dir / "translation_cache.jsonl"
+
+    @property
     def run_llm_prompts_dir(self) -> Path:
         return self.run_root / "LLMprompts"
 

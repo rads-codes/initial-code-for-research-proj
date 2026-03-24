@@ -443,6 +443,10 @@ def run_step03(
     api_key = os.environ.get("SERPAPI_API_KEY") or os.environ.get("SERPAPI_KEY")
     if not api_key:
         raise RuntimeError("Missing SERPAPI_API_KEY (or SERPAPI_KEY) in environment.")
+    api_key_backup = os.environ.get("SERPAPI_API_KEY_BACKUP") or ""
+    # api_keys[0] = primary, api_keys[1] = backup (if set).
+    # process_claim tries them in order, switching to backup only after primary fails.
+    api_keys: List[str] = [k for k in [api_key, api_key_backup] if k]
 
     retrieval_cfg = getattr(cfg_obj, "retrieval", cfg_obj)
     k = int(getattr(retrieval_cfg, "serpapi_k", 10))
@@ -523,23 +527,43 @@ def run_step03(
             c["serpapi_cache_hit"] += 1
             resp = cached
         else:
-            try:
-                c["serpapi_calls"] += 1
-                resp = serpapi_search(
-                    api_key=api_key,
-                    query=str(claim_text),
-                    num_results=requested,
-                    cd_max_mmddyyyy=cd_max,
-                    timeout_s=timeout_s,
-                    retries=retries,
-                )
-                if isinstance(resp, dict):
-                    _write_json_file_atomic(cache_path, resp)
-                    c["serpapi_cache_write"] += 1
-            except Exception as e:
+            c["serpapi_calls"] += 1
+            last_exc: Optional[Exception] = None
+            resp = {}
+            for key_idx, current_key in enumerate(api_keys):
+                try:
+                    resp = serpapi_search(
+                        api_key=current_key,
+                        query=str(claim_text),
+                        num_results=requested,
+                        cd_max_mmddyyyy=cd_max,
+                        timeout_s=timeout_s,
+                        retries=0,  # one attempt per key; outer loop handles fallback
+                    )
+                    if key_idx > 0:
+                        c["serpapi_backup_key_used"] += 1
+                    last_exc = None
+                    break  # success — stop trying keys
+                except Exception as e:
+                    last_exc = e
+                    # Only fall back to the backup key on rate-limit errors (HTTP 429).
+                    # All other errors (network, auth, bad response, etc.) fail immediately.
+                    if key_idx < len(api_keys) - 1 and "429" in str(e):
+                        events.append((
+                            "serpapi_key_fallback",
+                            {"claim_id": str(claim_id), "key_index": key_idx, "error": str(e)[:200]},
+                        ))
+                    else:
+                        break  # non-rate-limit error or no backup — don't try further keys
+
+            if last_exc is not None:
                 c["serpapi_errors"] += 1
-                events.append(("serpapi_error", {"claim_id": str(claim_id), "error": str(e)[:400]}))
+                events.append(("serpapi_error", {"claim_id": str(claim_id), "error": str(last_exc)[:400]}))
                 resp = {}
+
+            if isinstance(resp, dict) and resp:
+                _write_json_file_atomic(cache_path, resp)
+                c["serpapi_cache_write"] += 1
 
         organic = resp.get("organic_results") or []
         if not isinstance(organic, list):
@@ -659,6 +683,8 @@ def run_step03(
         slog.counts["serpapi_errors"] = int(total["serpapi_errors"])
         slog.counts["serpapi_cache_hit"] = int(total["serpapi_cache_hit"])
         slog.counts["serpapi_cache_write"] = int(total["serpapi_cache_write"])
+        slog.counts["serpapi_backup_key_used"] = int(total["serpapi_backup_key_used"])
+        slog.counts["serpapi_keys_available"] = len(api_keys)
 
         slog.counts["claims_written"] = len(outputs)
         slog.counts["kept_urls_total"] = int(total["kept_urls_total"])

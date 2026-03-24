@@ -1,0 +1,64 @@
+It's been fewer than three months since a novel coronavirus emerged in China, causing fever, coughing, and, in severe cases, pneumonia.
+Since then, the disease known as Covid-19 has swept into 72 countries, infecting nearly 93,000 people and killing more than 3,000.
+What makes the coronavirus scary enough to cause a worldwide run on face masks and lead countries to lock down whole megacities and ban travelers isn't that it's super deadly.
+So far, the World Health Organization estimates Covid-19's fatality rate to be about 3.4 percent globally, which is still lower than other recent coronavirus outbreaks, including SARS and MERS.
+(That said, it appears to be more fatal than flu, which has a case fatality rate of around 0.1 percent.) And it's very contagious.
+What has people panicked is that it's new.
+In the US and other developed countries, particularly in the global north, mystery illnesses don't strike that often.
+In these places, vaccines have already eliminated infectious diseases that were once common, including polio, hepatitis, and the measles.
+If you get your flu shot every year, the worst thing you'll usually pick up is a case of the common cold.
+Which is perhaps why Americans can't seem to wait to get their hands on a Covid-19 vaccine.
+President Donald Trump told pharmaceutical executives and public health officials in a White House meeting on Monday that he wants one ready before the election in November.
+For the record, that would be impossible.
+Developing a vaccine for a coronavirus like the one that causes Covid-19 comes with even more challenges.
+But at least 30 companies and academic institutions are trying.
+Here's your guide to everything you need to know about those efforts.
+Check back often-we'll be keeping it updated with any notable progress or setbacks.
+Vaccines all work on the same basic principle: Scientists try to make something that closely resembles a pathogen, and then expose a person's immune system to it through a small dose administered as an injection.
+The trick is to do this without making the person seriously ill from the vaccine itself.
+There are a few different methods for making vaccines, but they all must strike this delicate balance.
+One way to make a vaccine is to weaken, or attenuate, the microorganism while still keeping it alive.
+The most common method for doing this is growing several generations of the pathogen in environments other than human cells, so that it evolves away from causing disease in humans.
+Then it's a matter of selecting the mutant strains that can replicate in human cells but don't cause disease like their wild ancestor.
+The trick is that these imposters still have to look enough like the original virus to accurately train the immune system to fend it off.
+Another type is called an inactivated vaccine, which is made from a dead version of the whole virus or bacteria after it's been killed with heat or chemicals.
+This type of vaccine can also be made using smaller pieces of the microbe, which by themselves are not considered alive.
+Once scientists know the genetic code for this protein, they can paste it into bacteria or yeast and use these microbial factories to produce huge quantities of it to be used as the basis of the vaccine.
+The protein alone is often enough to be easily recognized by the immune system and to trigger a defense on subsequent exposure.
+Alternately, sometimes scientists will genetically modify the virus instead, swapping bits of the disease-causing pathogen into a harmless virus shell.
+These types of inactivated vaccines almost always require multiple doses, because they're not as good at stimulating the immune system as a live microbe.
+But they come with a lower risk of severe reactions.
+Examples of inactivated vaccines include those for polio, rabies, and hepatitis A and B.
+But newer methods still in development may get their debut with the Covid-19 outbreak.
+Nucleotides are the chemical building blocks that make up genetic material, both DNA and RNA.
+It uses these spikes to invade human lung cells.
+Vaccine makers can copy the genetic instructions for making these spikes and package them up into a shot.
+Once inside the body, human cells will make the viral proteins, which the immune system will then recognize as foreign.
+It will produce antibodies against them and learn how to attack any future invaders carrying these protein spikes.
+On Tuesday, National Institute of Allergy and Infectious Diseases director Anthony Fauci told US senators, "It will take at least a year and a half to have a vaccine we can use." That might seem like an eternity for public health officials staring down a probable pandemic.
+But if true, it would actually set a record.
+Most vaccines take between five and 15 years to come to market, says Jon Andrus, an adjunct professor of global vaccinology and vaccine policy at the Milken Institute of Public Health at George Washington University.
+The reason it usually takes so long comes down to a combination of factors.
+The first is getting a candidate vaccine that's ready to test.
+Scientists had to isolate and grow viruses in the lab.
+But now, with genetic sequencing, new protein-visualizing microscopes, and other technology advances, it's possible to skip that step.
+Arriving at a vaccine candidate can sometimes be done in weeks.
+Each happens in three stages.
+Phase 1 involves just a few dozen healthy volunteers, and is meant to evaluate whether the vaccine is safe.
+That takes about three months.
+That's another six to eight months.
+If everything still looks good, Phase 3 is to recruit a few thousand people in an outbreak zone and repeat the experiment.
+That's another six to eight months-if you don't have any problems recruiting patients or with your vaccine supply.
+That can take months to a year.
+And that's if nothing goes wrong.
+Only a handful of companies have vaccine candidates ready to move into human testing, but more than 30 have joined the race.
+Even if one of these companies does pull off the Thirteenth Labor, they're left with a novel product that still requires manufacturing and distribution.
+"The first question we should be asking is: Does this producer have the capacity to scale it up?" asks Andrus.
+Making vaccines is so cost-intensive and high risk that most pharmaceutical firms don't do it anymore.
+Since they're the ones with the kind of capacity required to fight a global pandemic, they're the ones that have to be convinced it'll be worth it.
+Covid-19 might seem like a sure bet now.
+But outbreaks are unpredictable.
+SARS disappeared just four months after it caused a global panic.
+Plus, government funding and pharmaceutical industry interest tend to evaporate once the sense of emergency fades away.
+No one wants to make a product that's not going to be used.
+But there are some things governments can do to encourage vaccine makers to take up the challenge despite its riskiness, including providing grants and other financial i

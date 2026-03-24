@@ -44,4 +44,19 @@ data/processed/cache/
 
 #bc lots of JSONL artifacts generated
 *.tmp
-*.cachedata/raw/german.txt
+*.cache
+data/raw/german.txt
+
+# RAW + LARGE DATA (CRITICAL)
+data/raw/
+data/raw/tmp/
+data/raw/wiki_extracted/
+data/raw/wiki_chunks/
+
+# any intermediate extracted dumps
+data/extracted/
+data/tmp/
+
+# large json artifacts
+*.jsonl
+*.jsonl.gz

@@ -65,7 +65,20 @@ LANG_LABELS: Dict[str, str] = {
     "de": "German",
     "el": "Greek",
     "ro": "Romanian",
+    "ro_mt_en": "Romanian (Machine-Translated to English)",
 }
+
+# Canonical display order for language axes.  Languages not in this list are
+# appended at the end in sorted order.  ro_mt_en is placed immediately after ro
+# so the comparison pair appears side-by-side in every chart.
+LANG_ORDER: List[str] = ["en", "de", "el", "ro", "ro_mt_en"]
+
+
+def _lang_sort_key(lang: str) -> Tuple[int, str]:
+    try:
+        return (LANG_ORDER.index(lang), lang)
+    except ValueError:
+        return (len(LANG_ORDER), lang)
 
 from ccir.paths import Paths
 
@@ -1234,7 +1247,7 @@ def build_language_summary_table_rows(per_rows: List[Dict[str, Any]]) -> List[Di
 
         out.append(summary_row)
 
-    out.sort(key=lambda r: (r["language"], r["model_key"]))
+    out.sort(key=lambda r: (_lang_sort_key(r["language"]), r["model_key"]))
     return out
 
 # ---------------------------------------------------------------------
@@ -1261,7 +1274,8 @@ def build_plots(
         key=_condition_sort_key,
     )
     language_order = sorted(
-        {str(r.get("lang")) for r in per_rows if r.get("lang") is not None}
+        {str(r.get("lang")) for r in per_rows if r.get("lang") is not None},
+        key=_lang_sort_key,
     )
     model_order = sorted(
         {str(r.get("model_key")) for r in per_rows if r.get("model_key") is not None}
@@ -1369,6 +1383,7 @@ def build_plots(
         title="Accuracy by Language on Gold Evidence",
         ylabel="Accuracy",
         path=plots_dir / "accuracy_by_language.png",
+        x_order=language_order,
         n_key="n",
         xlabel="Language",
     )
@@ -1631,6 +1646,7 @@ def build_plots(
         title="Average judge overall score by language",
         ylabel="Avg judge overall",
         path=plots_dir / "avg_judge_overall_by_language.png",
+        x_order=language_order,
         n_key="n",
         xlabel="Language",
     )
@@ -1741,4 +1757,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()

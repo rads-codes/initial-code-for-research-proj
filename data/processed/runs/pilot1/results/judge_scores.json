@@ -5,7 +5,7 @@
     "rows_with_any_judge": 60
   },
   "by_judge": {
-    "llama70B": {
+    "meta-llama/llama-3.3-70b-instruct": {
       "evidence_usage_mean": 3.95,
       "linguistic_bias_mean": 4.75,
       "logic_of_reasoning_mean": 4.05,

@@ -1,0 +1,71 @@
+{
+  "by_model": {},
+  "by_model_condition": {},
+  "by_model_condition_language": {},
+  "overall": {
+    "accuracy": null,
+    "avg_judge_overall": null,
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "labels": [
+      "Supported",
+      "Refuted",
+      "Not_Enough_Evidence",
+      "Conflicting_Evidence"
+    ],
+    "macro_f1": 0.0,
+    "n": 0,
+    "n_with_judge": 0,
+    "per_class": {
+      "Conflicting_Evidence": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 0
+      },
+      "Not_Enough_Evidence": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 0
+      },
+      "Refuted": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 0
+      },
+      "Supported": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 0
+      }
+    },
+    "weighted_f1": null
+  }
+}

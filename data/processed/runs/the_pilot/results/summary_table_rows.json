@@ -1,0 +1,117 @@
+[
+  {
+    "accuracy": 0.0,
+    "avg_evidence_usage": 5.0,
+    "avg_judge_overall": 25.0,
+    "avg_linguistic_bias": 5.0,
+    "avg_logic_of_reasoning": 5.0,
+    "avg_political_bias": 5.0,
+    "avg_sociocultural_bias": 5.0,
+    "condition_bucket": "gold",
+    "condition_key": "gold",
+    "corruption_family": "gold",
+    "judges_seen": "deepseek/deepseek-r1",
+    "language_count": 2,
+    "languages": "de, ro",
+    "macro_f1": 0.0,
+    "model_key": "meta-llama/llama-3.1-8b-instruct",
+    "n": 2,
+    "primary_severity": 0.0,
+    "severity_values": [
+      0.0
+    ],
+    "weighted_f1": 0.0
+  },
+  {
+    "accuracy": 0.0,
+    "avg_evidence_usage": 5.0,
+    "avg_judge_overall": 25.0,
+    "avg_linguistic_bias": 5.0,
+    "avg_logic_of_reasoning": 5.0,
+    "avg_political_bias": 5.0,
+    "avg_sociocultural_bias": 5.0,
+    "condition_bucket": "corrupted",
+    "condition_key": "targeted_drop_30",
+    "corruption_family": "targeted",
+    "judges_seen": "deepseek/deepseek-r1",
+    "language_count": 2,
+    "languages": "de, ro",
+    "macro_f1": 0.0,
+    "model_key": "meta-llama/llama-3.1-8b-instruct",
+    "n": 2,
+    "primary_severity": 0.3,
+    "severity_values": [
+      0.3
+    ],
+    "weighted_f1": 0.0
+  },
+  {
+    "accuracy": 0.0,
+    "avg_evidence_usage": 3.0,
+    "avg_judge_overall": 21.0,
+    "avg_linguistic_bias": 5.0,
+    "avg_logic_of_reasoning": 3.0,
+    "avg_political_bias": 5.0,
+    "avg_sociocultural_bias": 5.0,
+    "condition_bucket": "corrupted",
+    "condition_key": "random_drop_30",
+    "corruption_family": "random",
+    "judges_seen": "deepseek/deepseek-r1",
+    "language_count": 2,
+    "languages": "de, ro",
+    "macro_f1": 0.0,
+    "model_key": "meta-llama/llama-3.1-8b-instruct",
+    "n": 2,
+    "primary_severity": 0.3,
+    "severity_values": [
+      0.3
+    ],
+    "weighted_f1": 0.0
+  },
+  {
+    "accuracy": 0.0,
+    "avg_evidence_usage": 3.0,
+    "avg_judge_overall": 21.0,
+    "avg_linguistic_bias": 5.0,
+    "avg_logic_of_reasoning": 3.0,
+    "avg_political_bias": 5.0,
+    "avg_sociocultural_bias": 5.0,
+    "condition_bucket": "corrupted",
+    "condition_key": "replacement_mix_30",
+    "corruption_family": "replace",
+    "judges_seen": "deepseek/deepseek-r1",
+    "language_count": 2,
+    "languages": "de, ro",
+    "macro_f1": 0.0,
+    "model_key": "meta-llama/llama-3.1-8b-instruct",
+    "n": 2,
+    "primary_severity": 0.3,
+    "severity_values": [
+      0.3
+    ],
+    "weighted_f1": 0.0
+  },
+  {
+    "accuracy": 0.0,
+    "avg_evidence_usage": 5.0,
+    "avg_judge_overall": 24.5,
+    "avg_linguistic_bias": 5.0,
+    "avg_logic_of_reasoning": 4.5,
+    "avg_political_bias": 5.0,
+    "avg_sociocultural_bias": 5.0,
+    "condition_bucket": "corrupted",
+    "condition_key": "misleading_edit_30",
+    "corruption_family": "other",
+    "judges_seen": "deepseek/deepseek-r1",
+    "language_count": 2,
+    "languages": "de, ro",
+    "macro_f1": 0.0,
+    "model_key": "meta-llama/llama-3.1-8b-instruct",
+    "n": 2,
+    "primary_severity": 0.3,
+    "severity_values": [
+      0.3
+    ],
+    "weighted_f1": 0.0
+  }
+]

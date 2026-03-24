@@ -40,7 +40,7 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple
 from tqdm import tqdm
 
 from ccir.config_loader import load_config
-from ccir.io_utils import ensure_parent_dir, read_jsonl, read_text, write_text_atomic
+from ccir.io_utils import ensure_parent_dir, read_jsonl, read_text, write_jsonl_atomic, write_text_atomic
 from ccir.paths import Paths
 
 
@@ -183,6 +183,13 @@ def _get_corruption_seed(config: Any) -> int:
         return 12345
 
 
+def _get_top_k_candidates(config: Any) -> int:
+    try:
+        return int(getattr(config.corruption, "top_k_candidates", 5))
+    except Exception:
+        return 5
+
+
 # ---------------------------------------------------------------------
 # Replacement pool
 # ---------------------------------------------------------------------
@@ -199,6 +206,89 @@ def _load_replacement_pool(paths: Paths) -> List[str]:
             return [line.strip() for line in text.splitlines() if line.strip()]
 
     return []
+
+
+# ---------------------------------------------------------------------
+# Wiki replacement pool helpers
+# ---------------------------------------------------------------------
+def _load_claims_lang_map(paths: Paths) -> Dict[str, str]:
+    lang_map: Dict[str, str] = {}
+    # Read all.jsonl first (base claims), then forLLMs.jsonl to pick up
+    # synthetic entries like ro_mt_en that are only in forLLMs.jsonl.
+    for candidate in [
+        paths.run_claims_all_jsonl,
+        paths.claims_all_jsonl,
+        paths.run_claims_for_llms_jsonl,
+    ]:
+        if candidate.exists():
+            for row in read_jsonl(candidate):
+                if not isinstance(row, dict):
+                    continue
+                cid = str(row.get("claim_id", "")).strip()
+                lang = str(row.get("lang", "")).strip()
+                if cid and lang and cid not in lang_map:
+                    lang_map[cid] = lang
+            if lang_map:
+                # Keep reading subsequent files to pick up any synthetic rows
+                # (forLLMs may add ro_mt_en rows not present in all.jsonl).
+                pass
+    return lang_map
+
+
+# Map synthetic language codes to the actual language of their evidence documents.
+# ro_mt_en claims have English evidence (step03 searched using the English translation),
+# so wiki/entity pools for "en" should be used when corrupting their documents.
+_EVIDENCE_LANG: Dict[str, str] = {"ro_mt_en": "en"}
+
+
+def _to_evidence_lang(lang: str) -> str:
+    """Return the evidence-document language for a (possibly synthetic) claim language."""
+    return _EVIDENCE_LANG.get(lang, lang)
+
+
+def _load_wiki_pool(paths: Paths, lang: str) -> List[Dict[str, str]]:
+    wiki_path = paths.raw_root / "tmp" / "wiki_extracted" / lang / f"{lang}_sentences.jsonl"
+    if not wiki_path.exists():
+        return []
+    pool: List[Dict[str, str]] = []
+    for row in read_jsonl(wiki_path):
+        if not isinstance(row, dict):
+            continue
+        sid = str(row.get("id", "")).strip()
+        text = str(row.get("text", "")).strip()
+        if sid and text:
+            pool.append({"id": sid, "text": text})
+    return pool
+
+
+def _sample_wiki_replacements(
+    wiki_pool: List[Dict[str, str]],
+    n: int,
+    doc_texts: set,
+    rng: random.Random,
+) -> List[str]:
+    available = [s for s in wiki_pool if s["text"] not in doc_texts]
+    if len(available) < n:
+        available = wiki_pool
+    selected = rng.sample(available, min(n, len(available)))
+    return [s["text"] for s in selected]
+
+
+def _materialize_wiki_replace(
+    sentences: Sequence[Dict[str, Any]],
+    replace_indices: Sequence[int],
+    replacements: List[str],
+) -> str:
+    replace_map = {idx: replacements[i] for i, idx in enumerate(replace_indices)}
+    out: List[str] = []
+    for i, row in enumerate(sentences):
+        if i in replace_map:
+            text = replace_map[i]
+        else:
+            text = row.get("sentence_text", "").strip()
+        if text:
+            out.append(text)
+    return "\n".join(out).strip() + "\n"
 
 
 # ---------------------------------------------------------------------
@@ -389,6 +479,15 @@ def _variant_name(method: str, pct: int) -> str:
     return f"{method}_{pct}"
 
 
+def _edit_log_path(paths: Paths, variant: str, claim_id: str, url_id: str) -> "Path":
+    """
+    JSONL edit-log file written alongside each misleading_edit corrupted document.
+    Layout: runs/<run_id>/cache/corrupted/<variant>/<claim_id>/<url_id>_edits.jsonl
+    """
+    doc_path = paths.corrupted_doc_path(variant, claim_id, url_id)
+    return doc_path.with_name(doc_path.stem + "_edits.jsonl")
+
+
 # ---------------------------------------------------------------------
 # Main step logic
 # ---------------------------------------------------------------------
@@ -408,10 +507,38 @@ def run_step08(
     methods = _get_corruption_methods(config)
     levels_pct = _get_corruption_levels_pct(config)
     base_seed = _get_corruption_seed(config)
+    top_k_candidates = _get_top_k_candidates(config)
 
     replacement_pool = _load_replacement_pool(paths)
+    claims_lang_map = _load_claims_lang_map(paths)
+    wiki_pools: Dict[str, List[Dict[str, str]]] = {}
     strategies_mod = _maybe_import("ccir.corruption.strategies")
     materialize_mod = _maybe_import("ccir.corruption.materialize")
+
+    # Misleading-edit entity pools (built lazily, only if method is enabled)
+    misleading_edit_mod = _maybe_import("ccir.corruption.misleading_edit")
+    entity_pools: Dict[str, Any] = {}
+    if "misleading_edit" in methods and misleading_edit_mod is not None:
+        _log(active_logger, "info", "Building entity pools for misleading_edit")
+        try:
+            entity_pools = misleading_edit_mod.build_entity_pools(paths, claims_lang_map)
+            _log(
+                active_logger,
+                "info",
+                "Entity pools built",
+                languages=list(entity_pools.keys()),
+                total_entities=sum(
+                    len(v) for lang_pool in entity_pools.values() for v in lang_pool.values()
+                ),
+            )
+        except Exception as pool_err:
+            _log(
+                active_logger,
+                "warning",
+                "Entity pool building failed; misleading_edit will use numeric-only edits",
+                error=str(pool_err),
+            )
+            entity_pools = {}
 
     embeddings_files = _find_embeddings_files(paths)
 
@@ -422,6 +549,8 @@ def run_step08(
         "articles_skipped_bad_input": 0,
         "variants_written": 0,
         "replacement_pool_size": len(replacement_pool),
+        "wiki_sentences_replaced": 0,
+        "misleading_edits_applied": 0,
     }
 
     _log(
@@ -509,6 +638,8 @@ def run_step08(
                         chosen_indices = _targeted_drop_indices(sentences, pct)
                     elif method == "replacement_mix":
                         chosen_indices = _replacement_indices(n_sentences, pct, rng)
+                    elif method == "misleading_edit":
+                        pass  # handled separately below; no index list needed
                     else:
                         _log(
                             active_logger,
@@ -522,7 +653,90 @@ def run_step08(
 
                 corrupted_text: Optional[str] = None
 
-                if materialize_mod is not None:
+                # ----------------------------------------------------------
+                # misleading_edit: inplace span-level factual perturbations
+                # ----------------------------------------------------------
+                if method == "misleading_edit":
+                    if misleading_edit_mod is None:
+                        _log(
+                            active_logger,
+                            "warning",
+                            "ccir.corruption.misleading_edit unavailable; skipping",
+                            claim_id=claim_id,
+                            url_id=url_id,
+                        )
+                        continue
+
+                    lang = _to_evidence_lang(claims_lang_map.get(claim_id, "en"))
+                    try:
+                        corrupted_text, edit_log = misleading_edit_mod.run_misleading_edit(
+                            sentences=sentences,
+                            pct=pct,
+                            lang=lang,
+                            entity_pools=entity_pools,
+                            rng=rng,
+                            top_k=top_k_candidates,
+                        )
+                    except Exception as me_err:
+                        _log(
+                            active_logger,
+                            "warning",
+                            "misleading_edit failed for article; skipping",
+                            claim_id=claim_id,
+                            url_id=url_id,
+                            error=str(me_err),
+                        )
+                        continue
+
+                    if not corrupted_text:
+                        continue
+
+                    # Write corrupted document
+                    out_path = paths.corrupted_doc_path(variant, claim_id, url_id)
+                    ensure_parent_dir(out_path)
+                    write_text_atomic(out_path, corrupted_text)
+                    counts["variants_written"] += 1
+                    counts["misleading_edits_applied"] += len(edit_log)
+
+                    # Write edit log alongside the document
+                    if edit_log:
+                        log_rows = [
+                            {
+                                "claim_id": claim_id,
+                                "url_id": url_id,
+                                **row,
+                            }
+                            for row in edit_log
+                        ]
+                        log_path = _edit_log_path(paths, variant, claim_id, url_id)
+                        ensure_parent_dir(log_path)
+                        write_jsonl_atomic(log_path, log_rows)
+
+                    progress.set_postfix(variants=counts["variants_written"])
+                    continue  # skip generic materialize path below
+
+                if method == "replacement_mix":
+                    lang = _to_evidence_lang(claims_lang_map.get(claim_id, ""))
+                    if lang and lang not in wiki_pools:
+                        wiki_pools[lang] = _load_wiki_pool(paths, lang)
+                    wiki_pool = wiki_pools.get(lang, [])
+                    n_replace = len(chosen_indices)
+                    doc_texts = {row.get("sentence_text", "").strip() for row in sentences}
+                    if wiki_pool:
+                        replacements = _sample_wiki_replacements(wiki_pool, n_replace, doc_texts, rng)
+                        corrupted_text = _materialize_wiki_replace(sentences, chosen_indices, replacements)
+                        counts["wiki_sentences_replaced"] += len(replacements)
+                    else:
+                        corrupted_text = _materialize_drop(sentences, chosen_indices)
+                        _log(
+                            active_logger,
+                            "warning",
+                            "No wiki pool for lang; falling back to drop",
+                            lang=lang,
+                            claim_id=claim_id,
+                            url_id=url_id,
+                        )
+                elif materialize_mod is not None:
                     corrupted_text = _try_materialize_module(
                         materialize_mod,
                         method=method,
@@ -535,13 +749,6 @@ def run_step08(
                 if corrupted_text is None:
                     if method in ("random_drop", "targeted_drop"):
                         corrupted_text = _materialize_drop(sentences, chosen_indices)
-                    elif method == "replacement_mix":
-                        corrupted_text = _materialize_replace(
-                            sentences,
-                            chosen_indices,
-                            replacement_pool,
-                            rng,
-                        )
                     else:
                         continue
 

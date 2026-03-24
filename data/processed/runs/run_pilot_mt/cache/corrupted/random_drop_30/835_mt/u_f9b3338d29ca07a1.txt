@@ -1,0 +1,46 @@
+The genome sequence and protein structure of the 2019-novel coronavirus (nCoV or SARS-CoV-2) were made available in record time, allowing the development of inactivated or attenuated viral vaccines along with subunit vaccines for prophylaxis and treatment.
+Nanotechnology benefits modern vaccine design since nanomaterials are ideal for antigen delivery, as adjuvants, and as mimics of viral structures.
+In fact, the first vaccine candidate launched into clinical trials is an mRNA vaccine delivered via lipid nanoparticles.
+Here, we review current approaches to COVID-19 vaccine development and highlight the role of nanotechnology and advanced manufacturing.
+Similar content being viewed by others Main In December 2019, a novel coronavirus (nCoV or SARS-CoV-2) belonging to the betacoronavirus family emerged1,2.
+All human betacoronaviruses are unique from one another, however, they do share a certain degree of genetic and structural homology.
+SARS-CoV-2 genome sequence homology with SARS-CoV and MERS-CoV is 77% and 50%, respectively3.
+On 1 June 2020, the World Health Organization reported >6 million confirmed cases and 371 thousand deaths globally.
+Of note, during the 1918 influenza pandemic, more death was observed in the second phase of outbreak4.
+Similar to influenza, COVID-19 harbours the potential to become a seasonal disease5.
+The high infection rate, long incubation period, along with mild-to-moderate symptoms experienced by many, make COVID-19 a troubling disease.
+A vaccine is crucial, in particular because data indicate asymptomatic transmission of COVID-196,7,8.
+And for the past 30 years, a once-per-decade novel coronavirus has pushed our public health system to the limit, with SARS-CoV-2 being the most severe.
+The rapid development, distribution and administration of a vaccine to the global population is the most effective approach to quell this pandemic and the only one that will lead to a complete lifting of restrictions.
+Innovating vaccine delivery platforms and devices to break cold chain limitations are therefore an efficient solution to safeguard potent vaccination for both wealthy and lower-income countries.
+The rapid development of vaccines is possible because the genome and structural information of SARS-CoV-2 was made available in record time10,11,12,13,14.
+These data, along with expedited communication of bioinformatic predictions and epitope mapping15,16,17,18, has provided crucial knowledge enabling vaccine design beyond development of live-attenuated and inactivated vaccines19,20,21,22,23.
+Also, information available from prior development of SARS/MERS vaccine candidates aids in the development of SARS-CoV-2 vaccine candidates24,25.
+SARS-CoV-2 is an enveloped ssRNA virus with spike-like glycoproteins protruding from its exterior membrane surface forming a 'corona'.
+The four major structural proteins of betacoronaviruses are spike (S) protein, envelope (E) protein, membrane (M) protein, and nucleocapsid (N) protein26.
+The S protein is an attractive target for vaccine design because it facilitates viral entry into the host cell during the infection process.
+The two spike protein subdomains, S1 and S2, are responsible for host cell angiotensin-converting enzyme 2 (ACE2) receptor binding and host cell membrane fusion, respectively27.
+S1 contains the receptor-binding domain (RBD) and S2 the fusion machinery enabling virus entry (Fig.
+Combining SARS-CoV-2 structural information and knowledge gained from SARS/MERS vaccine candidates28, researchers projected the full length S protein, as well as S1, RBD, and S2 subunit derivatives, to contain the prime target epitopes for the induction of neutralizing antibodies.
+Indeed, recent clinical data from a cohort of convalescent SARS-CoV-2 patients validates this approach-analysed patient sera indicates neutralizing antibodies targeting the different domains of S protein: S1, RBD and S229.
+Therefore, glycosylation of SARS-CoV-2 S vaccine candidates should be considered: DNA/RNA vaccines are produced in situ inside the patient and thus would carry native glycosylation; for recombinant subunit vaccines glycoengineering protocols may be applied.
+The hotspot of SARS-CoV-2, however, which is critical in binding to the ACE2 receptor, appears to be free from glycosylation32; therefore, it may not be required to glycosylate corresponding peptide epitopes.
+Contemporary vaccines Active immunization against viruses have traditionally relied on the usage of whole pathogen in a weakened or killed form through chemical or physical processes, and this has resulted in clinically-approved treatments.
+Further, several mammalian viral vectors such as oncolytic herpes simplex virus have been repurposed into clinically-approved treatments.
+LAV design intends single-dose immunity without illness.
+Because LAV technology is mature, LAVs are likely to emerge as one of the frontrunner vaccine candidates for the ongoing COVID-19 pandemic.
+LAVs generally require cold chain distribution.
+Furthermore, loss of efficacy and reproductive potential of progeny viruses during vaccine production poses a significant challenge.
+Preliminary studies of silent codon change indicate some positive effect on mitigating reversion events, however, these are not general to all viruses33.
+New technologies such as genetic code expansion are being applied to create highly reproductive but genetically stable LAVs34.
+More recently, synthetic genomics approaches have enabled the synthesis of recombinant SARS-CoV-2 viruses from fragments of viral DNAs35,36.
+These strategies could be employed towards rapid generation of SARS-CoV-2 LAVs.
+Inactivated vaccines (IVs) are heat or chemically inactivated pathogens or fractions thereof.
+These vaccine formulations are incapable of replication and safer than LAVs, but their inactivation results in lowered immunogenicity and requirement for multiple-dose regimens to establish long-lasting immunity; also, these vaccine formulations often require adjuvants to immunize the aging population due to immune senescence37.
+While IVs have better stability profiles compared to LAVs, they still require a cold chain.
+Viral vectors Mammalian viruses have been engineered and repurposed for several vaccine applications.
+For COVID-19, there are several vaccine candidates in development that utilize non-replicating adenoviral vectors.
+Leading adenoviral vectors in SARS-CoV-2 clinical trials are adenovirus type 5 vector (Ad5-nCoV) as of 16 March 2020 and chimpanzee adenovirus vaccine vector (ChAdOx1) as of 31 March 2020 by CanSino Biological and the University of Oxford, respectively (Table 1).
+Advantages of adenoviral vectors include their broad tissue tropism, inherent adjuvant qualities and scalability.
+A challenge for adenoviral vector platforms is pre-existing immunity in humans, which may dampen efficacy of the adenoviral vector.
+Next-generation vaccines enabled through advances in nanotechnology Virus

@@ -5,6 +5,7 @@ import importlib
 import inspect
 import json
 import os
+import re
 from typing import Any, Callable, Dict, List, Optional, Sequence
 
 """
@@ -40,6 +41,7 @@ STEPS: List[Dict[str, Any]] = [
     {"id": "00", "name": "step00_prepare_dataset", "module": "scripts.step00_prepare_dataset", "entrypoint": "run_step00"},
     {"id": "01", "name": "step01_small_LLMs_dataset", "module": "scripts.step01_small_LLMs_dataset", "entrypoint": "run_step01"},
     {"id": "02", "name": "step02_prepare_gold_verdicts", "module": "scripts.step02_prepare_gold_verdicts", "entrypoint": "run_step02"},
+    {"id": "02b", "name": "step02b_translate_claims", "module": "scripts.step02b_translate_claims", "entrypoint": "run_step02b"},
     {"id": "03", "name": "step03_collect_URLS", "module": "scripts.step03_collect_URLS", "entrypoint": "run_step03"},
     {"id": "04", "name": "step04_cache_URL_content", "module": "scripts.step04_cache_URL_content", "entrypoint": "run_step04"},
     {"id": "05", "name": "step05_BM25_ranking", "module": "scripts.step05_BM25_ranking", "entrypoint": "run_step05"},
@@ -160,7 +162,7 @@ def _required_keys_for_selected_steps(step_ids: Sequence[str]) -> List[str]:
     keys: List[str] = []
     if any(sid in step_ids for sid in ("03",)):
         keys.append("SERPAPI_API_KEY")
-    if any(sid in step_ids for sid in ("09", "10")):
+    if any(sid in step_ids for sid in ("02b", "09", "10")):
         keys.append("OPENROUTER_API_KEY")
     out: List[str] = []
     for k in keys:
@@ -262,8 +264,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             if step_id in HEAVY_STEP_IDS:
                 _validate_safe(stage="pre_heavy", step_id=step_id, paths=paths, config=config)
 
-            step_num = int(step_id)
-            report_path = paths.report_jsonl(step_num) if hasattr(paths, "report_jsonl") else None
+            try:
+                step_num = int(step_id)
+                report_path = paths.report_jsonl(step_num) if hasattr(paths, "report_jsonl") else None
+            except (ValueError, TypeError):
+                # Non-integer step IDs (e.g., "02b") get a custom report filename.
+                safe_id = re.sub(r"[^A-Za-z0-9_-]", "_", step_id)
+                report_path = paths.reports_dir / f"report_{safe_id}.jsonl"
             if report_path is None:
                 raise RuntimeError("Paths.report_jsonl(step_num) is required for per-step reports.")
 

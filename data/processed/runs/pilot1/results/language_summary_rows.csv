@@ -1,0 +1,5 @@
+model_key,language,n,accuracy,macro_f1,weighted_f1,avg_judge_overall,avg_political_bias,avg_sociocultural_bias,avg_linguistic_bias,avg_logic_of_reasoning,avg_evidence_usage
+meta-llama/llama-3.1-8b-instruct,de,20,0.25,0.1,0.4,22.2,4.6,4.6,4.8,4.15,4.05
+meta-llama/llama-3.1-8b-instruct,el,10,0.2,0.08333333333333334,0.33333333333333337,14.9,3.0,2.7,4.3,2.5,2.4
+meta-llama/llama-3.1-8b-instruct,en,20,0.4,0.14285714285714288,0.5714285714285715,24.15,4.9,4.9,4.9,4.75,4.7
+meta-llama/llama-3.1-8b-instruct,ro,10,0.0,0.0,0.0,21.8,4.6,4.6,4.8,4.0,3.8
