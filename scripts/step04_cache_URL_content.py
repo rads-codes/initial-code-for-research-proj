@@ -1,19 +1,9 @@
 from __future__ import annotations
 
 """
-scripts/step04_cache_URL_content.py
-
-Input:
-  - runs/<run_id>/evidence/URLs.jsonl  (ClaimWithURLs-like rows)
-
-Process:
-  - For each (claim_id, url_id, url), fetch article text via ccir.web.fetch.fetch_url_text(...)
-  - Clean via ccir.clean_text.clean_text(...)
-  - Drop if below min_chars, truncate to max_chars
-  - Write to runs/<run_id>/cache/plaintext/<claim_id>/<url_id>.txt
-
-Output:
-  - data/processed/runs/<run_id>/cache/plaintext/<claim_id>/<url_id>.txt
+purpose: cleans text, checks character limit
+input: runs/<run_id>/evidence/URLs.jsonl
+output: data/processed/runs/<run_id>/cache/plaintext/<claim_id>/<url_id>.txt
 """
 
 import argparse
@@ -28,16 +18,8 @@ from ccir.logging_utils import StepLogger
 from ccir.paths import Paths
 
 
-# -----------------------------
-# Logger compatibility helpers
-# -----------------------------
+#helps logging
 def _log_count(logger: Any, key: str, n: int = 1) -> None:
-    """
-    Logger compatibility:
-    - StepLogger-like: count(key, n)
-    - logging_utils step_logger object: counts({key: n}) or counts(key, n)
-    - fallback: no-op
-    """
     if logger is None:
         return
 
@@ -66,9 +48,7 @@ def _log_event(logger: Any, event: str, payload: Dict[str, Any]) -> None:
         fn(event, payload)
 
 
-# -----------------------------
-# Small utilities
-# -----------------------------
+#small utilities
 def _get_nested(obj: Any, path: str, default: Any = None) -> Any:
     """Read dotted attributes safely, e.g. 'retrieval.min_chars'."""
     cur = obj
@@ -155,8 +135,7 @@ def _iter_urls_from_claim_row(row: Dict[str, Any]) -> Iterable[Tuple[str, str, s
 # -----------------------------
 class _SimpleProgress:
     """
-    Fallback progress display when tqdm is unavailable.
-    Always prints something useful for debugging.
+    progress bar
     """
 
     def __init__(self, total: int, desc: str = "step04") -> None:
@@ -214,12 +193,6 @@ def _progress_iter(
     enabled: bool,
     desc: str = "step04",
 ):
-    """
-    Return either:
-    - tqdm iterator (if installed and enabled)
-    - simple fallback progress wrapper (if enabled)
-    - raw list iterator (if disabled)
-    """
     if not enabled:
         return iter(items)
 
@@ -261,9 +234,7 @@ def _print_summary(
     print(f"errors={stats['errors']}", flush=True)
 
 
-# -----------------------------
-# Step runner (called by orchestrator)
-# -----------------------------
+#step runner
 def run_step04_cache_url_content(
     *,
     paths: Paths,
@@ -345,7 +316,7 @@ def run_step04_cache_url_content(
             _log_count(logger, "skipped_existing", 1)
             stats["skipped"] += 1
             if hasattr(iterable, "set_postfix"):
-                iterable.set_postfix(stats, refresh=False)  # type: ignore[attr-defined]
+                iterable.set_postfix(stats, refresh=False) 
             continue
 
         _log_count(logger, "fetch_attempted", 1)
@@ -354,24 +325,24 @@ def run_step04_cache_url_content(
             text: Optional[str] = None
 
             try:
-                text = fetch_fn(url, timeout_s=timeout_s, retries=retries)  # type: ignore[misc]
+                text = fetch_fn(url, timeout_s=timeout_s, retries=retries)  
             except TypeError:
                 try:
-                    text = fetch_fn(url, timeout=timeout_s, retries=retries)  # type: ignore[misc]
+                    text = fetch_fn(url, timeout=timeout_s, retries=retries) 
                 except TypeError:
                     try:
-                        text = fetch_fn(url, timeout_s=timeout_s)  # type: ignore[misc]
+                        text = fetch_fn(url, timeout_s=timeout_s) 
                     except TypeError:
                         try:
-                            text = fetch_fn(url, timeout=timeout_s)  # type: ignore[misc]
+                            text = fetch_fn(url, timeout=timeout_s)  
                         except TypeError:
-                            text = fetch_fn(url)  # type: ignore[misc]
+                            text = fetch_fn(url) 
 
             if not text or not isinstance(text, str) or not text.strip():
                 _log_count(logger, "dropped_empty_or_none", 1)
                 stats["empty"] += 1
                 if hasattr(iterable, "set_postfix"):
-                    iterable.set_postfix(stats, refresh=False)  # type: ignore[attr-defined]
+                    iterable.set_postfix(stats, refresh=False)
                 continue
 
             cleaned = clean_fn(text)
@@ -379,7 +350,7 @@ def run_step04_cache_url_content(
                 _log_count(logger, "dropped_empty_after_clean", 1)
                 stats["empty"] += 1
                 if hasattr(iterable, "set_postfix"):
-                    iterable.set_postfix(stats, refresh=False)  # type: ignore[attr-defined]
+                    iterable.set_postfix(stats, refresh=False) 
                 continue
 
             cleaned = cleaned.strip()
@@ -388,7 +359,7 @@ def run_step04_cache_url_content(
                 _log_count(logger, "dropped_too_short", 1)
                 stats["too_short"] += 1
                 if hasattr(iterable, "set_postfix"):
-                    iterable.set_postfix(stats, refresh=False)  # type: ignore[attr-defined]
+                    iterable.set_postfix(stats, refresh=False) 
                 continue
 
             if len(cleaned) > max_chars:
@@ -400,14 +371,14 @@ def run_step04_cache_url_content(
             stats["written"] += 1
 
             if hasattr(iterable, "set_postfix"):
-                iterable.set_postfix(stats, refresh=False)  # type: ignore[attr-defined]
+                iterable.set_postfix(stats, refresh=False)  
 
         except Exception as e:
             _log_count(logger, "fetch_errors", 1)
             stats["errors"] += 1
 
             if hasattr(iterable, "set_postfix"):
-                iterable.set_postfix(stats, refresh=False)  # type: ignore[attr-defined]
+                iterable.set_postfix(stats, refresh=False) 
 
             payload = {
                 "claim_id": claim_id,
@@ -456,9 +427,7 @@ def run_step04(
     )
 
 
-# -----------------------------
-# Standalone CLI (optional)
-# -----------------------------
+#CLI
 def main() -> None:
     ap = argparse.ArgumentParser(description="Step 04: cache URL content into run plaintext cache")
     ap.add_argument("--run-id", required=True, help="Run id (runs/<run_id>/...)")
