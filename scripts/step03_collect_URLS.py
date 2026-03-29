@@ -23,10 +23,7 @@ from ccir.schemas import ClaimWithURLs, URLItem, to_dict, utc_now_iso
 from ccir.utils.hashing import sha256_hex
 
 
-# ----------------------------
-# Defaults (can move to configs.py later)
-# ----------------------------
-
+#defaults
 DEFAULT_PAYWALL_KEYWORDS = [
     "subscribe",
     "subscription",
@@ -45,7 +42,7 @@ DEFAULT_PAYWALL_KEYWORDS = [
 ]
 
 DEFAULT_FACTCHECK_DOMAIN_SUBSTRINGS = [
-    # Major global fact-checkers
+    #global fact-checkers
     "snopes.com",
     "factcheck.org",
     "politifact.com",
@@ -54,20 +51,20 @@ DEFAULT_FACTCHECK_DOMAIN_SUBSTRINGS = [
     "checkyourfact.com",
     "logicallyfacts.com",
 
-    # News agency fact-check sections
+    #news agency fact-checkers
     "reuters.com/fact-check",
     "apnews.com/hub/fact-check",
     "factcheck.afp.com",
     "factuel.afp.com",
     "afpfactcheck.com",
 
-    # US media fact-check sections
+    #US
     "usatoday.com/story/news/factcheck",
     "washingtonpost.com/news/fact-checker",
     "bbc.com/news/reality_check",
     "bbc.co.uk/news/reality_check",
 
-    # German / German-speaking
+    #German
     "correctiv.org/faktencheck",
     "dpa-factchecking.com",
     "faktenfuchs",
@@ -77,49 +74,49 @@ DEFAULT_FACTCHECK_DOMAIN_SUBSTRINGS = [
     "dw.com/de/faktencheck",
     "dw.com/en/fact-check",
 
-    # Greek
+    #Greek
     "ellinikahoaxes.gr",
 
-    # Romanian
+    #Romanian
     "factual.ro",
     "veridica.ro",
     "context.ro",
 
-    # Spanish
+    #Spanish
     "maldita.es",
     "maldita.es/malditobulo",
     "newtral.es/fact-check",
     "chequeado.com",
     "efe.com/efe/verifica",
 
-    # Italian
+    #Italian
     "facta.news",
     "pagellapolitica.it/fact-checking",
     "open.online",
     "open.online/fact-check",
     "bufale.net",
 
-    # French
+    #French
     "liberation.fr/checknews",
     "lesdecodeurs.lemonde.fr",
     "france24.com/fr/info-intox",
     "20minutes.fr/societe/fake-off",
 
-    # Central / Eastern Europe
+    #Central and Eastern Europe
     "demagog.org.pl",
     "fakenews.pl",
     "pravda-or-not.com",
 
-    # Turkey
+    #Turkey
     "teyit.org",
 
-    # Caucasus
+    #Caucasus
     "mythdetector.ge",
 
-    # Ukraine / misinformation tracking
+    #Ukraine
     "stopfake.org",
 
-    # South Asia
+    #South Asia
     "boomlive.in",
     "altnews.in",
     "thequint.com/news/webqoof",
@@ -128,12 +125,12 @@ DEFAULT_FACTCHECK_DOMAIN_SUBSTRINGS = [
     "factcrescendo.com",
     "newsmeter.in/fact-check",
 
-    # Africa fact-check network
+    #Africa 
     "africacheck.org",
     "dubawa.org",
     "pesacheck.org",
 
-    # Australia
+    #Australia
     "aap.com.au/factcheck",
 ]
 
@@ -160,7 +157,7 @@ class Step03Params:
 # ----------------------------
 
 def _serp_cache_dir(paths: Paths) -> Path:
-    d = paths.cache_dir / "serpapi"  # runs/<run_id>/cache/serpapi/
+    d = paths.cache_dir / "serpapi"  #runs/<run_id>/cache/serpapi/
     d.mkdir(parents=True, exist_ok=True)
     return d
 
@@ -220,10 +217,7 @@ def _merge_by_claim_id(existing_rows: List[Dict[str, Any]], new_rows: List[Dict[
     return [merged[cid] for cid in sorted(merged.keys())]
 
 
-# ----------------------------
-# Progress bar (no deps)
-# ----------------------------
-
+#progress bar :)
 def _fmt_time(seconds: float) -> str:
     s = max(0, int(seconds))
     h = s // 3600
@@ -252,10 +246,7 @@ def _progress_update(done: int, total: int, start_t: float) -> None:
         print("", flush=True)
 
 
-# ----------------------------
-# URL helpers
-# ----------------------------
-
+#url helpers
 def canonicalize_url(url: str) -> str:
     try:
         raw = url.strip()
@@ -355,10 +346,7 @@ def looks_like_pdf_url(url: str) -> bool:
         return url.lower().endswith(".pdf")
 
 
-# ----------------------------
-# SerpAPI
-# ----------------------------
-
+#serpapi
 class SerpAPIError(RuntimeError):
     pass
 
@@ -406,10 +394,7 @@ def serpapi_search(
             raise SerpAPIError(str(last_err)) from last_err
 
 
-# ----------------------------
-# Pipeline entrypoint
-# ----------------------------
-
+#steps
 def run_step03(
     *,
     paths: Paths,
@@ -444,8 +429,6 @@ def run_step03(
     if not api_key:
         raise RuntimeError("Missing SERPAPI_API_KEY (or SERPAPI_KEY) in environment.")
     api_key_backup = os.environ.get("SERPAPI_API_KEY_BACKUP") or ""
-    # api_keys[0] = primary, api_keys[1] = backup (if set).
-    # process_claim tries them in order, switching to backup only after primary fails.
     api_keys: List[str] = [k for k in [api_key, api_key_backup] if k]
 
     retrieval_cfg = getattr(cfg_obj, "retrieval", cfg_obj)
@@ -538,23 +521,21 @@ def run_step03(
                         num_results=requested,
                         cd_max_mmddyyyy=cd_max,
                         timeout_s=timeout_s,
-                        retries=0,  # one attempt per key; outer loop handles fallback
+                        retries=0,  #one attempt per key
                     )
                     if key_idx > 0:
                         c["serpapi_backup_key_used"] += 1
                     last_exc = None
-                    break  # success — stop trying keys
+                    break  
                 except Exception as e:
                     last_exc = e
-                    # Only fall back to the backup key on rate-limit errors (HTTP 429).
-                    # All other errors (network, auth, bad response, etc.) fail immediately.
                     if key_idx < len(api_keys) - 1 and "429" in str(e):
                         events.append((
                             "serpapi_key_fallback",
                             {"claim_id": str(claim_id), "key_index": key_idx, "error": str(e)[:200]},
                         ))
                     else:
-                        break  # non-rate-limit error or no backup — don't try further keys
+                        break 
 
             if last_exc is not None:
                 c["serpapi_errors"] += 1
@@ -644,7 +625,7 @@ def run_step03(
         )
         return out_row, c, events
 
-    # Progress bar setup
+    #progress bar
     total_claims = len(claims)
     start_t = time.time()
     done = 0
@@ -701,10 +682,7 @@ def run_step03(
         slog.flush(summary={"output": str(out_urls)})
 
 
-# ----------------------------
-# CLI wrapper
-# ----------------------------
-
+#cli wrapper
 def cli_main() -> int:
     ap = argparse.ArgumentParser(description="Step 03: collect evidence URLs via SerpAPI.")
     ap.add_argument("--run-id", required=True, help="Run id (used for Paths + lineage).")
