@@ -1,15 +1,8 @@
 from __future__ import annotations
 """
-scripts/step02_prepare_gold_verdicts.py
-
-Step 02 (orchestrator-safe)
-
-Inputs:
-  - data/processed/claims/all.jsonl
-  - data/processed/claims/forLLMs.jsonl
-
-Output:
-  - data/processed/runs/<run_id>/claims/forScoring.jsonl
+purpose: create dataset for accuracy/f1 scoring
+inputs: data/processed/claims/all.jsonl, data/processed/claims/forLLMs.jsonl
+output: data/processed/runs/<run_id>/claims/forScoring.jsonl
 """
 
 import argparse
@@ -71,23 +64,22 @@ def build_for_scoring_rows(*, paths: Paths) -> List[ScoringClaimRow]:
 def run_step02(
     *,
     paths: Paths,
-    config: Any = None,          # orchestrator may pass; unused here
-    logger: Any = None,          # orchestrator logger (step_logger ctx)
-    step_logger: Any = None,     # alias
-    log: Any = None,             # alias
-    overwrite: bool = True,      # safe default: regenerate forScoring each run
+    config: Any = None,        
+    logger: Any = None,       
+    step_logger: Any = None,  
+    log: Any = None,            
+    overwrite: bool = True,      
     **_: Any,
 ) -> None:
     """
     Orchestrator entrypoint. DO NOT parse argv.
     """
-    # pick whichever logger alias exists
     _logger = logger or step_logger or log
 
     rows = build_for_scoring_rows(paths=paths)
     write_jsonl_atomic(paths.claims_for_scoring, rows=[asdict(r) for r in rows])
 
-    # write a lightweight report row too (optional, but handy)
+    #report row
     report_row = {
         "step": "02",
         "created_utc": utc_now_iso(),
@@ -102,7 +94,6 @@ def run_step02(
     }
     append_jsonl(paths.report_jsonl(2), report_row)
 
-    # best-effort counters into orchestrator report
     if _logger is not None:
         fn = getattr(_logger, "count", None)
         if callable(fn):
@@ -110,9 +101,6 @@ def run_step02(
 
 
 def main() -> int:
-    """
-    Standalone CLI (optional). This is NOT used by the orchestrator.
-    """
     ap = argparse.ArgumentParser(description="Step 02: prepare gold verdicts for scoring.")
     ap.add_argument("--run-id", required=True, help="Run identifier used for run-scoped outputs.")
     ap.add_argument("--repo-root", default=None, help="Optional repo root override.")
@@ -122,7 +110,6 @@ def main() -> int:
     if hasattr(paths, "ensure_run_dirs"):
         paths.ensure_run_dirs()
 
-    # reuse orchestrator entrypoint
     run_step02(paths=paths)
     return 0
 
