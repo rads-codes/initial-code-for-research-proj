@@ -1,21 +1,9 @@
 from __future__ import annotations
 
 """
-scripts/step05_BM25_ranking.py
-
-Inputs:
-  - runs/<run_id>/evidence/URLs.jsonl
-  - plaintext files for each URL under:
-      runs/<run_id>/cache/plaintext/<claim_id>/<url_id>.txt
-  - runs/<run_id>/claims/forLLMs.jsonl (for claim_text)
-
-Process:
-  - ranks candidate documents for each claim using BM25 from src/ccir/retrieval/bm25.py
-  - selects the top L (from configs.py) to use as the claim's evidence pool
-  - writes one JSONL row per claim to runs/<run_id>/evidence/rankings/topKURLs.jsonl
-
-Output:
-  - runs/<run_id>/evidence/rankings/topKURLs.jsonl
+purpose: ranks using BM25, select top L for claim evidence pool
+inputs: runs/<run_id>/evidence/URLs.jsonl, plaintext files for each URL under runs/<run_id>/cache/plaintext/<claim_id>/<url_id>.txt, runs/<run_id>/claims/forLLMs.jsonl (for claim_text)
+output: runs/<run_id>/evidence/rankings/topKURLs.jsonl
 """
 
 import argparse
@@ -32,9 +20,7 @@ from ccir.retrieval import BM25 as bm25_module
 from ccir.schemas import TopKURL, URLItem, to_dict, utc_now_iso
 
 
-# -----------------------------
-# Small utilities
-# -----------------------------
+#small utilities
 def _code_version() -> str:
     return os.getenv("CCIR_CODE_VERSION", "dev")
 
@@ -128,9 +114,7 @@ def _urlitem_from_dict(url_item: Dict[str, Any]) -> URLItem:
     )
 
 
-# -----------------------------
-# BM25 adapter
-# -----------------------------
+#BM25
 def _pick_bm25_callable(module: Any) -> Callable[..., Any]:
     """
     Try a few plausible function names from ccir.retrieval.bm25.py.
@@ -212,9 +196,7 @@ def _call_bm25(
     return _normalize_rank_result(result)
 
 
-# -----------------------------
-# Core step logic
-# -----------------------------
+#core step logic
 def build_topk_rows(
     *,
     paths: Paths,
@@ -368,9 +350,7 @@ def run_step05(
     return paths.evidence_topk_urls
 
 
-# -----------------------------
-# CLI
-# -----------------------------
+#CLI
 def _build_argparser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(description="Step 05: BM25 rank cached plaintext documents")
     ap.add_argument("run_id", help="Run ID, e.g. pilot1")
