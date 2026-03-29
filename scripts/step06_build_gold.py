@@ -1,31 +1,10 @@
 from __future__ import annotations
 
 '''
-step06_build_gold.py
-Input: plaintext files for each URL under data/processed/plaintext/<claim_id>, data/processed/evidence/rankings/topKURLs.jsonl
-Process: to organize better, the plaintext files for each URL in topKURLs.jsonl (format in schemas.py under topKURL) are saved under data/processed/runs/<run_id>/cache/gold/gold_docs/<claim_id>/<URL_id>
-Outputs: plaintext files for each URL in topKURLs.jsonl saved under data/processed/runs/<run_id>/cache/gold/gold_docs/<claim_id>/<URL_id>
+purpose: formatting plaintext files for each URL in top K
+input: plaintext files for each URL under data/processed/plaintext/<claim_id>, data/processed/evidence/rankings/topKURLs.jsonl
+outputs: plaintext files for each URL in topKURLs.jsonl saved under data/processed/runs/<run_id>/cache/gold/gold_docs/<claim_id>/<URL_id>
 '''
-
-"""
-scripts/06_build_gold.py
-
-Input:
-  - data/processed/runs/<run_id>/evidence/rankings/topKURLs.jsonl
-  - data/processed/runs/<run_id>/cache/plaintext/<claim_id>/<url_id>.txt
-
-Process:
-  - For each TopKURL row, copy the already-cached plaintext for each selected url_id
-    into:
-      data/processed/runs/<run_id>/cache/gold/gold_docs/<claim_id>/<url_id>.txt
-
-Output:
-  - data/processed/runs/<run_id>/cache/gold/gold_docs/<claim_id>/<url_id>.txt
-
-Notes:
-  - This step does not fetch, clean, or rank documents.
-  - It only copies the top-L plaintext docs selected in step 05.
-"""
 
 import argparse
 from pathlib import Path
@@ -35,9 +14,7 @@ from ccir.io_utils import read_jsonl, read_text, write_text_atomic
 from ccir.paths import Paths
 
 
-# -----------------------------
-# Logger compatibility helpers
-# -----------------------------
+#help logging
 def _log_count(logger: Any, key: str, inc: int = 1) -> None:
     if logger is None:
         return
@@ -70,13 +47,8 @@ def _log_event(logger: Any, message: str, **fields: Any) -> None:
         logger.append({"message": message, **fields})
 
 
-# -----------------------------
-# Row parsing helpers
-# -----------------------------
+#parse rows
 def _extract_topk_items(row: Dict[str, Any]) -> List[Dict[str, Any]]:
-    """
-    Be tolerant to likely serialized field names for the selected URL list.
-    """
     for key in ("top_k_urls", "top_urls", "urls", "selected_urls", "ranked_urls"):
         value = row.get(key)
         if isinstance(value, list):
@@ -92,9 +64,7 @@ def _extract_url_id(url_row: Dict[str, Any]) -> Optional[str]:
     return None
 
 
-# -----------------------------
-# Core logic
-# -----------------------------
+#core logic
 def run_step06(
     *,
     paths: Paths,
@@ -106,11 +76,6 @@ def run_step06(
     code_version: Optional[str] = None,
     config_hash: Optional[str] = None,
 ) -> Dict[str, int]:
-    """
-    Copy top-L plaintext docs into the gold docs cache.
-
-    Parameters are intentionally broad so __main__.py can pass its standard kwargs.
-    """
     active_logger = logger or log or step_logger
 
     topk_path = paths.run_evidence_topk_urls_jsonl
@@ -211,14 +176,11 @@ def run_step06(
     return counts
 
 
-# Optional alias so the step can also be called as run(...)
 def run(**kwargs: Any) -> Dict[str, int]:
     return run_step06(**kwargs)
 
 
-# -----------------------------
-# CLI support
-# -----------------------------
+#CLI
 def build_arg_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Copy top-L plaintext docs into cache/gold/gold_docs.")
     p.add_argument("run_id", help="Run id, e.g. pilot1")
