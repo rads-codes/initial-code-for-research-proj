@@ -1,23 +1,12 @@
 from __future__ import annotations
 
 """
-scripts/step00_prepare_dataset.py
-
-Step 00: Prepare EuroVerdict into stable claims/all.jsonl + verdict mapping doc.
-
-Key behaviors (per spec):
-- Extract: ID, Language, Claim, Date, Rating (fallback to Verdict)
-- Normalize dates to YYYY-MM-DD
-- Map EuroVerdict Rating/Verdict to 4 AVeriTeC labels:
-    Supported, Refuted, Not Enough Evidence, Conflicting Evidence
-  (Cherry Picking is not its own label; map to Conflicting Evidence.)
-- Discard rows missing: ID, Language, Claim, Date, and (Rating or Verdict)
-- Write:
-    <run_root>/claims/all.jsonl           (AllClaimsFormat JSONL)
-    <run_root>/verdicts/mapping.jsonl    (single-row JSONL documenting mapping + stats)
-  and report_00.jsonl via logging_utils.step_logger
-
-This module is safe to import; no work runs at import time.
+purpose: prepare euroverdict into claims/all.jsonl and a verdict mapping doc
+ - extract ID, language, claim, date, rating/verdict
+ - normalize dates to YYYY-MM-DD
+ - map multilingual euroverdict rating to supported/refuted/not enough evidence/conflicting evidence
+ - discard rows without ID, language, claim, date, and rating/verdict
+ - write claims/all.jsonl and verdicts/mapping.jsonl
 """
 
 import json
@@ -54,22 +43,18 @@ def _clean_str(x: Any) -> Optional[str]:
 
 
 def _strip_diacritics(s: str) -> str:
-    # NFKD splits base chars + combining marks; drop combining marks
+    #drop combining unnecessary punctuation
     return "".join(ch for ch in unicodedata.normalize("NFKD", s) if not unicodedata.combining(ch))
 
 
 def _norm_text(x: str) -> str:
     """
-    Normalize label-ish text for robust matching:
-    - lowercase
-    - strip diacritics (critical for Greek + accented Latin)
-    - collapse whitespace
-    - remove punctuation (replace with spaces)
+    normalize labels
     """
     s = x.strip().lower()
     s = _strip_diacritics(s)
     s = _WS_RE.sub(" ", s)
-    # keep letters/numbers/spaces across Latin/Greek/Cyrillic; replace punctuation with spaces
+    #replace punctuation with spaces
     s = re.sub(r"[^0-9a-z\u00C0-\u024F\u0370-\u03FF\u0400-\u04FF\s]", " ", s)
     s = _WS_RE.sub(" ", s).strip()
     return s
@@ -77,10 +62,7 @@ def _norm_text(x: str) -> str:
 
 def _parse_date_iso(date_raw: str) -> Optional[str]:
     """
-    Normalize dates to YYYY-MM-DD.
-
-    EuroVerdict.json is overwhelmingly YYYY-MM-DD, but we support a few alternates
-    + ISO timestamps. We keep strict behavior: if unparsable, the row is dropped.
+    normalize dates
     """
     s = date_raw.strip()
     if not s:
@@ -100,7 +82,7 @@ def _parse_date_iso(date_raw: str) -> Optional[str]:
         except ValueError:
             pass
 
-    # ISO timestamp fallback (e.g., 2024-01-15T00:00:00Z)
+    #fallback for timestamp
     try:
         dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
         return dt.date().isoformat()
@@ -114,35 +96,22 @@ def _contains_any(norm: str, needles: List[str]) -> bool:
 
 def _map_to_averitec_label(rating_or_verdict: str) -> Tuple[Optional[str], JsonObj]:
     """
-    Map EuroVerdict Rating/Verdict strings to AVeriTeC 4-way labels.
-
-    Tuned to the actual labels observed in your mapping.jsonl:
-      - Greek: Παραπληροφόρηση, Λείπει θεματικό περιεχόμενο, Συνωμοσιολογία,
-               Απάτη, Κινδυνολογία, Μίξη γεγονότων και παραποιήσεων,
-               composites like "Παραπληροφόρηση, ψεύτικη εικόνα", "Σάτιρα, ..."
-      - German: Fehlender Kontext., Falscher Kontext., Teilweise falsch., Falsch., Manipuliert.
-      - French: Faux, Partiellement faux, Manque de contexte, Contexte manquant,
-                typo: Manque de context
-      - Italian: Notizia falsa, Fuori contesto
-      - Romanian: Fals, Context lipsă, Parțial fals
-      - English: False, Missing context, Partly false
+    euroverdict label mapping to 4-way labels
     """
     raw = rating_or_verdict
     norm = _norm_text(raw)
     debug: JsonObj = {"raw": raw, "norm": norm}
 
-    # Cherry-picking collapses into Conflicting Evidence
+    #cherry picking evidence isn't used
     if "cherry" in norm and "pick" in norm:
         debug["cherry_picking_removed"] = True
         return AV_LABEL_CONFLICT, debug
 
-    # --- Not Enough Evidence ---
-    # Greek bucket in your dataset
+    #greek not enough evidence
     if "λειπει θεματικο περιεχομενο" in norm:
         return AV_LABEL_NEE, debug
 
-    # --- Conflicting Evidence / Missing context / Mixed / Satire ---
-    # Missing/out-of-context buckets (multi-lingual + observed typo)
+    #conflicting evidence
     if _contains_any(
         norm,
         [
@@ -174,24 +143,23 @@ def _map_to_averitec_label(rating_or_verdict: str) -> Tuple[Optional[str], JsonO
     ):
         return AV_LABEL_CONFLICT, debug
 
-    # Greek: "Παραπλανητικό" (misleading)
+    #greek misleading
     if "παραπλανητικο" in norm:
         return AV_LABEL_CONFLICT, debug
 
-    # Greek "mixture of facts and distortions" -> conflict
+    #greek conflicting
     if "μιξη γεγονοτων" in norm or "παραποιησεων" in norm:
         return AV_LABEL_CONFLICT, debug
 
-    # Satire often appears mixed with other tags -> conflict
+    #satire
     if "σατιρα" in norm:
         return AV_LABEL_CONFLICT, debug
 
-    # "Like farming" bucket (observed) -> conflict (engagement manipulation)
+    #conflict (random label)
     if "like farming" in norm:
         return AV_LABEL_CONFLICT, debug
 
-    # --- Refuted / False / Misinformation / Conspiracy / Fraud / Alarmism ---
-    # Greek broad buckets: treat as Refuted (most consistent with "misinformation" categorization)
+    #refuted greek
     if _contains_any(
         norm,
         [
@@ -199,17 +167,17 @@ def _map_to_averitec_label(rating_or_verdict: str) -> Tuple[Optional[str], JsonO
             "συνωμοσιολογια",
             "απατη",
             "κινδυνολογια",
-            "ψευδ",  # stem covers ψευδες/ψευδης/ψευδης ισχυρισμος
+            "ψευδ",  #covers ψευδες/ψευδης/ψευδης ισχυρισμος
             "ψευδοεπιστημη",
         ],
     ):
         return AV_LABEL_REFUTED, debug
 
-    # Standard false-ish buckets
+    #refuted
     if _contains_any(
         norm,
         [
-            # English
+            # english
             "false",
             "incorrect",
             "wrong",
@@ -217,22 +185,22 @@ def _map_to_averitec_label(rating_or_verdict: str) -> Tuple[Optional[str], JsonO
             "debunked",
             "hoax",
             "fake",
-            # Italian
+            # italian
             "notizia falsa",
-            # German
+            # german
             "falsch",
             "grosstenteils falsch",
             "großtenteils falsch",
             "manipuliert",
-            # French
+            #french (not necessary)
             "faux",
-            # Romanian
+            #romanian
             "fals",
         ],
     ):
         return AV_LABEL_REFUTED, debug
 
-    # --- Supported / True (rare in your file) ---
+    #supported
     if _contains_any(norm, ["true", "correct", "accurate", "verified", "supported"]) and "not true" not in norm:
         return AV_LABEL_SUPPORTED, debug
 
@@ -255,7 +223,7 @@ def _path_attr_or_fallback(paths: Paths, attr: str, fallback: Path) -> Path:
 def run_step_00_prepare_dataset(*, paths: Paths, run_id: str, code_version: str) -> None:
     raw_in = _path_attr_or_fallback(paths, "raw_euroverdict_jsonl", paths.raw_root / "EuroVerdict.json")
 
-    # Prefer run-scoped output under runs/<run_id>/...
+    #output under runs/<run_id>/
     run_root = (
         getattr(paths, "run_root", None)
         or getattr(paths, "run_dir", None)
@@ -276,7 +244,7 @@ def run_step_00_prepare_dataset(*, paths: Paths, run_id: str, code_version: str)
         start_message="Preparing EuroVerdict claims dataset",
         start_fields={"input": str(raw_in), "output_claims": str(out_claims), "output_mapping": str(out_mapping)},
     ) as log:
-        # Load rows (JSON array preferred; JSONL fallback supported)
+        #load rows
         rows: List[JsonObj] = []
         try:
             with log.timer("read_jsonl"):
@@ -308,7 +276,7 @@ def run_step_00_prepare_dataset(*, paths: Paths, run_id: str, code_version: str)
                 date_s = _clean_str(r.get("Date"))
                 rating_or_verdict = _clean_str(r.get("Rating")) or _clean_str(r.get("Verdict"))
 
-                # Required fields (per spec)
+                #req fields
                 if claim_id is None:
                     log.incr("dropped_missing_id")
                     if len(dropped_examples["missing_id"]) < 5:
@@ -420,10 +388,6 @@ def run(
     log: Any | None = None,
     logger: Any | None = None,
 ) -> None:
-    """
-    Entrypoint used by src/ccir/__main__.py.
-    Accepts a superset of args; forwards only what Step 00 needs.
-    """
     rid = run_id or getattr(paths, "run_id", None)
     if rid is None:
         raise ValueError("run_id is required (or paths.run_id must exist).")
